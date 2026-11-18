@@ -1,0 +1,49 @@
+# Environment variables and secrets (CRITICAL: NEVER COMMIT)
+.env
+.env.local
+.env.*.local
+
+# Uploads directory: keep the folder, ignore uploaded user documents
+uploads/*
+!uploads/.gitkeep
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Local caches & models
+.cache/
+*.cache
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Outputs & temporary folders
+outputs/
+temp/
+tmp/
+*.log
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# OS-generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# IDE configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

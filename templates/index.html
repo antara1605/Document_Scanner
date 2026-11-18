@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Scanner - Information Extractor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .main-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            max-width: 920px;
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        .card-header-brand {
+            background-color: #002d56;
+            color: white;
+            padding: 1.75rem 2rem;
+            text-align: center;
+        }
+        .dropzone-box {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 2.25rem 1.5rem;
+            text-align: center;
+            background-color: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .dropzone-box:hover, .dropzone-box.dragover {
+            border-color: #0284c7;
+            background-color: #f0f9ff;
+        }
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #e0f2fe;
+            color: #0284c7;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 0.85rem;
+        }
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        .step-item.active { color: #0284c7; font-weight: 600; }
+        .step-item.done { color: #16a34a; font-weight: 500; }
+        .step-icon {
+            width: 24px;
+            margin-right: 0.75rem;
+            text-align: center;
+        }
+        .file-pill {
+            font-size: 0.8rem;
+            background-color: #e2e8f0;
+            color: #334155;
+            padding: 0.3rem 0.65rem;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            margin: 0.2rem;
+        }
+        /* Master Summary Card & Table Styles */
+        .summary-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #ffffff;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            margin-bottom: 1.5rem;
+        }
+        .summary-card-header {
+            background-color: #f1f5f9;
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid #cbd5e1;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .table-summary {
+            font-size: 0.86rem;
+            margin-bottom: 0;
+        }
+        .table-summary th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+            padding: 0.75rem 0.85rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .table-summary td {
+            padding: 0.75rem 0.85rem;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .highlight-chip {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.18rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 0.1rem 0.25rem 0.1rem 0;
+            max-width: 320px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .doc-section {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .doc-section-header {
+            background-color: #f8fafc;
+            padding: 0.85rem 1.15rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .doc-section-header .doc-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #1e293b;
+        }
+        .doc-type-badge {
+            font-size: 0.75rem;
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .doc-summary-banner {
+            background-color: #f0fdf4;
+            border-bottom: 1px solid #dcfce7;
+            color: #166534;
+            padding: 0.65rem 1.15rem;
+            font-size: 0.84rem;
+            display: flex;
+            align-items: center;
+        }
+        .doc-fields-table {
+            font-size: 0.88rem;
+            max-height: 420px;
+            overflow-y: auto;
+        }
+        .doc-fields-table table { margin-bottom: 0; }
+        .doc-fields-table tr td {
+            padding: 0.55rem 0.85rem;
+            vertical-align: top;
+        }
+        .ocr-raw-box {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            padding: 1rem;
+            max-height: 250px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            border-top: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-card">
+    <div class="card-header-brand">
+        <div class="d-inline-flex align-items-center justify-content-center p-2 rounded-3 bg-white text-primary mb-2 shadow-sm" style="width: 44px; height: 44px;">
+            <i class="fa-solid fa-file-lines fs-5" style="color: #002d56;"></i>
+        </div>
+        <h4 class="fw-bold mb-1">Document Scanner & Information Extractor</h4>
+        <p class="mb-0 text-white-50 small">Upload any document &bull; OCR + AI structured extraction &bull; Summary tables</p>
+    </div>
+
+    <div class="p-4 p-md-5">
+        <!-- Error Alert Container -->
+        <div id="errorAlert" class="alert alert-danger d-none mb-4 alert-dismissible fade show" role="alert">
+            <div class="d-flex align-items-start">
+                <i class="fa-solid fa-circle-exclamation me-2 fs-5 mt-1"></i>
+                <div class="flex-grow-1">
+                    <strong class="d-block mb-1">Extraction Error</strong>
+                    <span id="errorMessageText">An error occurred during extraction.</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close" onclick="dismissError()"></button>
+        </div>
+
+        <!-- 1. UPLOAD VIEW -->
+        <div id="uploadView">
+            <form id="uploadForm">
+                <div class="dropzone-box mb-4" id="dropzone">
+                    <input type="file" id="fileInput" name="documents" multiple accept=".jpg,.jpeg,.png,.pdf,.bmp,.tiff,.webp,image/*,application/pdf"
+                           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10;" title="Click to browse documents">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h5 class="fw-bold mb-1">Click to Browse or Drag Documents Here</h5>
+                    <p class="text-muted small mb-3">Upload any document — Driving Licenses, IDs, Cheques, Survey Reports, Vouchers, Deeds, Invoices, Receipts, etc. (JPG, PNG, PDF)</p>
+                    <span class="btn btn-outline-primary px-4 rounded-pill btn-sm">
+                        <i class="fa-solid fa-file-arrow-up me-1"></i> Browse Files
+                    </span>
+                </div>
+
+                <div id="fileSelectedBox" class="alert alert-secondary d-none mb-4 py-2 px-3">
+                    <div class="d-flex align-items-center justify-content-between mb-2 pb-1 border-bottom">
+                        <span class="fw-bold small text-primary">
+                            <i class="fa-solid fa-files me-1"></i> <span id="filesCountBadge">0 Documents Selected</span>
+                        </span>
+                        <button type="button" class="btn btn-link btn-sm text-danger text-decoration-none p-0" onclick="resetFiles()">Clear All</button>
+                    </div>
+                    <div id="filePillsContainer" class="d-flex flex-wrap" style="max-height: 120px; overflow-y: auto;"></div>
+                </div>
+
+                <button type="submit" id="btnProcess" class="btn btn-primary w-100 py-3 fw-semibold rounded-3 shadow-sm" style="background-color: #002d56; border-color: #002d56;" disabled>
+                    <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Extract Information
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. PROCESSING VIEW -->
+        <div id="processingView" class="d-none text-center py-4">
+            <div class="spinner-border text-primary mb-4" style="width: 3.5rem; height: 3.5rem;" role="status"></div>
+            <h5 class="fw-bold mb-2">Processing Documents...</h5>
+            <p class="text-muted small mb-4" id="processingStatusText">Please wait while OCR and Extraction analyze your documents.</p>
+            <div class="bg-light p-3 rounded-3 text-start mb-4 mx-auto" style="max-width: 440px;">
+                <div class="step-item active" id="step1">
+                    <span class="step-icon"><i class="fa-solid fa-spinner fa-spin text-primary"></i></span>
+                    <span id="step1Text">1. Reading documents with PaddleOCR...</span>
+                </div>
+                <div class="step-item" id="step2">
+                    <span class="step-icon"><i class="fa-regular fa-circle text-muted"></i></span>
+                    <span id="step2Text">2. Extracting structured information...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. COMPLETED VIEW -->
+        <div id="completedView" class="d-none">
+            <div class="text-center mb-4">
+                <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-success-subtle text-success mb-2" style="width: 60px; height: 60px;">
+                    <i class="fa-solid fa-check fs-3"></i>
+                </div>
+                <h4 class="fw-bold mb-1">Extraction Complete!</h4>
+                <p class="text-muted small mb-1" id="completedSubtext"></p>
+                <div id="engineBadgeContainer" class="mt-2"></div>
+            </div>
+
+            <!-- Master Summary Table of All Processed Documents -->
+            <div class="summary-card" id="masterSummarySection">
+                <div class="summary-card-header">
+                    <span class="text-dark"><i class="fa-solid fa-table-list text-primary me-2"></i> Documents Summary Table</span>
+                    <span class="badge bg-primary rounded-pill" id="summaryBadge">0 Documents</span>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-summary table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th style="width: 25%;">Document Name</th>
+                                <th style="width: 20%;">Detected Type</th>
+                                <th style="width: 38%;">Key Summary Info</th>
+                                <th style="width: 12%;" class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summaryTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between mb-3 mt-4">
+                <h6 class="fw-bold text-muted text-uppercase small mb-0">
+                    <i class="fa-solid fa-file-invoice text-secondary me-1"></i> Extracted Fields Details
+                </h6>
+                <span class="small text-muted" id="totalFieldsIndicator"></span>
+            </div>
+
+            <!-- Per-Document Results Container -->
+            <div id="docResultsContainer" class="mb-3"></div>
+
+            <button type="button" class="btn btn-outline-primary w-100 py-2 rounded-3 fw-semibold mt-3" onclick="resetForm()">
+                <i class="fa-solid fa-arrow-rotate-left me-1"></i> Scan More Documents
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap 5 Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const dropzone = document.getElementById('dropzone');
+    const fileSelectedBox = document.getElementById('fileSelectedBox');
+    const filesCountBadge = document.getElementById('filesCountBadge');
+    const filePillsContainer = document.getElementById('filePillsContainer');
+    const btnProcess = document.getElementById('btnProcess');
+    const uploadForm = document.getElementById('uploadForm');
+    const uploadView = document.getElementById('uploadView');
+    const processingView = document.getElementById('processingView');
+    const completedView = document.getElementById('completedView');
+    const completedSubtext = document.getElementById('completedSubtext');
+    const summaryTableBody = document.getElementById('summaryTableBody');
+    const docResultsContainer = document.getElementById('docResultsContainer');
+    const errorAlert = document.getElementById('errorAlert');
+    const errorMessageText = document.getElementById('errorMessageText');
+
+    function showError(msg) {
+        errorMessageText.textContent = msg;
+        errorAlert.classList.remove('d-none');
+    }
+
+    function dismissError() {
+        errorAlert.classList.add('d-none');
+    }
+
+    function escapeHtml(text) {
+        if (text === null || text === undefined) return '';
+        if (typeof text === 'object') {
+            try { return JSON.stringify(text); } catch (e) { return String(text); }
+        }
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    ['dragenter', 'dragover'].forEach(name => {
+        dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    });
+    ['dragleave', 'drop'].forEach(name => {
+        dropzone.addEventListener(name, (e) => { dropzone.classList.remove('dragover'); });
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            try { fileInput.files = e.dataTransfer.files; } catch (err) {}
+            handleFileSelect();
+        }
+    });
+
+    fileInput.addEventListener('change', handleFileSelect);
+
+    function handleFileSelect() {
+        dismissError();
+        const files = fileInput.files;
+        if (files && files.length > 0) {
+            filesCountBadge.textContent = `${files.length} Document(s) Selected`;
+            filePillsContainer.innerHTML = '';
+            for (let i = 0; i < files.length; i++) {
+                const f = files[i];
+                const span = document.createElement('span');
+                span.className = 'file-pill text-truncate';
+                span.style.maxWidth = '260px';
+                const sizeKb = (f.size / 1024).toFixed(0);
+                span.innerHTML = `<i class="fa-solid fa-file me-1 text-primary"></i> ${escapeHtml(f.name)} <small class="text-muted ms-1">(${sizeKb} KB)</small>`;
+                filePillsContainer.appendChild(span);
+            }
+            fileSelectedBox.classList.remove('d-none');
+            btnProcess.removeAttribute('disabled');
+        } else {
+            resetFiles();
+        }
+    }
+
+    function resetFiles() {
+        fileInput.value = '';
+        fileSelectedBox.classList.add('d-none');
+        filePillsContainer.innerHTML = '';
+        btnProcess.setAttribute('disabled', 'disabled');
+    }
+
+    function resetForm() {
+        resetFiles();
+        dismissError();
+        completedView.classList.add('d-none');
+        processingView.classList.add('d-none');
+        uploadView.classList.remove('d-none');
+        document.getElementById('step1').className = 'step-item active';
+        document.getElementById('step1').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-spinner fa-spin text-primary"></i>';
+        document.getElementById('step2').className = 'step-item';
+        document.getElementById('step2').querySelector('.step-icon').innerHTML = '<i class="fa-regular fa-circle text-muted"></i>';
+    }
+
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!fileInput.files || fileInput.files.length === 0) return;
+
+        dismissError();
+        uploadView.classList.add('d-none');
+        processingView.classList.remove('d-none');
+
+        const formData = new FormData();
+        const fileCount = fileInput.files.length;
+        for (let i = 0; i < fileCount; i++) {
+            formData.append('documents', fileInput.files[i]);
+        }
+
+        document.getElementById('step1Text').textContent = `1. Reading ${fileCount} document(s) with PaddleOCR...`;
+
+        setTimeout(() => {
+            document.getElementById('step1').className = 'step-item done';
+            document.getElementById('step1').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+            document.getElementById('step2').className = 'step-item active';
+            document.getElementById('step2').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-spinner fa-spin text-primary"></i>';
+        }, 1500);
+
+        try {
+            const resp = await fetch('/upload-and-process', { method: 'POST', body: formData });
+            const data = await resp.json();
+
+            if (resp.ok && data.success) {
+                document.getElementById('step1').className = 'step-item done';
+                document.getElementById('step1').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+                document.getElementById('step2').className = 'step-item done';
+                document.getElementById('step2').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+                setTimeout(() => { showCompleted(data); }, 500);
+            } else {
+                processingView.classList.add('d-none');
+                uploadView.classList.remove('d-none');
+                showError(data.error || 'Failed to process documents.');
+            }
+        } catch (err) {
+            processingView.classList.add('d-none');
+            uploadView.classList.remove('d-none');
+            showError('Network or server error: ' + err.message);
+        }
+    });
+
+    function showCompleted(data) {
+        processingView.classList.add('d-none');
+        completedView.classList.remove('d-none');
+
+        const totalFields = data.total_fields || 0;
+        const docCount = data.processed_files_count || 0;
+        const engineUsed = data.engine_used || 'Local Rule & Heuristic Engine (Offline)';
+
+        completedSubtext.textContent = `Extracted ${totalFields} field(s) from ${docCount} document(s).`;
+
+        // Engine indicator badge
+        const engineContainer = document.getElementById('engineBadgeContainer');
+        const isAi = engineUsed.toLowerCase().includes('groq') || engineUsed.toLowerCase().includes('ai');
+        engineContainer.innerHTML = `
+            <span class="badge ${isAi ? 'bg-primary-subtle text-primary border border-primary-subtle' : 'bg-secondary-subtle text-dark border'} px-3 py-1 rounded-pill small">
+                <i class="fa-solid ${isAi ? 'fa-wand-magic-sparkles text-primary' : 'fa-bolt text-warning'} me-1"></i> Mode: ${escapeHtml(engineUsed)}
+            </span>
+        `;
+
+        document.getElementById('summaryBadge').textContent = `${docCount} Document${docCount === 1 ? '' : 's'}`;
+        document.getElementById('totalFieldsIndicator').textContent = `${totalFields} total field${totalFields === 1 ? '' : 's'} extracted`;
+
+        summaryTableBody.innerHTML = '';
+        docResultsContainer.innerHTML = '';
+        const documents = data.documents || [];
+
+        if (documents.length === 0) {
+            summaryTableBody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">No documents processed</td></tr>';
+            docResultsContainer.innerHTML = '<div class="text-center text-muted py-4"><i class="fa-solid fa-circle-info me-1"></i> No information could be extracted.</div>';
+            return;
+        }
+
+        documents.forEach((doc, idx) => {
+            try {
+                const docName = doc.document_name || `Document ${idx + 1}`;
+                const docType = doc.document_type || 'Document';
+                const docSummary = doc.summary || '';
+                const fields = doc.fields || {};
+                const entries = Object.entries(fields);
+                const ocrText = doc.ocr_text || '';
+                const pageCount = doc.page_count || 1;
+                const confidencePct = Math.round((doc.confidence || 0.85) * 100);
+                const sectionId = `doc_section_${idx}`;
+
+                // --- 1. Master Summary Table Row ---
+                const tr = document.createElement('tr');
+                let highlightsHtml = '';
+                const priorityKeys = [
+                    'Driving License Number', 'Policy Number', 'Receipt / Invoice No', 'Cheque Number',
+                    'Aadhaar Number', 'PAN Number', 'Full Name', "Holder's Name", 'Insured Name',
+                    'Customer Name', 'Amount', 'Settlement Amount', 'Received Amount', 'Current Status',
+                    'Vehicle Registration No', 'Registration Date', 'Date of Birth', 'Bank Name'
+                ];
+                let addedHighlights = 0;
+                for (const pk of priorityKeys) {
+                    if (fields[pk] && addedHighlights < 3) {
+                        highlightsHtml += `<span class="highlight-chip" title="${escapeHtml(pk)}: ${escapeHtml(fields[pk])}">${escapeHtml(pk)}: ${escapeHtml(fields[pk])}</span>`;
+                        addedHighlights++;
+                    }
+                }
+                if (addedHighlights < 2) {
+                    for (const [k, v] of entries) {
+                        if (!priorityKeys.includes(k) && addedHighlights < 3) {
+                            highlightsHtml += `<span class="highlight-chip" title="${escapeHtml(k)}: ${escapeHtml(v)}">${escapeHtml(k)}: ${escapeHtml(v)}</span>`;
+                            addedHighlights++;
+                        }
+                    }
+                }
+                if (!highlightsHtml) {
+                    if (docSummary) {
+                        highlightsHtml = `<span class="text-muted small">${escapeHtml(docSummary)}</span>`;
+                    } else {
+                        highlightsHtml = `<span class="text-muted small">${entries.length} field(s) extracted</span>`;
+                    }
+                }
+
+                tr.innerHTML = `
+                    <td class="fw-bold text-muted">${idx + 1}</td>
+                    <td>
+                        <div class="fw-semibold text-truncate" style="max-width: 200px;" title="${escapeHtml(docName)}">
+                            <i class="fa-regular fa-file me-1 text-primary"></i> ${escapeHtml(docName)}
+                        </div>
+                    </td>
+                    <td><span class="doc-type-badge">${escapeHtml(docType)}</span></td>
+                    <td>${highlightsHtml}</td>
+                    <td class="text-end">
+                        <a href="#${sectionId}" class="btn btn-sm btn-outline-primary py-1 px-2 rounded-pill" style="font-size: 0.78rem;">
+                            <i class="fa-solid fa-eye me-1"></i> View (${entries.length})
+                        </a>
+                    </td>
+                `;
+                summaryTableBody.appendChild(tr);
+
+                // --- 2. Per-Document Detailed Card & Fields Table ---
+                const section = document.createElement('div');
+                section.className = 'doc-section';
+                section.id = sectionId;
+
+                // Header with document name and type
+                let headerHtml = `
+                    <div class="doc-section-header">
+                        <div class="doc-name">
+                            <i class="fa-solid fa-file-lines me-2 text-primary"></i>${escapeHtml(docName)}
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="doc-type-badge">${escapeHtml(docType)}</span>
+                            <span class="badge bg-primary rounded-pill ms-1">${entries.length} fields</span>
+                        </div>
+                    </div>
+                `;
+
+                // Summary Banner if available
+                let bannerHtml = '';
+                if (docSummary) {
+                    bannerHtml = `
+                        <div class="doc-summary-banner">
+                            <i class="fa-solid fa-circle-info me-2 text-success"></i>
+                            <strong>Summary:</strong>&nbsp;<span>${escapeHtml(docSummary)}</span>
+                        </div>
+                    `;
+                }
+
+                // Fields summary table
+                let tableHtml = '<div class="doc-fields-table"><table class="table table-sm table-striped mb-0"><tbody>';
+                if (entries.length > 0) {
+                    entries.forEach(([label, val]) => {
+                        tableHtml += `
+                            <tr>
+                                <td class="text-muted fw-semibold ps-3" style="width: 38%;">${escapeHtml(label)}</td>
+                                <td class="fw-bold pe-3 text-dark">${escapeHtml(val)}</td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    tableHtml += '<tr><td colspan="2" class="text-center text-muted py-3">No structured fields extracted</td></tr>';
+                }
+                tableHtml += '</tbody></table></div>';
+
+                // Extracted OCR text verification section (collapsible)
+                const collapseId = `ocrTextCollapse_${idx}`;
+                let ocrSectionHtml = `
+                    <div class="p-2 bg-light border-top d-flex justify-content-between align-items-center">
+                        <button class="btn btn-sm btn-outline-secondary py-1 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}">
+                            <i class="fa-solid fa-align-left me-1"></i> View Extracted OCR Text
+                        </button>
+                        <small class="text-muted">${pageCount} page(s) &bull; OCR Confidence: ${confidencePct}%</small>
+                    </div>
+                    <div class="collapse" id="${collapseId}">
+                        <div class="ocr-raw-box">${escapeHtml(ocrText || '[No raw text was detected in this document]')}</div>
+                    </div>
+                `;
+
+                section.innerHTML = headerHtml + bannerHtml + tableHtml + ocrSectionHtml;
+                docResultsContainer.appendChild(section);
+            } catch (renderErr) {
+                console.error("Error rendering document section:", renderErr, doc);
+            }
+        });
+    }
+</script>
+</body>
+</html>
