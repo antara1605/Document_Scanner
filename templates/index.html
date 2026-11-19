@@ -278,7 +278,6 @@
                 </div>
                 <h4 class="fw-bold mb-1">Extraction Complete!</h4>
                 <p class="text-muted small mb-1" id="completedSubtext"></p>
-                <div id="engineBadgeContainer" class="mt-2"></div>
             </div>
 
             <!-- Master Summary Table of All Processed Documents -->
@@ -471,18 +470,8 @@
 
         const totalFields = data.total_fields || 0;
         const docCount = data.processed_files_count || 0;
-        const engineUsed = data.engine_used || 'Local Rule & Heuristic Engine (Offline)';
 
         completedSubtext.textContent = `Extracted ${totalFields} field(s) from ${docCount} document(s).`;
-
-        // Engine indicator badge
-        const engineContainer = document.getElementById('engineBadgeContainer');
-        const isAi = engineUsed.toLowerCase().includes('groq') || engineUsed.toLowerCase().includes('ai');
-        engineContainer.innerHTML = `
-            <span class="badge ${isAi ? 'bg-primary-subtle text-primary border border-primary-subtle' : 'bg-secondary-subtle text-dark border'} px-3 py-1 rounded-pill small">
-                <i class="fa-solid ${isAi ? 'fa-wand-magic-sparkles text-primary' : 'fa-bolt text-warning'} me-1"></i> Mode: ${escapeHtml(engineUsed)}
-            </span>
-        `;
 
         document.getElementById('summaryBadge').textContent = `${docCount} Document${docCount === 1 ? '' : 's'}`;
         document.getElementById('totalFieldsIndicator').textContent = `${totalFields} total field${totalFields === 1 ? '' : 's'} extracted`;

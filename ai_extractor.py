@@ -45,7 +45,7 @@ You MUST return a JSON object with this exact schema:
 class AIExtractor:
     def __init__(self, api_key=None, model=None):
         self.api_key = api_key or os.getenv("GROQ_API_KEY", "")
-        self.model = model or os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+        self.model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
         self.client = None
         if self.api_key and self.api_key.strip():
             try:
@@ -85,6 +85,7 @@ class AIExtractor:
         if self.client:
             models_to_try = [
                 self.model,
+                "openai/gpt-oss-120b",
                 "llama-3.3-70b-versatile",
                 "llama-3.1-8b-instant"
             ]
@@ -220,7 +221,7 @@ class AIExtractor:
             return "Tax Invoice"
         elif any(k in t_up for k in ["TOWING BILL", "TOWING RECEIPT"]):
             return "Towing Bill"
-        elif any(k in t_up for k in ["DRIVING LICENCE", "DRIVING LICENSE", "DETAILS OF DRIVING LICENSE", "SARATHI", "RCDLSTATUS", "PARIVAHAN", "DL_STATUS", "DL STATUS"]):
+        elif any(k in t_up for k in ["DRIVING LICENCE", "DRIVING LICENSE", "DETAILS OF DRIVING LICENSE", "SARATHI", "RCDLSTATUS", "PARIVAHAN", "DL_STATUS", "DL STATUS", "DLNUMBER", "DL NUMBER", "AUTHORISATION TO DRIVE"]):
             return "Driving License"
         elif any(k in t_up for k in ["CANCEL_CHECK", "CANCELLED CHEQUE"]) or (("CHEQUE" in t_up or "PAYABLE AT PAR" in t_up or "IFS CODE" in t_up) and "RECEIPT" not in t_up and "VOUCHER" not in t_up):
             return "Bank Cheque"
@@ -370,28 +371,60 @@ class AIExtractor:
 
             # 2. DRIVING LICENSE
             elif doc_type == "Driving License":
-                dl_m = re.search(r'(?:Details Of Driving License|Driving Licence\s*No\.?\s*\*?|DL\s*No\.?|Licence\s*No\.?)[:\s]*([A-Z]{2}[0-9]{2}[0-9]{4}[0-9]{7})', text, re.I)
+                # Flexible DL Number extraction — not hardcoded to specific digit groups
+                # 1. Label-based: match common DL label variants (DLNUMBER, DL No, Driving Licence No, etc.)
+                dl_label_re = r'(?:DLNUMBER|DL[\s.\-]*(?:NUMBER|NO\.?)|DRIVING\s*LICEN[CS]E\s*(?:NO\.?|NUMBER)?|LICEN[CS]E\s*NO\.?|Details\s*Of\s*Driving\s*Licen[cs]e)'
+                dl_m = re.search(dl_label_re + r'[\s:*]*([A-Z]{2}(?:[\s\-]*\d)+)', text, re.I)
                 if not dl_m:
-                    dl_m = re.search(r'\b([A-Z]{2}[-\s]?[0-9]{2}[-\s]?[0-9]{4}[-\s]?[0-9]{7})\b', text)
-                if not dl_m:
-                    dl_m = re.search(r'\b([A-Z]{2}[0-9]{13,15})\b', text)
+                    # 2. Standalone fallback: find 2-letter state code + digits totalling 11-16 digits
+                    for _m in re.finditer(r'\b([A-Z]{2}(?:[\s\-]*\d)+)', text):
+                        _candidate = re.sub(r'[\s\-]+', '', _m.group(1))
+                        if re.match(r'^[A-Z]{2}\d{11,16}$', _candidate):
+                            dl_m = _m
+                            break
                 if dl_m:
-                    fields['Driving License Number'] = dl_m.group(1).replace(' ', '')
+                    dl_num = re.sub(r'[\s\-]+', '', dl_m.group(1))
+                    if re.match(r'^[A-Z]{2}\d{11,16}$', dl_num):
+                        fields['Driving License Number'] = dl_num
 
                 m = re.search(r'Current Status\s*[:\n\r]+\s*([A-Za-z]+)', text, re.I)
                 if m: fields['Current Status'] = m.group(1).strip()
 
-                m = re.search(r'Holder[\'’]s Name\s*[:\n\r]+\s*([^\n\r]+)', text, re.I)
+                # Holder's Name -- online (Sarathi) format
+                m = re.search(r"Holder[\'\u2019]s Name\s*[:\n\r]+\s*([^\n\r]+)", text, re.I)
                 if m: fields["Holder's Name"] = m.group(1).strip()
+                # Physical card format: NAME <value> on same line
+                if "Holder's Name" not in fields:
+                    m = re.search(r'\bNAME[ \t]+([A-Z][A-Z ]+)', text)
+                    if m:
+                        name_val = m.group(1).strip()
+                        if len(name_val) >= 3:
+                            fields["Holder's Name"] = name_val
+
+                # Father/Spouse Name -- physical card S/W/D <value>
+                m = re.search(r'(?:S/W/D|S/O|D/O|W/O)[ \t]+([A-Za-z][A-Za-z ]+)', text, re.I)
+                if m:
+                    val = m.group(1).strip()
+                    if len(val) >= 3:
+                        fields["Father / Spouse Name"] = val
 
                 m = re.search(r'Source Of Data\s*[:\n\r]+\s*([^\n\r]+)', text, re.I)
                 if m: fields['Source Of Data'] = m.group(1).strip()
 
-                m = re.search(r'Initial Issue Date\s*[:\n\r]+\s*([0-3]?\d-[A-Za-z]{3}-\d{4}|[0-3]?\d[\/-][0-1]?\d[\/-]\d{4})', text, re.I)
+                # Issue Date -- online format
+                m = re.search(r'Initial Issue Date\s*[:\n\r]+\s*([0-3]?\d-[A-Za-z]{3}-\d{4}|[0-3]?\d[\/\-][0-1]?\d[\/\-]\d{4})', text, re.I)
                 if m: fields['Initial Issue Date'] = m.group(1).strip()
+                # Physical card format: Issue Date DD-Mon-YYYY
+                if 'Initial Issue Date' not in fields:
+                    m = re.search(r'Issue\s*Date\s*[:\s]*(\d{1,2}[-/][A-Za-z]{3}[-/]\d{4}|\d{1,2}[-/]\d{1,2}[-/]\d{4})', text, re.I)
+                    if m: fields['Issue Date'] = m.group(1).strip()
 
                 m = re.search(r'Initial Issuing\s*\n?\s*Office\s*[:\n\r]+\s*([^\n\r]+)', text, re.I)
                 if m: fields['Issuing Authority / Office'] = m.group(1).strip()
+                # Physical card: Issuing Authority <value>
+                if 'Issuing Authority / Office' not in fields:
+                    m = re.search(r'Issuing\s*Authority\s*[:\s]*([^\n\r]+)', text, re.I)
+                    if m: fields['Issuing Authority / Office'] = m.group(1).strip()
 
                 m = re.search(r'Last Endorsed\s*\n?\s*Date\s*[:\n\r]+\s*([^\n\r]+)', text, re.I)
                 if m: fields['Last Endorsed Date'] = m.group(1).strip()
@@ -401,15 +434,34 @@ class AIExtractor:
                 m = re.search(r'Last Completed\s*\n?\s*Transaction\s*[:\n\r]+\s*([^\n\r]+)', text, re.I)
                 if m: fields['Last Completed Transaction'] = m.group(1).strip()
 
+                # Date of Birth -- online format
                 m = re.search(r'Date Of Birth\s*\*?[\s\S]{0,40}?\b([0-3]?\d[-/][0-1]?\d[-/]\d{4})\b', text, re.I)
                 if m: fields['Date of Birth'] = m.group(1).strip()
+                # Physical card: DOB DD-Mon-YYYY or DOB DD/MM/YYYY
+                if 'Date of Birth' not in fields:
+                    m = re.search(r'\bDOB\s*[:\s]*(\d{1,2}[-/][A-Za-z]{3}[-/]\d{4}|\d{1,2}[-/]\d{1,2}[-/]\d{4})', text, re.I)
+                    if m: fields['Date of Birth'] = m.group(1).strip()
+
+                # Validity -- physical card Validity (NT) DD-Mon-YYYY
+                m = re.search(r'Validity\s*(?:\(NT\)|\(T\))?\s*[:\s]*(\d{1,2}[-/][A-Za-z]{3}[-/]\d{4}|\d{1,2}[-/]\d{1,2}[-/]\d{4})', text, re.I)
+                if m: fields['Validity'] = m.group(1).strip()
 
                 m = re.search(r'Non-Transport\s*[\n\r\s]*From:\s*([^\n\r]+)\s*[\n\r\s]*To:\s*([^\n\r]+)', text, re.I)
                 if m: fields['Non-Transport Validity'] = f"{m.group(1).strip()} to {m.group(2).strip()}"
 
+                # Blood Group -- physical card
+                m = re.search(r'Blood\s*Gr(?:ou)?p?\s*[:\s]*([ABO]+[+-]?)', text, re.I)
+                if m: fields['Blood Group'] = m.group(1).strip()
+
+                # Address -- physical card
+                if 'Address' not in fields:
+                    m = re.search(r'Address[ \t]*[: \t]*([^\n\r]+)', text, re.I)
+                    if m: fields['Address'] = re.sub(r'\s+', ' ', m.group(1)).strip()
+
                 covs = re.findall(r'\b(MCWG|LMV|MCWOG|TRANS|HMV|HGMV|HPMV)\b', text)
                 if covs:
                     fields['Class of Vehicle (COV)'] = ', '.join(sorted(set(covs)))
+
 
             # 3. DISCHARGE VOUCHER
             elif doc_type == "Discharge Voucher":
@@ -596,7 +648,10 @@ class AIExtractor:
             DISALLOWED_KEYS = {
                 'http', 'https', 'pur_cd', 'www', 'note', 'url', 'from', 'to',
                 'terms of uses', 'disclaimer', 'page', 'signature', 'thumb',
-                'reset', 'check status', 'details of driving license'
+                'reset', 'check status', 'details of driving license',
+                'holder signature', 'issue auth signature', 'aadhaar no',
+                'authorisation to drive', 'date of issue', 'form',
+                'name', 'dlnumber', 'dl number', 'inv carr no', 'inv carr no.'
             }
             existing_keys_lower = {k.lower(): k for k in fields.keys()}
 
@@ -622,19 +677,22 @@ class AIExtractor:
                                     existing_keys_lower[norm_k.lower()] = norm_k
 
             # Pass B: Consecutive lines Label -> Value (common in OCR tables / forms)
-            LABEL_SUFFIXES = ("name", "no", "number", "date", "status", "office", "code", "branch", "bank", "address", "class", "validity", "category", "type", "authority", "officer", "transaction")
-            for i in range(len(lines) - 1):
-                cur = lines[i].strip()
-                nxt = lines[i+1].strip()
-                cur_clean = re.sub(r'[:\*]+$', '', cur).strip()
-                if 3 <= len(cur_clean) <= 35 and re.match(r'^[A-Za-z]', cur_clean):
-                    if any(cur_clean.lower().endswith(sfx) or sfx in cur_clean.lower().split() for sfx in LABEL_SUFFIXES):
-                        if 1 <= len(nxt) <= 80 and not nxt.lower().startswith(('http', '//', 'www')):
-                            norm_k = cur_clean.replace('_', ' ').title()
-                            if norm_k.lower() not in DISALLOWED_KEYS and norm_k.lower() not in existing_keys_lower:
-                                if nxt.lower() not in ['na', 'null', 'none', '-', '--', 'nil', 'unknown', 'n/a', '']:
-                                    fields[norm_k] = nxt
-                                    existing_keys_lower[norm_k.lower()] = norm_k
+            # Skip for well-classified document types that have dedicated extractors
+            SKIP_PASS_B_TYPES = {"Driving License", "PAN Card", "Aadhaar Card", "Bank Cheque", "Motor Survey Report"}
+            if doc_type not in SKIP_PASS_B_TYPES:
+                LABEL_SUFFIXES = ("name", "no", "number", "date", "status", "office", "code", "branch", "bank", "address", "class", "validity", "category", "type", "authority", "officer", "transaction")
+                for i in range(len(lines) - 1):
+                    cur = lines[i].strip()
+                    nxt = lines[i+1].strip()
+                    cur_clean = re.sub(r'[:\*]+$', '', cur).strip()
+                    if 3 <= len(cur_clean) <= 35 and re.match(r'^[A-Za-z]', cur_clean):
+                        if any(cur_clean.lower().endswith(sfx) or sfx in cur_clean.lower().split() for sfx in LABEL_SUFFIXES):
+                            if 1 <= len(nxt) <= 80 and not nxt.lower().startswith(('http', '//', 'www')):
+                                norm_k = cur_clean.replace('_', ' ').title()
+                                if norm_k.lower() not in DISALLOWED_KEYS and norm_k.lower() not in existing_keys_lower:
+                                    if nxt.lower() not in ['na', 'null', 'none', '-', '--', 'nil', 'unknown', 'n/a', '']:
+                                        fields[norm_k] = nxt
+                                        existing_keys_lower[norm_k.lower()] = norm_k
 
             summary = self.generate_summary(doc_type, fields)
             result_docs.append({
