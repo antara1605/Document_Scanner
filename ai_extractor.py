@@ -248,15 +248,18 @@ class AIExtractor:
     def generate_summary(self, doc_type, fields):
         """Generates a concise key summary line for master summary tables."""
         if doc_type == "Driving License":
-            num = fields.get("Driving License Number", "N/A")
-            holder = fields.get("Holder's Name", "N/A")
-            status = fields.get("Current Status", "N/A")
-            dob = fields.get("Date of Birth", "")
-            cov = fields.get("Class of Vehicle (COV)", "")
-            res = f"License No: {num} | Holder: {holder} | Status: {status}"
-            if dob: res += f" | DOB: {dob}"
-            if cov: res += f" | Class: {cov}"
-            return res
+            parts = []
+            if "Driving License Number" in fields and fields["Driving License Number"]:
+                parts.append(f"License No: {fields['Driving License Number']}")
+            if "Holder's Name" in fields and fields["Holder's Name"]:
+                parts.append(f"Holder: {fields['Holder\'s Name']}")
+            if "Current Status" in fields and fields["Current Status"]:
+                parts.append(f"Status: {fields['Current Status']}")
+            if "Date of Birth" in fields and fields["Date of Birth"]:
+                parts.append(f"DOB: {fields['Date of Birth']}")
+            if "Class of Vehicle (COV)" in fields and fields["Class of Vehicle (COV)"]:
+                parts.append(f"Class: {fields['Class of Vehicle (COV)']}")
+            return " | ".join(parts) if parts else "Driving License"
         elif doc_type == "Motor Survey Report":
             surveyor = fields.get("Surveyor Name", "")
             veh = fields.get("Vehicle Registration No", "")
