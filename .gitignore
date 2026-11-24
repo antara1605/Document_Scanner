@@ -25,6 +25,8 @@ __pycache__/
 
 # Outputs & temporary folders
 outputs/
+output/*
+!output/.gitkeep
 temp/
 tmp/
 *.log

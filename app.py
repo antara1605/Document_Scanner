@@ -2,12 +2,14 @@ import os
 import uuid
 import traceback
 from datetime import datetime
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 
 from ocr_service import OCRService
 from ai_extractor import AIExtractor
+from consolidator import MultiDocumentConsolidator
+from excel_service import populate_excel
 
 load_dotenv(os.path.join(os.path.abspath(os.path.dirname(__file__)), ".env"))
 
@@ -17,9 +19,20 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 UPLOAD_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'uploads')
+OUTPUT_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'output')
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'bmp', 'tiff', 'webp'}
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+def get_template_path():
+    local_copy = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'template_copy', 'WBGB_HBL_LOAN.xlsm')
+    if os.path.exists(local_copy):
+        return local_copy
+    desktop = os.path.join(os.environ.get('USERPROFILE', ''), 'Desktop', 'WBGB HBL LOAN (2).xlsm')
+    if os.path.exists(desktop):
+        return desktop
+    return local_copy
 
 ocr_service = OCRService()
 ai_extractor = AIExtractor()
@@ -155,13 +168,22 @@ def upload_and_process():
         total_fields = sum(len(d["fields"]) for d in final_doc_results)
         print(f"[{datetime.now().strftime('%H:%M:%S')}] Extraction complete. {total_fields} fields found across {len(final_doc_results)} document(s).", flush=True)
 
+        # Step 4: Run Multi-Document Consolidation & Conflict Handling
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] Consolidating and resolving roles across {len(final_doc_results)} document(s)...", flush=True)
+        consolidator = MultiDocumentConsolidator()
+        norm_data, audit_trail, cons_summary = consolidator.consolidate({"documents": final_doc_results, "engine_used": engine_used})
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] Consolidation complete. {cons_summary['verified_multi_source_fields']} verified across docs, {cons_summary['conflicting_fields']} conflicts needing review.", flush=True)
+
         return jsonify({
             "success": True,
             "processed_files_count": len(processed_files),
             "processed_files": processed_files,
             "documents": final_doc_results,
             "total_fields": total_fields,
-            "engine_used": engine_used
+            "engine_used": engine_used,
+            "consolidated_data": norm_data.to_dict(),
+            "audit_trail": [entry.to_dict() for entry in audit_trail],
+            "consolidation_summary": cons_summary
         })
 
     except Exception as e:
@@ -171,6 +193,73 @@ def upload_and_process():
             "success": False,
             "error": f"Extraction failed: {error_msg}"
         }), 500
+
+@app.route('/generate-excel', methods=['POST'])
+def generate_excel():
+    data = request.get_json() or {}
+    approved_data = data.get('approved_data')
+    manual_edits = data.get('manual_edits', [])
+
+    if not approved_data:
+        return jsonify({"success": False, "error": "No approved data provided"}), 400
+
+    template_path = get_template_path()
+    if not os.path.exists(template_path):
+        return jsonify({"success": False, "error": f"Template workbook not found at {template_path}"}), 404
+
+    # Extract borrower name for clean output filename
+    borrower_name = "Loan_Applicant"
+    try:
+        b_val = approved_data.get("borrower", {}).get("full_name")
+        if isinstance(b_val, dict):
+            b_name = b_val.get("value")
+        else:
+            b_name = b_val
+        if b_name and str(b_name).strip():
+            borrower_name = secure_filename(str(b_name).strip().replace(" ", "_"))
+    except Exception:
+        pass
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_filename = f"WBGB_HBL_LOAN_{borrower_name}_{timestamp}.xlsm"
+    output_path = os.path.join(OUTPUT_FOLDER, out_filename)
+
+    try:
+        report = populate_excel(
+            normalized_data=approved_data,
+            template_path=template_path,
+            output_path=output_path,
+            overwrite_existing_output=True
+        )
+
+        if report.get("success"):
+            report["manual_edits_count"] = len(manual_edits)
+            report["manual_edits"] = manual_edits
+            return jsonify({
+                "success": True,
+                "filename": out_filename,
+                "download_url": f"/download-excel/{out_filename}",
+                "report": report
+            })
+        else:
+            return jsonify({
+                "success": False,
+                "error": report.get("error", "Failed to generate Excel file"),
+                "report": report
+            }), 500
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route('/download-excel/<path:filename>')
+def download_excel(filename):
+    safe_filename = secure_filename(filename)
+    file_path = os.path.join(OUTPUT_FOLDER, safe_filename)
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File not found"}), 404
+    return send_from_directory(OUTPUT_FOLDER, safe_filename, as_attachment=True)
+
 
 if __name__ == '__main__':
     print("=" * 60)

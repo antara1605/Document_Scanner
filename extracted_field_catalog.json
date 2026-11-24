@@ -1,0 +1,2753 @@
+{
+  "BORROWERDETAILS": [
+    {
+      "row": 7,
+      "section": "DETAILS OF BORROWER",
+      "label": "Branch",
+      "cell": "K7",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 8,
+      "section": "DETAILS OF BORROWER",
+      "label": "Date of Application",
+      "cell": "K8",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 9,
+      "section": "DETAILS OF BORROWER",
+      "label": "Date",
+      "cell": "K9",
+      "merged": null,
+      "formula": false,
+      "value": "01.07.2024"
+    },
+    {
+      "row": 10,
+      "section": "DETAILS OF BORROWER",
+      "label": "Date Format - Day",
+      "cell": "K10",
+      "merged": null,
+      "formula": false,
+      "value": "1st"
+    },
+    {
+      "row": 11,
+      "section": "DETAILS OF BORROWER",
+      "label": "Date Format - Month",
+      "cell": "K11",
+      "merged": null,
+      "formula": false,
+      "value": "july"
+    },
+    {
+      "row": 12,
+      "section": "DETAILS OF BORROWER",
+      "label": "Date Format - Year",
+      "cell": "K12",
+      "merged": null,
+      "formula": false,
+      "value": "2024"
+    },
+    {
+      "row": 13,
+      "section": "DETAILS OF BORROWER",
+      "label": "Mortgage Branch",
+      "cell": "K13",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 14,
+      "section": "DETAILS OF BORROWER",
+      "label": "SALARY AC NO",
+      "cell": "K14",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 15,
+      "section": "DETAILS OF BORROWER",
+      "label": "LOAN ACCOUNT NO",
+      "cell": "K15",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 16,
+      "section": "DETAILS OF BORROWER",
+      "label": "LOAN REQUESTED",
+      "cell": "K16",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 17,
+      "section": "DETAILS OF BORROWER",
+      "label": "TERM OF THE LOAN IN MONTH",
+      "cell": "K17",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 18,
+      "section": "DETAILS OF BORROWER",
+      "label": "RATE OF INTEREST",
+      "cell": "K18",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 19,
+      "section": "DETAILS OF BORROWER",
+      "label": "EMI",
+      "cell": "K19",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 20,
+      "section": "DETAILS OF BORROWER",
+      "label": "IF ANY OTHER EMI",
+      "cell": "K20",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 21,
+      "section": "DETAILS OF BORROWER",
+      "label": "MORATORIUM PERIOD",
+      "cell": "K21",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 22,
+      "section": "DETAILS OF BORROWER",
+      "label": "EMI STARTING FROM",
+      "cell": "K22",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 23,
+      "section": "DETAILS OF BORROWER",
+      "label": "PURPOSE OF THE LOAN",
+      "cell": "K23",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 24,
+      "section": "DETAILS OF BORROWER",
+      "label": "Name of Borrower - Full Name",
+      "cell": "K24",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 25,
+      "section": "DETAILS OF BORROWER",
+      "label": "Name of Borrower - Title",
+      "cell": "K25",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 26,
+      "section": "DETAILS OF BORROWER",
+      "label": "Name of Borrower - Name",
+      "cell": "K26",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 27,
+      "section": "DETAILS OF BORROWER",
+      "label": "Name of Borrower - Surname",
+      "cell": "K27",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 28,
+      "section": "DETAILS OF BORROWER",
+      "label": "DATE OF BIRTH",
+      "cell": "K28",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 29,
+      "section": "DETAILS OF BORROWER",
+      "label": "SEX",
+      "cell": "K29",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 30,
+      "section": "DETAILS OF BORROWER",
+      "label": "FATHERS/ HUSBAND NAME",
+      "cell": "K30",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 31,
+      "section": "DETAILS OF BORROWER",
+      "label": "QUALIFICATION",
+      "cell": "K31",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 32,
+      "section": "DETAILS OF BORROWER",
+      "label": "MARITAL STATUS",
+      "cell": "K32",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 33,
+      "section": "DETAILS OF BORROWER",
+      "label": "NO OF DEPEDENT",
+      "cell": "K33",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 35,
+      "section": "ADDRESS OF RESIDENT",
+      "label": "VILL",
+      "cell": "K35",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 36,
+      "section": "ADDRESS OF RESIDENT",
+      "label": "POST",
+      "cell": "K36",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 37,
+      "section": "ADDRESS OF RESIDENT",
+      "label": "DIST",
+      "cell": "K37",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 38,
+      "section": "ADDRESS OF RESIDENT",
+      "label": "PIN",
+      "cell": "K38",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 39,
+      "section": "ADDRESS OF RESIDENT",
+      "label": "MOBILE NO",
+      "cell": "K39",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 41,
+      "section": "ADDRESS OF PRESENT POSTING",
+      "label": "NAME OF THE ORGANIZATION",
+      "cell": "K41",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 42,
+      "section": "ADDRESS OF PRESENT POSTING",
+      "label": "VILL",
+      "cell": "K42",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 43,
+      "section": "ADDRESS OF PRESENT POSTING",
+      "label": "POST",
+      "cell": "K43",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 44,
+      "section": "ADDRESS OF PRESENT POSTING",
+      "label": "DIST",
+      "cell": "K44",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 45,
+      "section": "ADDRESS OF PRESENT POSTING",
+      "label": "PIN",
+      "cell": "K45",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 47,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "NAME OF THE EMPLOYER",
+      "cell": "K47",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 48,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "VILL",
+      "cell": "K48",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 49,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "POST",
+      "cell": "K49",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 50,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "DIST",
+      "cell": "K50",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 51,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "PIN",
+      "cell": "K51",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 52,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "LENGTH OF SERVICE",
+      "cell": "K52",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 53,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "APPLICANT DESIGNATION",
+      "cell": "K53",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 54,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "DATE OF JOINING",
+      "cell": "K54",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 55,
+      "section": "ADDRESS OF EMPLOYER",
+      "label": "DATE OF RETIREMENT",
+      "cell": "K55",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 57,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "NAME",
+      "cell": "K57",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 58,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "VILL",
+      "cell": "K58",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 59,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "POST",
+      "cell": "K59",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 60,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "DIST",
+      "cell": "K60",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 61,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "PIN",
+      "cell": "K61",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 62,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "MOB NO",
+      "cell": "K62",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 63,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "NAME",
+      "cell": "K63",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 64,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "VILL",
+      "cell": "K64",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 65,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "POST",
+      "cell": "K65",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 66,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "DIST",
+      "cell": "K66",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 67,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "PIN",
+      "cell": "K67",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 68,
+      "section": "TWO PERSON WHO CAN BE REFFERED TO FOR INFORMATION",
+      "label": "MOB NO",
+      "cell": "K68",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 70,
+      "section": "KYC DETAILS OF BORROWER",
+      "label": "PAN NO",
+      "cell": "K70",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 71,
+      "section": "KYC DETAILS OF BORROWER",
+      "label": "VOTER CARD NO",
+      "cell": "K71",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 72,
+      "section": "KYC DETAILS OF BORROWER",
+      "label": "AADHAR NO",
+      "cell": "K72",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 74,
+      "section": "SALARY DETAILS",
+      "label": "DETAILS OF SALARY FOR THE MONTH OF",
+      "cell": "K74",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 75,
+      "section": "SALARY DETAILS",
+      "label": "GROSS SALARY",
+      "cell": "K75",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 76,
+      "section": "SALARY DETAILS",
+      "label": "BASIC PAY",
+      "cell": "K76",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 77,
+      "section": "SALARY DETAILS",
+      "label": "D.A",
+      "cell": "K77",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 78,
+      "section": "SALARY DETAILS",
+      "label": "HRA",
+      "cell": "K78",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 79,
+      "section": "SALARY DETAILS",
+      "label": "Others",
+      "cell": "K79",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 80,
+      "section": "SALARY DETAILS",
+      "label": "TOTAL",
+      "cell": "K80",
+      "merged": null,
+      "formula": true,
+      "value": "=K76+K77+K78+K79"
+    },
+    {
+      "row": 82,
+      "section": "DEDUCTION",
+      "label": "P.F",
+      "cell": "K82",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 83,
+      "section": "DEDUCTION",
+      "label": "I.T",
+      "cell": "K83",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 84,
+      "section": "DEDUCTION",
+      "label": "OTHERS",
+      "cell": "K84",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 85,
+      "section": "DEDUCTION",
+      "label": "TOTAL",
+      "cell": "K85",
+      "merged": null,
+      "formula": true,
+      "value": "=K82+K83+K84"
+    },
+    {
+      "row": 86,
+      "section": "DEDUCTION",
+      "label": "NET TAKE HOME SALARY",
+      "cell": "K86",
+      "merged": null,
+      "formula": true,
+      "value": "=K80-K85"
+    },
+    {
+      "row": 87,
+      "section": "DEDUCTION",
+      "label": "FAMILY EXPENDITURE",
+      "cell": "K87",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 88,
+      "section": "DEDUCTION",
+      "label": "P TAX LAST PAID",
+      "cell": "K88",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 90,
+      "section": "DETALS OF ASSET OF THE BORROWER",
+      "label": "Bank & other deposit",
+      "cell": "K90",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 91,
+      "section": "DETALS OF ASSET OF THE BORROWER",
+      "label": "Life insurance policies",
+      "cell": "K91",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 92,
+      "section": "DETALS OF ASSET OF THE BORROWER",
+      "label": "Other movable property",
+      "cell": "K92",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 95,
+      "section": "DETALS OF ASSET OF THE BORROWER",
+      "label": "Immovable property",
+      "cell": "K95",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 96,
+      "section": "DETALS OF ASSET OF THE BORROWER",
+      "label": "House",
+      "cell": "K96",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 97,
+      "section": "DETALS OF ASSET OF THE BORROWER",
+      "label": "Land",
+      "cell": "K97",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 99,
+      "section": "DETALS OF ASSET OF THE BORROWER",
+      "label": "TOTAL",
+      "cell": "K99",
+      "merged": null,
+      "formula": true,
+      "value": "=K90+K91+K92+K93+K94+K95+K96+K97+K98"
+    },
+    {
+      "row": 101,
+      "section": "DETAILS OF LIABILITY OF BORROWER",
+      "label": "From Employer",
+      "cell": "K101",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 102,
+      "section": "DETAILS OF LIABILITY OF BORROWER",
+      "label": "From family & friends",
+      "cell": "K102",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 103,
+      "section": "DETAILS OF LIABILITY OF BORROWER",
+      "label": "From provident fund",
+      "cell": "K103",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 104,
+      "section": "DETAILS OF LIABILITY OF BORROWER",
+      "label": "From other source",
+      "cell": "K104",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 107,
+      "section": "DETAILS OF LIABILITY OF BORROWER",
+      "label": "TOTAL",
+      "cell": "K107",
+      "merged": null,
+      "formula": true,
+      "value": "=K101+K102+K103+K104+K105+K106"
+    },
+    {
+      "row": 108,
+      "section": "DETAILS OF LIABILITY OF BORROWER",
+      "label": "NET WORTH",
+      "cell": "K108",
+      "merged": null,
+      "formula": true,
+      "value": "=K99-K107"
+    },
+    {
+      "row": 109,
+      "section": "DETAILS OF LIABILITY OF BORROWER",
+      "label": "Form 16 last submited",
+      "cell": "K109",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 111,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K111",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 112,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K112",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 113,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K113",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 114,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K114",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 115,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K115",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 116,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K116",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 117,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K117",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 118,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K118",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 119,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K119",
+      "merged": null,
+      "formula": false,
+      "value": null
+    }
+  ],
+  "GURANTORSDETAILS": [
+    {
+      "row": 1,
+      "section": "GENERAL",
+      "label": "BIODATA OF GURANTOR-1",
+      "cell": "K1",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 2,
+      "section": "GENERAL",
+      "label": "NAME",
+      "cell": "K2",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 3,
+      "section": "GENERAL",
+      "label": "FATHERS/HUSBAND NAME",
+      "cell": "K3",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 4,
+      "section": "GENERAL",
+      "label": "DATE OF BITH",
+      "cell": "K4",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 5,
+      "section": "GENERAL",
+      "label": "PRESENT OCCUPATION",
+      "cell": "K5",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 6,
+      "section": "GENERAL",
+      "label": "MONTHLY INCOME",
+      "cell": "K6",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 7,
+      "section": "GENERAL",
+      "label": "ADDRESS OF RESIDENT",
+      "cell": "K7",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 8,
+      "section": "GENERAL",
+      "label": "VILL",
+      "cell": "K8",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 9,
+      "section": "GENERAL",
+      "label": "POST",
+      "cell": "K9",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 10,
+      "section": "GENERAL",
+      "label": "DIST",
+      "cell": "K10",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 11,
+      "section": "GENERAL",
+      "label": "PIN",
+      "cell": "K11",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 12,
+      "section": "GENERAL",
+      "label": "P TAX PAID UPTO",
+      "cell": "K12",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 13,
+      "section": "GENERAL",
+      "label": "MOBILE NO",
+      "cell": "K13",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 14,
+      "section": "GENERAL",
+      "label": "ADDRESS OF WORK",
+      "cell": "K14",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 15,
+      "section": "GENERAL",
+      "label": "VILL",
+      "cell": "K15",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 16,
+      "section": "GENERAL",
+      "label": "POST",
+      "cell": "K16",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 17,
+      "section": "GENERAL",
+      "label": "DIST",
+      "cell": "K17",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 18,
+      "section": "GENERAL",
+      "label": "PIN",
+      "cell": "K18",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 19,
+      "section": "GENERAL",
+      "label": "EDUCATIONAL QUALIFICATION",
+      "cell": "K19",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 20,
+      "section": "GENERAL",
+      "label": "ACCOUNT NO",
+      "cell": "K20",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 22,
+      "section": "ASSET OF THE GURANTOR-1",
+      "label": "DETAIL OF ASSETS",
+      "cell": "K22",
+      "merged": null,
+      "formula": false,
+      "value": "AMOUNT IN Rs."
+    },
+    {
+      "row": 27,
+      "section": "ASSET OF THE GURANTOR-1",
+      "label": "TOTAL",
+      "cell": "K27",
+      "merged": null,
+      "formula": true,
+      "value": "=K23+K24+K25+K26"
+    },
+    {
+      "row": 29,
+      "section": "LIABILITY OF GURANTOR-1",
+      "label": "DETAIL OF LIABILITY",
+      "cell": "K29",
+      "merged": null,
+      "formula": false,
+      "value": "AMOUNT IN Rs."
+    },
+    {
+      "row": 34,
+      "section": "LIABILITY OF GURANTOR-1",
+      "label": "TOTAL",
+      "cell": "K34",
+      "merged": null,
+      "formula": true,
+      "value": "=K30+K31+K32+K33"
+    },
+    {
+      "row": 35,
+      "section": "LIABILITY OF GURANTOR-1",
+      "label": "TOTAL NET WORTH",
+      "cell": "K35",
+      "merged": null,
+      "formula": true,
+      "value": "=K27-K34"
+    },
+    {
+      "row": 37,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K37",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 38,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K38",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 39,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K39",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 40,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K40",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 41,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K41",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 42,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K42",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 43,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K43",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 44,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K44",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 45,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K45",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 47,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "NAME",
+      "cell": "K47",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 48,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "FATHERS/HUSBAND NAME",
+      "cell": "K48",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 49,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "DATE OF BITH",
+      "cell": "K49",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 50,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "PRESENT OCCUPATION",
+      "cell": "K50",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 51,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "MONTHLY INCOME",
+      "cell": "K51",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 52,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "ADDRESS OF RESIDENT",
+      "cell": "K52",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 53,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "VILL",
+      "cell": "K53",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 54,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "POST",
+      "cell": "K54",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 55,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "DIST",
+      "cell": "K55",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 56,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "PIN",
+      "cell": "K56",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 57,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "P TAX PAID UPTO",
+      "cell": "K57",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 58,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "MOBILE NO",
+      "cell": "K58",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 59,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "ADDRESS OF WORK",
+      "cell": "K59",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 60,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "VILL",
+      "cell": "K60",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 61,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "POST",
+      "cell": "K61",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 62,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "DIST",
+      "cell": "K62",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 63,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "PIN",
+      "cell": "K63",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 64,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "EDUCATIONAL QUALIFICATION",
+      "cell": "K64",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 65,
+      "section": "BIODATA OF GURANTOR-2",
+      "label": "ACCOUNT NO",
+      "cell": "K65",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 67,
+      "section": "ASSET OF THE GURANTOR-2",
+      "label": "DETAIL OF ASSETS",
+      "cell": "K67",
+      "merged": null,
+      "formula": false,
+      "value": "AMOUNT IN Rs."
+    },
+    {
+      "row": 72,
+      "section": "ASSET OF THE GURANTOR-2",
+      "label": "TOTAL",
+      "cell": "K72",
+      "merged": null,
+      "formula": true,
+      "value": "=K68+K69+K70+K71"
+    },
+    {
+      "row": 74,
+      "section": "LIABILITY OF GURANTOR-2",
+      "label": "DETAIL OF LIABILITY",
+      "cell": "K74",
+      "merged": null,
+      "formula": false,
+      "value": "AMOUNT IN Rs."
+    },
+    {
+      "row": 79,
+      "section": "LIABILITY OF GURANTOR-2",
+      "label": "TOTAL",
+      "cell": "K79",
+      "merged": null,
+      "formula": true,
+      "value": "=K75+K76+K77+K78"
+    },
+    {
+      "row": 80,
+      "section": "LIABILITY OF GURANTOR-2",
+      "label": "TOTAL NETWORTH",
+      "cell": "K80",
+      "merged": null,
+      "formula": true,
+      "value": "=K72-K79"
+    },
+    {
+      "row": 82,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K82",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 83,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K83",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 84,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K84",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 85,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K85",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 86,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K86",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 87,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K87",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 88,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "NAME",
+      "cell": "K88",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 89,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "AGE",
+      "cell": "K89",
+      "merged": null,
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 90,
+      "section": "PARTICULARS ABOUT THE DEPENDENT MEMBERS OF THE FAMILY",
+      "label": "RELATIONSHIP",
+      "cell": "K90",
+      "merged": null,
+      "formula": false,
+      "value": null
+    }
+  ],
+  "LANDDETAILS": [
+    {
+      "row": 2,
+      "section": "LAND INFORMATION",
+      "label": "DATE OF INSPECTION",
+      "cell": "K2",
+      "merged": "K2:Q2",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 3,
+      "section": "LAND INFORMATION",
+      "label": "MORTGAGE BRANCH",
+      "cell": "K3",
+      "merged": "K3:Q3",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 4,
+      "section": "LAND INFORMATION",
+      "label": "SUB REGISTRY OFFICE",
+      "cell": "K4",
+      "merged": "K4:Q4",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 5,
+      "section": "LAND INFORMATION",
+      "label": "PLAN APPROVED BY",
+      "cell": "K5",
+      "merged": "K5:Q5",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 6,
+      "section": "LAND INFORMATION",
+      "label": "FLAT NO",
+      "cell": "K6",
+      "merged": "K6:Q6",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 7,
+      "section": "LAND INFORMATION",
+      "label": "HOUSE NO",
+      "cell": "K7",
+      "merged": "K7:Q7",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 8,
+      "section": "LAND INFORMATION",
+      "label": "PREMISES NO",
+      "cell": "K8",
+      "merged": "K8:Q8",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 9,
+      "section": "LAND INFORMATION",
+      "label": "NAME OF THE BUILDING",
+      "cell": "K9",
+      "merged": "K9:Q9",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 10,
+      "section": "LAND INFORMATION",
+      "label": "PLOT/ DAG NO",
+      "cell": "K10",
+      "merged": "K10:Q10",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 11,
+      "section": "LAND INFORMATION",
+      "label": "KAITIAN NO",
+      "cell": "K11",
+      "merged": "K11:Q11",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 12,
+      "section": "LAND INFORMATION",
+      "label": "JL NO",
+      "cell": "K12",
+      "merged": "K12:Q12",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 13,
+      "section": "LAND INFORMATION",
+      "label": "MOUZA",
+      "cell": "K13",
+      "merged": "K13:Q13",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 14,
+      "section": "LAND INFORMATION",
+      "label": "BLOCK",
+      "cell": "K14",
+      "merged": "K14:Q14",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 15,
+      "section": "LAND INFORMATION",
+      "label": "P.S",
+      "cell": "K15",
+      "merged": "K15:Q15",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 16,
+      "section": "LAND INFORMATION",
+      "label": "POST",
+      "cell": "K16",
+      "merged": "K16:Q16",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 17,
+      "section": "LAND INFORMATION",
+      "label": "PIN",
+      "cell": "K17",
+      "merged": "K17:Q17",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 18,
+      "section": "LAND INFORMATION",
+      "label": "DIST",
+      "cell": "K18",
+      "merged": "K18:Q18",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 19,
+      "section": "LAND INFORMATION",
+      "label": "AREA",
+      "cell": "K19",
+      "merged": "K19:Q19",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 20,
+      "section": "LAND INFORMATION",
+      "label": "CLASSIFICATION",
+      "cell": "K20",
+      "merged": "K20:Q20",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 21,
+      "section": "LAND INFORMATION",
+      "label": "PROPOSED BUILUP AREA",
+      "cell": "K21",
+      "merged": "K21:Q21",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 22,
+      "section": "LAND INFORMATION",
+      "label": "PURCHASE PRICE OF LAND",
+      "cell": "K22",
+      "merged": "K22:Q22",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 23,
+      "section": "LAND INFORMATION",
+      "label": "DATE OF PURCHASE",
+      "cell": "K23",
+      "merged": "K23:Q23",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 24,
+      "section": "LAND INFORMATION",
+      "label": "MUNICIPALITY/GP",
+      "cell": "K24",
+      "merged": "K24:Q24",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 25,
+      "section": "LAND INFORMATION",
+      "label": "NAME OF THE STREET",
+      "cell": "K25",
+      "merged": "K25:Q25",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 26,
+      "section": "LAND INFORMATION",
+      "label": "DEED NO",
+      "cell": "K26",
+      "merged": "K26:Q26",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 27,
+      "section": "LAND INFORMATION",
+      "label": "BOOK NO",
+      "cell": "K27",
+      "merged": "K27:Q27",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 28,
+      "section": "LAND INFORMATION",
+      "label": "VOL NO",
+      "cell": "K28",
+      "merged": "K28:Q28",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 29,
+      "section": "LAND INFORMATION",
+      "label": "PAGE NO",
+      "cell": "K29",
+      "merged": "K29:Q29",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 30,
+      "section": "LAND INFORMATION",
+      "label": "CVERING LAND",
+      "cell": "K30",
+      "merged": "K30:Q30",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 31,
+      "section": "LAND INFORMATION",
+      "label": "SURVEY NO",
+      "cell": "K31",
+      "merged": "K31:Q31",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 32,
+      "section": "LAND INFORMATION",
+      "label": "LAND MARK",
+      "cell": "K32",
+      "merged": "K32:Q32",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 33,
+      "section": "LAND INFORMATION",
+      "label": "LATITUDE(NORTH)",
+      "cell": "K33",
+      "merged": "K33:Q33",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 34,
+      "section": "LAND INFORMATION",
+      "label": "LATITUDE(EAST)",
+      "cell": "K34",
+      "merged": "K34:Q34",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 35,
+      "section": "LAND INFORMATION",
+      "label": "TALUKA",
+      "cell": "K35",
+      "merged": "K35:Q35",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 37,
+      "section": "POSTAL ADDRESS WITH PIN",
+      "label": "VILLAGE",
+      "cell": "K37",
+      "merged": "K37:Q37",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 38,
+      "section": "POSTAL ADDRESS WITH PIN",
+      "label": "POST",
+      "cell": "K38",
+      "merged": "K38:Q38",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 39,
+      "section": "POSTAL ADDRESS WITH PIN",
+      "label": "DISTRICT",
+      "cell": "K39",
+      "merged": "K39:Q39",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 40,
+      "section": "POSTAL ADDRESS WITH PIN",
+      "label": "PIN",
+      "cell": "K40",
+      "merged": "K40:Q40",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 42,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "NORTH",
+      "cell": "K42",
+      "merged": "K42:Q42",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 43,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "SOUTH",
+      "cell": "K43",
+      "merged": "K43:Q43",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 44,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "EAST",
+      "cell": "K44",
+      "merged": "K44:Q44",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 45,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "WEST",
+      "cell": "K45",
+      "merged": "K45:Q45",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 46,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "LOCALITY",
+      "cell": "K46",
+      "merged": "K46:Q46",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 47,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "STATUS",
+      "cell": "K47",
+      "merged": "K47:Q47",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 48,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "TYPE OF PROPERTY",
+      "cell": "K48",
+      "merged": "K48:Q48",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 49,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "AVAILABILITY OF ROAD FACILITIES",
+      "cell": "K49",
+      "merged": "K49:Q49",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 50,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "AVAILABILITY OF WATER FACILITIES",
+      "cell": "K50",
+      "merged": "K50:Q50",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 51,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "AVAILABILITY OF SCHOOL/HOSPITAL/MARKET",
+      "cell": "K51",
+      "merged": "K51:Q51",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 52,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "QUALITY OF CONSTRUCTION",
+      "cell": "K52",
+      "merged": "K52:Q52",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 53,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "Market value of the property as per Independent enquiry:",
+      "cell": "K53",
+      "merged": "K53:Q53",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 54,
+      "section": "BOUNDARIES OF THE PROPERTY",
+      "label": "Market value of the property as per Empanelled Value :",
+      "cell": "K54",
+      "merged": "K54:Q54",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 56,
+      "section": "FOR FLAT /HOUSE PURCHASE",
+      "label": "LOCATION OF THE FLAT/HOUSE",
+      "cell": "K56",
+      "merged": "K56:Q56",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 57,
+      "section": "FOR FLAT /HOUSE PURCHASE",
+      "label": "DATE OF AGGREMENT OF SALE",
+      "cell": "K57",
+      "merged": "K57:Q57",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 58,
+      "section": "FOR FLAT /HOUSE PURCHASE",
+      "label": "BULDUP AREA",
+      "cell": "K58",
+      "merged": "K58:Q58",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 59,
+      "section": "FOR FLAT /HOUSE PURCHASE",
+      "label": "NO OF ROOMS OF THE FLAT/HOUSE",
+      "cell": "K59",
+      "merged": "K59:Q59",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 61,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "NAME",
+      "cell": "K61",
+      "merged": "K61:Q61",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 62,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "VILLAGE",
+      "cell": "K62",
+      "merged": "K62:Q62",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 63,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "POST",
+      "cell": "K63",
+      "merged": "K63:Q63",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 64,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "DIST",
+      "cell": "K64",
+      "merged": "K64:Q64",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 65,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "PIN",
+      "cell": "K65",
+      "merged": "K65:Q65",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 66,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "PURCHASE PRICE OF THE FLAT/HOUSE",
+      "cell": "K66",
+      "merged": "K66:Q66",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 67,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "AGE OF THE STRUCTURE",
+      "cell": "K67",
+      "merged": "K67:Q67",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 68,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "ORIGINAL COST OF LAND",
+      "cell": "K68",
+      "merged": "K68:Q68",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 69,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "CONSTRUCTION COST",
+      "cell": "K69",
+      "merged": "K69:Q69",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 70,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "COST OF EXTENTION/REPAIRS",
+      "cell": "K70",
+      "merged": "K70:Q70",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 71,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "BUILD UP AREA(IN CASE OF EXTENTION)",
+      "cell": "K71",
+      "merged": "K71:Q71",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 72,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "PARTICULARS OF EXTENTION/REPAIR",
+      "cell": "K72",
+      "merged": "K72:Q72",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 73,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "Market Value accepted:",
+      "cell": "K73",
+      "merged": "K73:Q73",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 74,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "Variation if any :",
+      "cell": "K74",
+      "merged": "K74:Q74",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 75,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "Reasons for acceptance:",
+      "cell": "K75",
+      "merged": "K75:Q75",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 76,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "Cost of land Rs.",
+      "cell": "K76",
+      "merged": "K76:Q76",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 77,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "Construction cost Rs.",
+      "cell": "K77",
+      "merged": "K77:Q77",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 78,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "PRESENT ACCOMODATION",
+      "cell": "K78",
+      "merged": "K78:Q78",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 79,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "IF RENTED , MONTHLY RENT PAID",
+      "cell": "K79",
+      "merged": "K79:Q79",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 80,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "I. Searching made by",
+      "cell": "K80",
+      "merged": "K80:Q80",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 81,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "ii. Date of Searching Report",
+      "cell": "K81",
+      "merged": "K81:Q81",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 82,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "iii. Period of Searching",
+      "cell": "K82",
+      "merged": "K82:Q82",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 83,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "iv. Brief Report of searching",
+      "cell": "K83",
+      "merged": "K83:Q83",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 84,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "i. Date of valuation",
+      "cell": "K84",
+      "merged": "K84:Q84",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 85,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "ii. Valuation  done by",
+      "cell": "K85",
+      "merged": "K85:Q85",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 86,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "iii. Valuation of the property",
+      "cell": "K86",
+      "merged": "K86:Q86",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 87,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "iv. Age of the building",
+      "cell": "K87",
+      "merged": "K87:Q87",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 88,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "I. Cost of Flat as per agreement",
+      "cell": "K88",
+      "merged": "K88:Q88",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 89,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "ii.Expiary date of agreement",
+      "cell": "K89",
+      "merged": "K89:Q89",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 90,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "ii. Margin proposed by applicant",
+      "cell": "K90",
+      "merged": "K90:Q90",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 91,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "iii. Bank Loan asked (i-ii)",
+      "cell": "K91",
+      "merged": "K91:Q91",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 92,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "iv. Bank\u2019s stipulated Margin 15%",
+      "cell": "K92",
+      "merged": "K92:Q92",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 93,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "v. Bank Finance Permissible(i-iv)",
+      "cell": "K93",
+      "merged": "K93:Q93",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 94,
+      "section": "Name & address of the Registered Co-Operative Society/Builder of Promoter/Owner of the House/Flat",
+      "label": "vi. Maximum Loan permissible (iii/v) which ever is lower",
+      "cell": "K94",
+      "merged": "K94:Q94",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 96,
+      "section": "SI HOLDER",
+      "label": "SECURITY INTEREST HOLDER NAME",
+      "cell": "K96",
+      "merged": "K96:Q96",
+      "formula": false,
+      "value": "BANGIYA GRAMIN VIKASH BANK"
+    },
+    {
+      "row": 97,
+      "section": "SI HOLDER",
+      "label": "BSR CODE",
+      "cell": "K97",
+      "merged": "K97:Q97",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 98,
+      "section": "SI HOLDER",
+      "label": "ADDRESS OF SECURITY INTEREST HOLDER",
+      "cell": "K98",
+      "merged": "K98:Q98",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 99,
+      "section": "SI HOLDER",
+      "label": "BRANCH NAME",
+      "cell": "K99",
+      "merged": "K99:Q99",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 100,
+      "section": "SI HOLDER",
+      "label": "BUILDING NAME",
+      "cell": "K100",
+      "merged": "K100:Q100",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 101,
+      "section": "SI HOLDER",
+      "label": "STREET NAME",
+      "cell": "K101",
+      "merged": "K101:Q101",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 102,
+      "section": "SI HOLDER",
+      "label": "VILLAGE",
+      "cell": "K102",
+      "merged": "K102:Q102",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 103,
+      "section": "SI HOLDER",
+      "label": "TALUKA",
+      "cell": "K103",
+      "merged": "K103:Q103",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 104,
+      "section": "SI HOLDER",
+      "label": "CITY",
+      "cell": "K104",
+      "merged": "K104:Q104",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 105,
+      "section": "SI HOLDER",
+      "label": "DISTRICT",
+      "cell": "K105",
+      "merged": "K105:Q105",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 106,
+      "section": "SI HOLDER",
+      "label": "STATE",
+      "cell": "K106",
+      "merged": "K106:Q106",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 107,
+      "section": "SI HOLDER",
+      "label": "PINCODE",
+      "cell": "K107",
+      "merged": "K107:Q107",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 109,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "EVALUATED PRICE ASSET",
+      "cell": "K109",
+      "merged": "K109:Q109",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 110,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "SECURITY INTEREST CREATION DATE",
+      "cell": "K110",
+      "merged": "K110:Q110",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 111,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "DOCCUMENT TYPE",
+      "cell": "K111",
+      "merged": "K111:Q111",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 112,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "TITTLE DOCCUMENT NO",
+      "cell": "K112",
+      "merged": "K112:Q112",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 113,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "DOCCUMENT/REGISTRATION DATE",
+      "cell": "K113",
+      "merged": "K113:Q113",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 114,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "SUB REGISTER",
+      "cell": "K114",
+      "merged": "K114:Q114",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 115,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "TALUKA",
+      "cell": "K115",
+      "merged": "K115:Q115",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 116,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "DISTRICT",
+      "cell": "K116",
+      "merged": "K116:Q116",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 117,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "STATE",
+      "cell": "K117",
+      "merged": "K117:Q117",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 118,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "PINCODE",
+      "cell": "K118",
+      "merged": "K118:Q118",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 119,
+      "section": "PROPRTY DOCCUMENT",
+      "label": "PROJECT COST",
+      "cell": "K119",
+      "merged": "K119:L119",
+      "formula": false,
+      "value": "1.Cost"
+    },
+    {
+      "row": 120,
+      "section": "PROJECT COST",
+      "label": "Construction - 1. Cost",
+      "cell": "K120",
+      "merged": "K120:L120",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 120,
+      "section": "PROJECT COST",
+      "label": "Construction - 2. Incidental & Other",
+      "cell": "M120",
+      "merged": "M120:N120",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 120,
+      "section": "PROJECT COST",
+      "label": "Construction - 3. Contingency",
+      "cell": "O120",
+      "merged": "O120:P120",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 120,
+      "section": "PROJECT COST",
+      "label": "Construction - Total",
+      "cell": "Q120",
+      "merged": null,
+      "formula": true,
+      "value": "=K120+M120+O120"
+    },
+    {
+      "row": 121,
+      "section": "PROJECT COST",
+      "label": "Renovation - 1. Cost",
+      "cell": "K121",
+      "merged": "K121:L121",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 121,
+      "section": "PROJECT COST",
+      "label": "Renovation - 2. Incidental & Other",
+      "cell": "M121",
+      "merged": "M121:N121",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 121,
+      "section": "PROJECT COST",
+      "label": "Renovation - 3. Contingency",
+      "cell": "O121",
+      "merged": "O121:P121",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 121,
+      "section": "PROJECT COST",
+      "label": "Renovation - Total",
+      "cell": "Q121",
+      "merged": null,
+      "formula": true,
+      "value": "=K121+M121+O121"
+    },
+    {
+      "row": 122,
+      "section": "PROJECT COST",
+      "label": "Repairs - 1. Cost",
+      "cell": "K122",
+      "merged": "K122:L122",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 122,
+      "section": "PROJECT COST",
+      "label": "Repairs - 2. Incidental & Other",
+      "cell": "M122",
+      "merged": "M122:N122",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 122,
+      "section": "PROJECT COST",
+      "label": "Repairs - 3. Contingency",
+      "cell": "O122",
+      "merged": "O122:P122",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 122,
+      "section": "PROJECT COST",
+      "label": "Repairs - Total",
+      "cell": "Q122",
+      "merged": null,
+      "formula": true,
+      "value": "=K122+M122+O122"
+    },
+    {
+      "row": 123,
+      "section": "PROJECT COST",
+      "label": "Purchase extension furnishing - 1. Cost",
+      "cell": "K123",
+      "merged": "K123:L123",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 123,
+      "section": "PROJECT COST",
+      "label": "Purchase extension furnishing - 2. Incidental & Other",
+      "cell": "M123",
+      "merged": "M123:N123",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 123,
+      "section": "PROJECT COST",
+      "label": "Purchase extension furnishing - 3. Contingency",
+      "cell": "O123",
+      "merged": "O123:P123",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 123,
+      "section": "PROJECT COST",
+      "label": "Purchase extension furnishing - Total",
+      "cell": "Q123",
+      "merged": null,
+      "formula": true,
+      "value": "=K123+M123+O123"
+    },
+    {
+      "row": 125,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "i) Loan requested",
+      "cell": "K125",
+      "merged": "K125:Q125",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 126,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "ii) Savings from Bank",
+      "cell": "K126",
+      "merged": "K126:Q126",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 127,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "iii) Disposal of investments",
+      "cell": "K127",
+      "merged": "K127:Q127",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 128,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "iv) Amount already spent",
+      "cell": "K128",
+      "merged": "K128:Q128",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 129,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "v) Provident Fund",
+      "cell": "K129",
+      "merged": "K129:Q129",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 130,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "vi) Others (specify)",
+      "cell": "K130",
+      "merged": "K130:Q130",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 131,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "vii) Total of i to vi",
+      "cell": "K131",
+      "merged": "K131:Q131",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 132,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "Receipt of Loan Application",
+      "cell": "K132",
+      "merged": "K132:Q132",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 133,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "Interviewed on",
+      "cell": "K133",
+      "merged": "K133:Q133",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 134,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "Sanction/Rejection on",
+      "cell": "K134",
+      "merged": "K134:Q134",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 135,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "Documentation on",
+      "cell": "K135",
+      "merged": "K135:Q135",
+      "formula": false,
+      "value": null
+    },
+    {
+      "row": 136,
+      "section": "ESTIMATED AVAILABILITY OF FUND",
+      "label": "Disbursement on",
+      "cell": "K136",
+      "merged": "K136:Q136",
+      "formula": false,
+      "value": null
+    }
+  ]
+}

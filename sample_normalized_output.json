@@ -1,0 +1,3047 @@
+{
+  "borrower": {
+    "full_name": {
+      "value": "Subhasish Mukherjee",
+      "raw_value": "Subhasish Mukherjee",
+      "source_document": "borrower_aadhaar.pdf",
+      "confidence": 0.96,
+      "evidence": "Subhasish Mukherjee",
+      "has_conflict": true,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "Subhasish Mukherjee",
+          "raw_value": "Subhasish Mukherjee",
+          "source_document": "borrower_aadhaar.pdf",
+          "confidence": 0.96,
+          "evidence": "Subhasish Mukherjee",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        },
+        {
+          "value": "S. Mukherjee",
+          "raw_value": "S. Mukherjee",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "Employee: S. Mukherjee",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "title": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "first_name": {
+      "value": "Subhasish",
+      "raw_value": "Subhasish",
+      "source_document": "Derived from Full Name",
+      "confidence": 1.0,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "Subhasish",
+          "raw_value": "Subhasish",
+          "source_document": "Derived from Full Name",
+          "confidence": 1.0,
+          "evidence": null,
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "surname": {
+      "value": "Mukherjee",
+      "raw_value": "Mukherjee",
+      "source_document": "Derived from Full Name",
+      "confidence": 1.0,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "Mukherjee",
+          "raw_value": "Mukherjee",
+          "source_document": "Derived from Full Name",
+          "confidence": 1.0,
+          "evidence": null,
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "dob": {
+      "value": "15/08/1988",
+      "raw_value": "15/08/1988",
+      "source_document": "borrower_aadhaar.pdf",
+      "confidence": 0.96,
+      "evidence": "DOB: 15/08/1988",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "15/08/1988",
+          "raw_value": "15/08/1988",
+          "source_document": "borrower_aadhaar.pdf",
+          "confidence": 0.96,
+          "evidence": "DOB: 15/08/1988",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "gender": {
+      "value": "MALE",
+      "raw_value": "MALE",
+      "source_document": "borrower_aadhaar.pdf",
+      "confidence": 0.96,
+      "evidence": "Gender: MALE",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "MALE",
+          "raw_value": "MALE",
+          "source_document": "borrower_aadhaar.pdf",
+          "confidence": 0.96,
+          "evidence": "Gender: MALE",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "father_husband_name": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "qualification": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "marital_status": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "num_dependents": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "mobile_no": {
+      "value": "9832145670",
+      "raw_value": "9832145670",
+      "source_document": "borrower_aadhaar.pdf",
+      "confidence": 0.96,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "9832145670",
+          "raw_value": "9832145670",
+          "source_document": "borrower_aadhaar.pdf",
+          "confidence": 0.96,
+          "evidence": null,
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "pan_no": {
+      "value": "ABCPM1234F",
+      "raw_value": "ABCPM1234F",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "PAN: ABCPM1234F",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "ABCPM1234F",
+          "raw_value": "ABCPM1234F",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "PAN: ABCPM1234F",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "aadhar_no": {
+      "value": "5412 8745 9632",
+      "raw_value": "5412 8745 9632",
+      "source_document": "borrower_aadhaar.pdf",
+      "confidence": 0.96,
+      "evidence": "UID: 5412 8745 9632",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "5412 8745 9632",
+          "raw_value": "5412 8745 9632",
+          "source_document": "borrower_aadhaar.pdf",
+          "confidence": 0.96,
+          "evidence": "UID: 5412 8745 9632",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "voter_card_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "driving_license_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "resident_address": {
+      "vill": {
+        "value": "Kalipur",
+        "raw_value": "Kalipur",
+        "source_document": "borrower_aadhaar.pdf",
+        "confidence": 0.96,
+        "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Kalipur",
+            "raw_value": "Kalipur",
+            "source_document": "borrower_aadhaar.pdf",
+            "confidence": 0.96,
+            "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "post": {
+        "value": "Kalipur",
+        "raw_value": "Kalipur",
+        "source_document": "borrower_aadhaar.pdf",
+        "confidence": 0.96,
+        "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Kalipur",
+            "raw_value": "Kalipur",
+            "source_document": "borrower_aadhaar.pdf",
+            "confidence": 0.96,
+            "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "dist": {
+        "value": "Burdwan",
+        "raw_value": "Burdwan",
+        "source_document": "borrower_aadhaar.pdf",
+        "confidence": 0.96,
+        "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Burdwan",
+            "raw_value": "Burdwan",
+            "source_document": "borrower_aadhaar.pdf",
+            "confidence": 0.96,
+            "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "pin": {
+        "value": "713101",
+        "raw_value": "713101",
+        "source_document": "borrower_aadhaar.pdf",
+        "confidence": 0.96,
+        "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "713101",
+            "raw_value": "713101",
+            "source_document": "borrower_aadhaar.pdf",
+            "confidence": 0.96,
+            "evidence": "Address: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      }
+    },
+    "present_posting": {
+      "org_name": {
+        "value": "Govt High School",
+        "raw_value": "Govt High School",
+        "source_document": "borrower_salary_slip.pdf",
+        "confidence": 0.94,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Govt High School",
+            "raw_value": "Govt High School",
+            "source_document": "borrower_salary_slip.pdf",
+            "confidence": 0.94,
+            "evidence": null,
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "vill": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "post": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "dist": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "pin": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    },
+    "employer": {
+      "employer_name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "vill": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "post": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "dist": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "pin": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    },
+    "service": {
+      "length_of_service": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "designation": {
+        "value": "Assistant Teacher",
+        "raw_value": "Assistant Teacher",
+        "source_document": "borrower_salary_slip.pdf",
+        "confidence": 0.94,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Assistant Teacher",
+            "raw_value": "Assistant Teacher",
+            "source_document": "borrower_salary_slip.pdf",
+            "confidence": 0.94,
+            "evidence": null,
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "date_of_joining": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "date_of_retirement": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    }
+  },
+  "guarantors": [
+    {
+      "index": 1,
+      "name": {
+        "value": "Animesh Banerjee",
+        "raw_value": "Animesh Banerjee",
+        "source_document": "guarantor1_pan_card.jpg",
+        "confidence": 0.95,
+        "evidence": "Name: Animesh Banerjee",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Animesh Banerjee",
+            "raw_value": "Animesh Banerjee",
+            "source_document": "guarantor1_pan_card.jpg",
+            "confidence": 0.95,
+            "evidence": "Name: Animesh Banerjee",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "father_husband_name": {
+        "value": "Ramkrishna Banerjee",
+        "raw_value": "Ramkrishna Banerjee",
+        "source_document": "guarantor1_pan_card.jpg",
+        "confidence": 0.95,
+        "evidence": "Father's Name: Ramkrishna Banerjee",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Ramkrishna Banerjee",
+            "raw_value": "Ramkrishna Banerjee",
+            "source_document": "guarantor1_pan_card.jpg",
+            "confidence": 0.95,
+            "evidence": "Father's Name: Ramkrishna Banerjee",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "dob": {
+        "value": "10/02/1982",
+        "raw_value": "10/02/1982",
+        "source_document": "guarantor1_pan_card.jpg",
+        "confidence": 0.95,
+        "evidence": "DOB: 10/02/1982",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "10/02/1982",
+            "raw_value": "10/02/1982",
+            "source_document": "guarantor1_pan_card.jpg",
+            "confidence": 0.95,
+            "evidence": "DOB: 10/02/1982",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "occupation": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "monthly_income": {
+        "value": "55000",
+        "raw_value": "55000",
+        "source_document": "guarantor1_pan_card.jpg",
+        "confidence": 0.95,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "55000",
+            "raw_value": "55000",
+            "source_document": "guarantor1_pan_card.jpg",
+            "confidence": 0.95,
+            "evidence": null,
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "p_tax_paid_upto": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "mobile_no": {
+        "value": "9434012345",
+        "raw_value": "9434012345",
+        "source_document": "guarantor1_pan_card.jpg",
+        "confidence": 0.95,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "9434012345",
+            "raw_value": "9434012345",
+            "source_document": "guarantor1_pan_card.jpg",
+            "confidence": 0.95,
+            "evidence": null,
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "qualification": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "account_no": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "resident_address": {
+        "vill": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "post": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "dist": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "pin": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        }
+      },
+      "work_address": {
+        "vill": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "post": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "dist": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "pin": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        }
+      },
+      "assets": [
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        }
+      ],
+      "liabilities": [
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        }
+      ],
+      "dependents": [
+        {
+          "name": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "age": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "relationship": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "name": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "age": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "relationship": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "name": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "age": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "relationship": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "father_husband_name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "dob": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "occupation": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "monthly_income": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "p_tax_paid_upto": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "mobile_no": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "qualification": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "account_no": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "resident_address": {
+        "vill": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "post": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "dist": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "pin": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        }
+      },
+      "work_address": {
+        "vill": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "post": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "dist": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        },
+        "pin": {
+          "value": null,
+          "raw_value": null,
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "has_conflict": false,
+          "is_valid": true,
+          "validation_note": null,
+          "history": []
+        }
+      },
+      "assets": [
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        }
+      ],
+      "liabilities": [
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "description": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "amount": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        }
+      ],
+      "dependents": [
+        {
+          "name": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "age": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "relationship": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "name": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "age": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "relationship": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        },
+        {
+          "name": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "age": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          },
+          "relationship": {
+            "value": null,
+            "raw_value": null,
+            "source_document": null,
+            "confidence": null,
+            "evidence": null,
+            "has_conflict": false,
+            "is_valid": true,
+            "validation_note": null,
+            "history": []
+          }
+        }
+      ]
+    }
+  ],
+  "loan": {
+    "branch": {
+      "value": "Burdwan Main",
+      "raw_value": "Burdwan Main",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "Branch: Burdwan Main",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "Burdwan Main",
+          "raw_value": "Burdwan Main",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "Branch: Burdwan Main",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "application_date": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "application_day": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "application_month": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "application_year": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "mortgage_branch": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "salary_ac_no": {
+      "value": "50100458921",
+      "raw_value": "50100458921",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "Salary A/C No: 50100458921",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "50100458921",
+          "raw_value": "50100458921",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "Salary A/C No: 50100458921",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "loan_account_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "loan_amount_requested": {
+      "value": "2500000",
+      "raw_value": "2500000",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "2500000",
+          "raw_value": "2500000",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": null,
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "term_months": {
+      "value": "240",
+      "raw_value": "240",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "240",
+          "raw_value": "240",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": null,
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "rate_of_interest": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "emi": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "other_emi": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "moratorium_period": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "emi_starting_from": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "purpose": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    }
+  },
+  "property": {
+    "inspection_date": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "mortgage_branch": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "sub_registry_office": {
+      "value": "Burdwan",
+      "raw_value": "Burdwan",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": "Sub Registry Office: Burdwan",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "Burdwan",
+          "raw_value": "Burdwan",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": "Sub Registry Office: Burdwan",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "plan_approved_by": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "flat_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "house_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "premises_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "building_name": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "plot_dag_no": {
+      "value": "512",
+      "raw_value": "512",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": "Plot / Dag No: 512, Khatian No: 1204",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "512",
+          "raw_value": "512",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": "Plot / Dag No: 512, Khatian No: 1204",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "khatian_no": {
+      "value": "1204",
+      "raw_value": "1204",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": "Plot / Dag No: 512, Khatian No: 1204",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "1204",
+          "raw_value": "1204",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": "Plot / Dag No: 512, Khatian No: 1204",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "jl_no": {
+      "value": "45",
+      "raw_value": "45",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "45",
+          "raw_value": "45",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": null,
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "mouza": {
+      "value": "Mirzapur",
+      "raw_value": "Mirzapur",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": "Mouza: Mirzapur, JL No: 45",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "Mirzapur",
+          "raw_value": "Mirzapur",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": "Mouza: Mirzapur, JL No: 45",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "block": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "ps": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "post": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "pin": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "dist": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "area": {
+      "value": "4 Decimal",
+      "raw_value": "4 Decimal",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": "Area: 4 Decimal",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "4 Decimal",
+          "raw_value": "4 Decimal",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": "Area: 4 Decimal",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "classification": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "proposed_buildup_area": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "purchase_price": {
+      "value": "1800000",
+      "raw_value": "1800000",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": "Purchase Price: 1800000",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "1800000",
+          "raw_value": "1800000",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": "Purchase Price: 1800000",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "purchase_date": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "municipality_gp": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "street_name": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "deed_no": {
+      "value": "4521/2021",
+      "raw_value": "4521/2021",
+      "source_document": "property_sale_deed.pdf",
+      "confidence": 0.92,
+      "evidence": "Deed No: 4521/2021",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "4521/2021",
+          "raw_value": "4521/2021",
+          "source_document": "property_sale_deed.pdf",
+          "confidence": 0.92,
+          "evidence": "Deed No: 4521/2021",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "book_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "vol_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "page_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "survey_no": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "landmark": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "latitude_north": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "latitude_east": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "taluka": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "boundaries": {
+      "north": {
+        "value": "12ft Wide Road",
+        "raw_value": "12ft Wide Road",
+        "source_document": "property_sale_deed.pdf",
+        "confidence": 0.92,
+        "evidence": "Bounded on North: 12ft Wide Road",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "12ft Wide Road",
+            "raw_value": "12ft Wide Road",
+            "source_document": "property_sale_deed.pdf",
+            "confidence": 0.92,
+            "evidence": "Bounded on North: 12ft Wide Road",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "south": {
+        "value": "Plot No 513",
+        "raw_value": "Plot No 513",
+        "source_document": "property_sale_deed.pdf",
+        "confidence": 0.92,
+        "evidence": "Bounded on South: Plot No 513",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Plot No 513",
+            "raw_value": "Plot No 513",
+            "source_document": "property_sale_deed.pdf",
+            "confidence": 0.92,
+            "evidence": "Bounded on South: Plot No 513",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "east": {
+        "value": "Land of Ghosh",
+        "raw_value": "Land of Ghosh",
+        "source_document": "property_sale_deed.pdf",
+        "confidence": 0.92,
+        "evidence": "Bounded on East: Land of Ghosh",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Land of Ghosh",
+            "raw_value": "Land of Ghosh",
+            "source_document": "property_sale_deed.pdf",
+            "confidence": 0.92,
+            "evidence": "Bounded on East: Land of Ghosh",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "west": {
+        "value": "Land of Paul",
+        "raw_value": "Land of Paul",
+        "source_document": "property_sale_deed.pdf",
+        "confidence": 0.92,
+        "evidence": "Bounded on West: Land of Paul",
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "Land of Paul",
+            "raw_value": "Land of Paul",
+            "source_document": "property_sale_deed.pdf",
+            "confidence": 0.92,
+            "evidence": "Bounded on West: Land of Paul",
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      }
+    },
+    "valuation_independent": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "valuation_empanelled": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "valuation_date": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "valuer_name": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "search_report_date": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "search_by": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "security_interest_holder": {
+      "value": "BANGIYA GRAMIN VIKASH BANK",
+      "raw_value": "BANGIYA GRAMIN VIKASH BANK",
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "BANGIYA GRAMIN VIKASH BANK",
+          "raw_value": "BANGIYA GRAMIN VIKASH BANK",
+          "source_document": null,
+          "confidence": null,
+          "evidence": null,
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "bsr_code": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "security_interest_creation_date": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "document_type": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "document_registration_date": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "project_cost": {
+      "construction_cost": {
+        "value": "2200000",
+        "raw_value": "2200000",
+        "source_document": "property_sale_deed.pdf",
+        "confidence": 0.92,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": [
+          {
+            "value": "2200000",
+            "raw_value": "2200000",
+            "source_document": "property_sale_deed.pdf",
+            "confidence": 0.92,
+            "evidence": null,
+            "timestamp": "2026-11-23T14:33:44.113483"
+          }
+        ]
+      },
+      "construction_incidental": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "construction_contingency": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "renovation_cost": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "repairs_cost": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "furnishing_cost": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    }
+  },
+  "salary": {
+    "salary_month": {
+      "value": "July 2024",
+      "raw_value": "July 2024",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "Month: July 2024",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "July 2024",
+          "raw_value": "July 2024",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "Month: July 2024",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "gross_salary": {
+      "value": "62000",
+      "raw_value": "62000",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "Gross Pay: 62000",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "62000",
+          "raw_value": "62000",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "Gross Pay: 62000",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "basic_pay": {
+      "value": "45000",
+      "raw_value": "45000",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "Basic: 45000",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "45000",
+          "raw_value": "45000",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "Basic: 45000",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "da": {
+      "value": "12500",
+      "raw_value": "12500",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "DA: 12500",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "12500",
+          "raw_value": "12500",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "DA: 12500",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "hra": {
+      "value": "4500",
+      "raw_value": "4500",
+      "source_document": "borrower_salary_slip.pdf",
+      "confidence": 0.94,
+      "evidence": "Basic: 45000",
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": [
+        {
+          "value": "4500",
+          "raw_value": "4500",
+          "source_document": "borrower_salary_slip.pdf",
+          "confidence": 0.94,
+          "evidence": "Basic: 45000",
+          "timestamp": "2026-11-23T14:33:44.113483"
+        }
+      ]
+    },
+    "others_allowance": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "deductions": {
+      "pf": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "it": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "others": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    },
+    "family_expenditure": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "p_tax_last_paid": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "form16_last_submitted": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    }
+  },
+  "assets": {
+    "bank_deposit": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "life_insurance": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "other_movable": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "immovable_house": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "immovable_land": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    }
+  },
+  "liabilities": {
+    "from_employer": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "from_family_friends": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "from_provident_fund": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    },
+    "from_other_source": {
+      "value": null,
+      "raw_value": null,
+      "source_document": null,
+      "confidence": null,
+      "evidence": null,
+      "has_conflict": false,
+      "is_valid": true,
+      "validation_note": null,
+      "history": []
+    }
+  },
+  "dependents": [
+    {
+      "name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "age": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "relationship": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    },
+    {
+      "name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "age": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "relationship": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    },
+    {
+      "name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "age": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "relationship": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    }
+  ],
+  "references": [
+    {
+      "name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "vill": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "post": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "dist": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "pin": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "mobile_no": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    },
+    {
+      "name": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "vill": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "post": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "dist": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "pin": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      },
+      "mobile_no": {
+        "value": null,
+        "raw_value": null,
+        "source_document": null,
+        "confidence": null,
+        "evidence": null,
+        "has_conflict": false,
+        "is_valid": true,
+        "validation_note": null,
+        "history": []
+      }
+    }
+  ],
+  "other_info": {
+    "source_documents": [
+      {
+        "name": "borrower_aadhaar.pdf",
+        "type": "Aadhaar Card",
+        "field_count": 9
+      },
+      {
+        "name": "borrower_salary_slip.pdf",
+        "type": "Salary Slip",
+        "field_count": 15
+      },
+      {
+        "name": "guarantor1_pan_card.jpg",
+        "type": "PAN Card",
+        "field_count": 6
+      },
+      {
+        "name": "property_sale_deed.pdf",
+        "type": "Sale Deed",
+        "field_count": 13
+      }
+    ],
+    "processed_count": 4,
+    "engine_used": "Groq AI (llama-3.3-70b-versatile)",
+    "created_at": "2026-11-23T14:33:44.113483",
+    "unmapped_fields": []
+  }
+}

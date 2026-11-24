@@ -23,6 +23,7 @@ try:
 except Exception:
     pass
 
+import re
 import cv2
 import numpy as np
 import fitz  # PyMuPDF
@@ -135,15 +136,76 @@ class OCRService:
 
         return np.array(pil_img)
 
-    def _process_image(self, image_path):
-        ocr = self._get_ocr()
+    @staticmethod
+    def _evaluate_text_quality(lines, scores):
+        """
+        Evaluates OCR quality for a given candidate rotation.
+        Higher score = better, cleaner, more recognizable document text.
+        Penalizes CJK artifacts (caused by slicing sideways across Latin letters).
+        Rewards confidence, Latin alphanumeric density, and document keywords.
+        """
+        if not lines:
+            return -100.0
+        text = " ".join(lines)
+        cjk_count = len(re.findall(r'[\u4e00-\u9fff]', text))
+        avg_conf = sum(scores) / len(scores) if scores else 0.0
 
+        words = re.findall(r'[a-zA-Z]{3,}', text)
+        valid_word_chars = sum(len(w) for w in words)
+
+        keywords = [
+            'income', 'tax', 'department', 'govt', 'india', 'permanent', 'account', 'number',
+            'father', 'name', 'date', 'birth', 'signature', 'male', 'female', 'dob', 'pan',
+            'aadhaar', 'bank', 'branch', 'address', 'card', 'singh', 'republic', 'loan', 'salary'
+        ]
+        text_lower = text.lower()
+        keyword_hits = sum(1 for kw in keywords if kw in text_lower)
+
+        score = (avg_conf * 30.0) + (valid_word_chars * 0.5) + (keyword_hits * 15.0) - (cjk_count * 50.0)
+        return score
+
+    def _ocr_with_orientation(self, img_arr):
+        """
+        Performs OCR on an image array with automatic 4-way orientation detection.
+        If the initial orientation is suspicious (CJK artifacts from vertical slicing,
+        low word density, or portrait aspect ratio on an ID card), it tests 90/180/270 degree
+        rotations and picks the one yielding the highest document quality score.
+        """
+        ocr = self._get_ocr()
+        h, w = img_arr.shape[:2]
+
+        # 1. Baseline OCR at 0 degrees
+        results = ocr.predict(img_arr)
+        best_lines, best_scores = self._parse_ocr_results(results)
+        best_score = self._evaluate_text_quality(best_lines, best_scores)
+
+        # Determine if orientation search is needed
+        full_joined = " ".join(best_lines)
+        has_cjk = bool(re.search(r'[\u4e00-\u9fff]', full_joined))
+        needs_orientation_check = has_cjk or best_score < 140.0 or (h > w * 1.15 and best_score < 220.0)
+
+        if needs_orientation_check:
+            rotations = [
+                (90, cv2.rotate(img_arr, cv2.ROTATE_90_CLOCKWISE)),
+                (180, cv2.rotate(img_arr, cv2.ROTATE_180)),
+                (270, cv2.rotate(img_arr, cv2.ROTATE_90_COUNTERCLOCKWISE)),
+            ]
+            for angle, rotated_img in rotations:
+                r = ocr.predict(rotated_img)
+                lines, scores = self._parse_ocr_results(r)
+                q_score = self._evaluate_text_quality(lines, scores)
+                if q_score > best_score:
+                    best_score = q_score
+                    best_lines = lines
+                    best_scores = scores
+
+        return best_lines, best_scores
+
+    def _process_image(self, image_path):
         # Preprocess and obtain clean RGB numpy array
         img_arr = self._preprocess_image(image_path)
 
-        # Run PaddleOCR directly on the in-memory array
-        results = ocr.predict(img_arr)
-        page_text_lines, confidences = self._parse_ocr_results(results)
+        page_text_lines, confidences = self._ocr_with_orientation(img_arr)
 
         full_text = "\n".join(page_text_lines)
         avg_conf = sum(confidences) / len(confidences) if confidences else 0.85
@@ -185,14 +247,12 @@ class OCRService:
                 full_texts.append(f"--- PAGE {page_num} ---\n{native_text}")
                 total_conf += 0.99
             else:
-                # 2. Scanned PDF page: render in-memory pixmap at 150 DPI and run PaddleOCR
+                # 2. Scanned PDF page: render in-memory pixmap at 150 DPI and run PaddleOCR with auto-orientation
                 pix = page.get_pixmap(dpi=150)
                 page_img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
                 page_arr = np.array(page_img)
 
-                ocr = self._get_ocr()
-                results = ocr.predict(page_arr)
-                page_lines, page_scores = self._parse_ocr_results(results)
+                page_lines, page_scores = self._ocr_with_orientation(page_arr)
 
                 p_text = "\n".join(page_lines)
                 p_conf = sum(page_scores) / len(page_scores) if page_scores else 0.85

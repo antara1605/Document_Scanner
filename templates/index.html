@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Scanner - Information Extractor</title>
+    <title>WBGB Housing Loan - Document Scanner & Excel Mapping</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
             background: #ffffff;
             border-radius: 16px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            max-width: 920px;
+            max-width: 1060px;
             width: 100%;
             border: 1px solid #e2e8f0;
             overflow: hidden;
@@ -83,7 +83,86 @@
             align-items: center;
             margin: 0.2rem;
         }
-        /* Master Summary Card & Table Styles */
+
+        /* Review Screen Styles */
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            text-align: center;
+        }
+        .stat-card .stat-val {
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+        .stat-card .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+        }
+
+        .nav-pills-custom .nav-link {
+            color: #475569;
+            font-size: 0.86rem;
+            font-weight: 600;
+            padding: 0.55rem 0.95rem;
+            border-radius: 8px;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+        .nav-pills-custom .nav-link.active {
+            background-color: #002d56;
+            color: #ffffff;
+        }
+        .nav-pills-custom .nav-link:hover:not(.active) {
+            background-color: #e2e8f0;
+        }
+
+        .review-field-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.85rem;
+            background: #ffffff;
+            transition: border-color 0.15s ease;
+        }
+        .review-field-card.has-conflict {
+            border-left: 4px solid #dc3545;
+            background-color: #fff8f8;
+        }
+        .review-field-card.is-verified {
+            border-left: 4px solid #198754;
+        }
+        .review-field-card.is-approved {
+            border-left: 4px solid #0d6efd;
+        }
+        .review-field-card.is-missing {
+            border-left: 4px solid #94a3b8;
+            background-color: #fcfcfd;
+        }
+
+        .badge-status-verified { background-color: #d1fae5; color: #065f46; font-weight: 600; }
+        .badge-status-conflict { background-color: #fee2e2; color: #991b1b; font-weight: 600; }
+        .badge-status-review { background-color: #fef3c7; color: #92400e; font-weight: 600; }
+        .badge-status-missing { background-color: #f1f5f9; color: #64748b; font-weight: 500; }
+        .badge-status-approved { background-color: #dbeafe; color: #1e40af; font-weight: 600; }
+
+        .conflict-box {
+            background-color: #fff1f2;
+            border: 1px solid #fecdd3;
+            border-radius: 8px;
+            padding: 0.65rem 0.85rem;
+            margin-top: 0.5rem;
+        }
+        .btn-resolve-opt {
+            font-size: 0.78rem;
+            padding: 0.25rem 0.55rem;
+            border-radius: 6px;
+        }
+
+        /* Master Summary & Raw Inspection */
         .summary-card {
             border: 1px solid #cbd5e1;
             border-radius: 12px;
@@ -102,10 +181,7 @@
             align-items: center;
             justify-content: space-between;
         }
-        .table-summary {
-            font-size: 0.86rem;
-            margin-bottom: 0;
-        }
+        .table-summary { font-size: 0.86rem; margin-bottom: 0; }
         .table-summary th {
             background-color: #f8fafc;
             color: #475569;
@@ -116,11 +192,7 @@
             padding: 0.75rem 0.85rem;
             border-bottom: 1px solid #e2e8f0;
         }
-        .table-summary td {
-            padding: 0.75rem 0.85rem;
-            vertical-align: middle;
-            border-bottom: 1px solid #f1f5f9;
-        }
+        .table-summary td { padding: 0.75rem 0.85rem; vertical-align: middle; border-bottom: 1px solid #f1f5f9; }
         .highlight-chip {
             display: inline-block;
             background: #e0f2fe;
@@ -151,33 +223,10 @@
             align-items: center;
             justify-content: space-between;
         }
-        .doc-section-header .doc-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #1e293b;
-        }
-        .doc-type-badge {
-            font-size: 0.75rem;
-            background-color: #dbeafe;
-            color: #1e40af;
-            padding: 0.25rem 0.65rem;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-        .doc-fields-table {
-            font-size: 0.88rem;
-            max-height: 420px;
-            overflow-y: auto;
-        }
-        .doc-fields-table table { margin-bottom: 0; }
-        .doc-fields-table tr td {
-            padding: 0.55rem 0.85rem;
-            vertical-align: top;
-        }
         .ocr-raw-box {
             background-color: #0f172a;
             color: #e2e8f0;
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
             font-size: 0.8rem;
             line-height: 1.5;
             padding: 1rem;
@@ -193,10 +242,10 @@
 <div class="main-card">
     <div class="card-header-brand">
         <div class="d-inline-flex align-items-center justify-content-center p-2 rounded-3 bg-white text-primary mb-2 shadow-sm" style="width: 44px; height: 44px;">
-            <i class="fa-solid fa-file-lines fs-5" style="color: #002d56;"></i>
+            <i class="fa-solid fa-file-excel fs-5" style="color: #002d56;"></i>
         </div>
-        <h4 class="fw-bold mb-1">Document Scanner & Information Extractor</h4>
-        <p class="mb-0 text-white-50 small">Upload any document &bull; OCR + AI structured extraction &bull; Summary tables</p>
+        <h4 class="fw-bold mb-1">WBGB Housing Loan &bull; Document Scanner & Mapping</h4>
+        <p class="mb-0 text-white-50 small">OCR &bull; AI Multi-Document Consolidation &bull; Review & Approval &bull; XLSM Export</p>
     </div>
 
     <div class="p-4 p-md-5">
@@ -205,8 +254,8 @@
             <div class="d-flex align-items-start">
                 <i class="fa-solid fa-circle-exclamation me-2 fs-5 mt-1"></i>
                 <div class="flex-grow-1">
-                    <strong class="d-block mb-1">Extraction Error</strong>
-                    <span id="errorMessageText">An error occurred during extraction.</span>
+                    <strong class="d-block mb-1">Application Alert</strong>
+                    <span id="errorMessageText">An error occurred.</span>
                 </div>
             </div>
             <button type="button" class="btn-close" onclick="dismissError()"></button>
@@ -221,8 +270,8 @@
                     <div class="icon-circle">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                     </div>
-                    <h5 class="fw-bold mb-1">Click to Browse or Drag Documents Here</h5>
-                    <p class="text-muted small mb-3">Upload any document — Driving Licenses, IDs, Cheques, Survey Reports, Vouchers, Deeds, Invoices, Receipts, etc. (JPG, PNG, PDF)</p>
+                    <h5 class="fw-bold mb-1">Click to Browse or Drag Loan Documents Here</h5>
+                    <p class="text-muted small mb-3">Upload Borrower KYC (Aadhaar, PAN), Salary Slips, Guarantor IDs, Title Deeds, Valuation & Search Reports (JPG, PNG, PDF)</p>
                     <span class="btn btn-outline-primary px-4 rounded-pill btn-sm">
                         <i class="fa-solid fa-file-arrow-up me-1"></i> Browse Files
                     </span>
@@ -239,7 +288,7 @@
                 </div>
 
                 <button type="submit" id="btnProcess" class="btn btn-primary w-100 py-3 fw-semibold rounded-3 shadow-sm" style="background-color: #002d56; border-color: #002d56;" disabled>
-                    <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Extract Information
+                    <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Extract & Consolidate Information
                 </button>
             </form>
         </div>
@@ -258,61 +307,213 @@
                     <span class="step-icon"><i class="fa-regular fa-circle text-muted"></i></span>
                     <span id="step2Text">2. Extracting structured information...</span>
                 </div>
+                <div class="step-item" id="step3">
+                    <span class="step-icon"><i class="fa-regular fa-circle text-muted"></i></span>
+                    <span id="step3Text">3. Consolidating & checking cross-document conflicts...</span>
+                </div>
             </div>
         </div>
 
-        <!-- 3. COMPLETED VIEW -->
-        <div id="completedView" class="d-none">
-            <div class="text-center mb-4">
-                <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-success-subtle text-success mb-2" style="width: 60px; height: 60px;">
-                    <i class="fa-solid fa-check fs-3"></i>
+        <!-- 3. REVIEW & APPROVAL VIEW -->
+        <div id="reviewView" class="d-none">
+            <!-- Review Header & Metrics Bar -->
+            <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom flex-wrap gap-2">
+                <div>
+                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-clipboard-check text-primary me-2"></i> Review & Approve Loan Data</h5>
+                    <p class="text-muted small mb-0">Verify extracted details, resolve conflicting documents, and approve values before Excel generation.</p>
                 </div>
-                <h4 class="fw-bold mb-1">Extraction Complete!</h4>
-                <p class="text-muted small mb-1" id="completedSubtext"></p>
-            </div>
-
-            <!-- Master Summary Table of All Processed Documents -->
-            <div class="summary-card" id="masterSummarySection">
-                <div class="summary-card-header">
-                    <span class="text-dark"><i class="fa-solid fa-table-list text-primary me-2"></i> Documents Summary Table</span>
-                    <span class="badge bg-primary rounded-pill" id="summaryBadge">0 Documents</span>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-summary table-hover align-middle mb-0">
-                        <thead>
-                            <tr>
-                                <th style="width: 5%;">#</th>
-                                <th style="width: 25%;">Document Name</th>
-                                <th style="width: 20%;">Detected Type</th>
-                                <th style="width: 38%;">Key Summary Info</th>
-                                <th style="width: 12%;" class="text-end">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="summaryTableBody"></tbody>
-                    </table>
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="resetForm()">
+                        <i class="fa-solid fa-arrow-rotate-left me-1"></i> Upload New
+                    </button>
                 </div>
             </div>
 
-            <div class="d-flex align-items-center justify-content-between mb-3 mt-4">
-                <h6 class="fw-bold text-muted text-uppercase small mb-0">
-                    <i class="fa-solid fa-file-invoice text-secondary me-1"></i> Extracted Fields Details
-                </h6>
-                <span class="small text-muted" id="totalFieldsIndicator"></span>
+            <!-- Stats Metrics Cards -->
+            <div class="row g-2 mb-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-card border-success-subtle">
+                        <div class="stat-val text-success" id="statVerifiedCount">0</div>
+                        <div class="stat-label">Verified Across Docs</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card border-danger-subtle">
+                        <div class="stat-val text-danger" id="statConflictCount">0</div>
+                        <div class="stat-label">Conflicts to Review</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card border-warning-subtle">
+                        <div class="stat-val text-warning" id="statReviewCount">0</div>
+                        <div class="stat-label">Single Source Fields</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card border-primary-subtle">
+                        <div class="stat-val text-primary" id="statManualEdits">0</div>
+                        <div class="stat-label">Manual Edits Applied</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Per-Document Results Container -->
-            <div id="docResultsContainer" class="mb-3"></div>
+            <!-- Discrepancy Warning Alert if conflicts exist -->
+            <div id="conflictAlertBanner" class="alert alert-danger d-none py-2 px-3 mb-4">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div>
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                        <strong id="conflictBannerText">Attention: Discrepancies detected across documents.</strong>
+                        <span class="d-block small text-muted">Never silently approve uncertain identities. Please review and resolve the red highlighted fields.</span>
+                    </div>
+                    <button class="btn btn-sm btn-danger px-3 rounded-pill" onclick="jumpToFirstConflict()">
+                        <i class="fa-solid fa-arrow-down me-1"></i> Jump to Conflict
+                    </button>
+                </div>
+            </div>
 
-            <button type="button" class="btn btn-outline-primary w-100 py-2 rounded-3 fw-semibold mt-3" onclick="resetForm()">
-                <i class="fa-solid fa-arrow-rotate-left me-1"></i> Scan More Documents
-            </button>
+            <!-- Section Navigation Tabs -->
+            <div class="overflow-auto pb-2 mb-3">
+                <ul class="nav nav-pills nav-pills-custom gap-1 flex-nowrap" id="reviewSectionsTabs" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tabBorrower">
+                            <i class="fa-solid fa-user me-1"></i> Borrower Details
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabLoan">
+                            <i class="fa-solid fa-credit-card me-1"></i> Loan Details
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabGuarantor1">
+                            <i class="fa-solid fa-shield-halved me-1"></i> Guarantor 1
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabGuarantor2">
+                            <i class="fa-solid fa-shield me-1"></i> Guarantor 2
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabProperty">
+                            <i class="fa-solid fa-house me-1"></i> Property Details
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabSalary">
+                            <i class="fa-solid fa-money-bill-wave me-1"></i> Salary & Financials
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabAssets">
+                            <i class="fa-solid fa-scale-balanced me-1"></i> Assets & Liabilities
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabOther">
+                            <i class="fa-solid fa-users me-1"></i> Other Details
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tab Panes Container -->
+            <div class="tab-content mb-4" id="reviewSectionsContent">
+                <div class="tab-pane fade show active" id="tabBorrower"><div id="fields_borrower"></div></div>
+                <div class="tab-pane fade" id="tabLoan"><div id="fields_loan"></div></div>
+                <div class="tab-pane fade" id="tabGuarantor1"><div id="fields_guarantor1"></div></div>
+                <div class="tab-pane fade" id="tabGuarantor2"><div id="fields_guarantor2"></div></div>
+                <div class="tab-pane fade" id="tabProperty"><div id="fields_property"></div></div>
+                <div class="tab-pane fade" id="tabSalary"><div id="fields_salary"></div></div>
+                <div class="tab-pane fade" id="tabAssets"><div id="fields_assets"></div></div>
+                <div class="tab-pane fade" id="tabOther"><div id="fields_other"></div></div>
+            </div>
+
+            <!-- Approval Action Bar -->
+            <div class="card bg-light border p-3 rounded-3 shadow-sm mb-4">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                    <div>
+                        <h6 class="fw-bold mb-1"><i class="fa-solid fa-file-excel text-success me-1"></i> Generate Completed Excel Package</h6>
+                        <small class="text-muted">Populates master template (<code>WBGB HBL LOAN (2).xlsm</code>) preserving all formulas, macros and formatting.</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" class="btn btn-outline-primary btn-sm px-3" onclick="approveAllVerified()">
+                            <i class="fa-solid fa-check-double me-1"></i> Approve All Verified
+                        </button>
+                        <button type="button" id="btnGenerateExcel" class="btn btn-success px-4 py-2 fw-semibold shadow-sm" onclick="submitGenerateExcel()">
+                            <i class="fa-solid fa-circle-check me-2"></i> Approve & Generate Excel (.xlsm)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapsible Raw OCR Inspection -->
+            <div class="accordion mb-3" id="rawDocsAccordion">
+                <div class="accordion-item border rounded-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed py-2 px-3 bg-light text-dark fw-semibold small" type="button" data-bs-toggle="collapse" data-bs-target="#rawDocsCollapse">
+                            <i class="fa-solid fa-folder-open me-2 text-primary"></i> View Original Extracted Documents & Raw OCR Text (<span id="rawDocCountBadge">0</span>)
+                        </button>
+                    </h2>
+                    <div id="rawDocsCollapse" class="accordion-collapse collapse" data-bs-parent="#rawDocsAccordion">
+                        <div class="accordion-body p-3">
+                            <div id="rawDocsContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- 4. GENERATION SUCCESS MODAL / CARD -->
+        <div id="excelSuccessCard" class="card border-success d-none mb-4 shadow-sm">
+            <div class="card-body p-4 text-center">
+                <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-success-subtle text-success mb-3" style="width: 65px; height: 65px;">
+                    <i class="fa-solid fa-file-excel fs-2"></i>
+                </div>
+                <h4 class="fw-bold text-success mb-1">Excel Loan Workbook Generated Successfully!</h4>
+                <p class="text-muted small mb-3">All approved fields, calculated formulas, and VBA macros were written to a pristine macro-enabled copy.</p>
+                <div class="bg-light p-3 rounded-3 text-start mx-auto mb-3" style="max-width: 520px; font-size: 0.85rem;">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Generated File:</span>
+                        <strong class="text-dark" id="generatedFilename">WBGB_HBL_LOAN.xlsm</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Fields Populated:</span>
+                        <strong class="text-success" id="populatedFieldsCount">0</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Formulas Protected:</span>
+                        <strong class="text-primary">100% Intact</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-muted">Manual Edits Applied:</span>
+                        <strong class="text-dark" id="editsAppliedCount">0</strong>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center gap-2">
+                    <a id="btnDownloadExcel" href="#" class="btn btn-success px-4 py-2 fw-semibold shadow-sm">
+                        <i class="fa-solid fa-download me-2"></i> Download Completed Excel File (.xlsm)
+                    </a>
+                    <button type="button" class="btn btn-outline-secondary px-3" onclick="dismissSuccessCard()">
+                        Back to Review
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <!-- Bootstrap 5 Bundle JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // --- Global State ---
+    let fullConsolidatedData = null;
+    let auditTrail = [];
+    let manualEditsLog = [];
+    let fieldStatusMap = {}; // field_path -> 'VERIFIED' | 'CONFLICT' | 'NEEDS_MANUAL_REVIEW' | 'APPROVED' | 'MISSING'
+
+    // DOM Elements
     const fileInput = document.getElementById('fileInput');
     const dropzone = document.getElementById('dropzone');
     const fileSelectedBox = document.getElementById('fileSelectedBox');
@@ -322,10 +523,7 @@
     const uploadForm = document.getElementById('uploadForm');
     const uploadView = document.getElementById('uploadView');
     const processingView = document.getElementById('processingView');
-    const completedView = document.getElementById('completedView');
-    const completedSubtext = document.getElementById('completedSubtext');
-    const summaryTableBody = document.getElementById('summaryTableBody');
-    const docResultsContainer = document.getElementById('docResultsContainer');
+    const reviewView = document.getElementById('reviewView');
     const errorAlert = document.getElementById('errorAlert');
     const errorMessageText = document.getElementById('errorMessageText');
 
@@ -336,6 +534,10 @@
 
     function dismissError() {
         errorAlert.classList.add('d-none');
+    }
+
+    function dismissSuccessCard() {
+        document.getElementById('excelSuccessCard').classList.add('d-none');
     }
 
     function escapeHtml(text) {
@@ -351,13 +553,13 @@
             .replace(/'/g, "&#039;");
     }
 
+    // Drag and Drop listeners
     ['dragenter', 'dragover'].forEach(name => {
         dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
     });
     ['dragleave', 'drop'].forEach(name => {
         dropzone.addEventListener(name, (e) => { dropzone.classList.remove('dragover'); });
     });
-
     dropzone.addEventListener('drop', (e) => {
         e.preventDefault();
         dropzone.classList.remove('dragover');
@@ -366,7 +568,6 @@
             handleFileSelect();
         }
     });
-
     fileInput.addEventListener('change', handleFileSelect);
 
     function handleFileSelect() {
@@ -401,15 +602,17 @@
     function resetForm() {
         resetFiles();
         dismissError();
-        completedView.classList.add('d-none');
+        reviewView.classList.add('d-none');
         processingView.classList.add('d-none');
+        document.getElementById('excelSuccessCard').classList.add('d-none');
         uploadView.classList.remove('d-none');
-        document.getElementById('step1').className = 'step-item active';
-        document.getElementById('step1').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-spinner fa-spin text-primary"></i>';
-        document.getElementById('step2').className = 'step-item';
-        document.getElementById('step2').querySelector('.step-icon').innerHTML = '<i class="fa-regular fa-circle text-muted"></i>';
+        fullConsolidatedData = null;
+        auditTrail = [];
+        manualEditsLog = [];
+        fieldStatusMap = {};
     }
 
+    // --- Form Submit: Extraction & Consolidation ---
     uploadForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!fileInput.files || fileInput.files.length === 0) return;
@@ -425,24 +628,32 @@
         }
 
         document.getElementById('step1Text').textContent = `1. Reading ${fileCount} document(s) with PaddleOCR...`;
+        document.getElementById('step1').className = 'step-item active';
+        document.getElementById('step2').className = 'step-item';
+        document.getElementById('step3').className = 'step-item';
 
         setTimeout(() => {
             document.getElementById('step1').className = 'step-item done';
             document.getElementById('step1').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
             document.getElementById('step2').className = 'step-item active';
             document.getElementById('step2').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-spinner fa-spin text-primary"></i>';
-        }, 1500);
+        }, 1200);
+
+        setTimeout(() => {
+            document.getElementById('step2').className = 'step-item done';
+            document.getElementById('step2').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+            document.getElementById('step3').className = 'step-item active';
+            document.getElementById('step3').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-spinner fa-spin text-primary"></i>';
+        }, 2500);
 
         try {
             const resp = await fetch('/upload-and-process', { method: 'POST', body: formData });
             const data = await resp.json();
 
             if (resp.ok && data.success) {
-                document.getElementById('step1').className = 'step-item done';
-                document.getElementById('step1').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
-                document.getElementById('step2').className = 'step-item done';
-                document.getElementById('step2').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
-                setTimeout(() => { showCompleted(data); }, 500);
+                document.getElementById('step3').className = 'step-item done';
+                document.getElementById('step3').querySelector('.step-icon').innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+                setTimeout(() => { initReviewScreen(data); }, 400);
             } else {
                 processingView.classList.add('d-none');
                 uploadView.classList.remove('d-none');
@@ -451,146 +662,435 @@
         } catch (err) {
             processingView.classList.add('d-none');
             uploadView.classList.remove('d-none');
-            showError('Network or server error: ' + err.message);
+            showError('Network error: ' + err.message);
         }
     });
 
-    function showCompleted(data) {
+    // --- Review Screen Initialization ---
+    function initReviewScreen(data) {
         processingView.classList.add('d-none');
-        completedView.classList.remove('d-none');
+        reviewView.classList.remove('d-none');
 
-        const totalFields = data.total_fields || 0;
-        const docCount = data.processed_files_count || 0;
+        fullConsolidatedData = data.consolidated_data || {};
+        auditTrail = data.audit_trail || [];
+        manualEditsLog = [];
+        fieldStatusMap = {};
 
-        completedSubtext.textContent = `Extracted ${totalFields} field(s) from ${docCount} document(s).`;
+        renderReviewMetrics(data.consolidation_summary || {});
+        renderAllReviewSections();
+        renderRawDocuments(data.documents || []);
+    }
 
-        document.getElementById('summaryBadge').textContent = `${docCount} Document${docCount === 1 ? '' : 's'}`;
-        document.getElementById('totalFieldsIndicator').textContent = `${totalFields} total field${totalFields === 1 ? '' : 's'} extracted`;
+    function renderReviewMetrics(summary) {
+        let verified = 0;
+        let conflicts = 0;
+        let single = 0;
 
-        summaryTableBody.innerHTML = '';
-        docResultsContainer.innerHTML = '';
-        const documents = data.documents || [];
+        auditTrail.forEach(item => {
+            fieldStatusMap[item.field_path] = item.review_status;
+            if (item.has_conflict) conflicts++;
+            else if (item.review_status === 'VERIFIED_ACROSS_DOCUMENTS') verified++;
+            else if (item.review_status === 'SINGLE_SOURCE') single++;
+        });
 
-        if (documents.length === 0) {
-            summaryTableBody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">No documents processed</td></tr>';
-            docResultsContainer.innerHTML = '<div class="text-center text-muted py-4"><i class="fa-solid fa-circle-info me-1"></i> No information could be extracted.</div>';
-            return;
+        document.getElementById('statVerifiedCount').textContent = verified;
+        document.getElementById('statConflictCount').textContent = conflicts;
+        document.getElementById('statReviewCount').textContent = single;
+        document.getElementById('statManualEdits').textContent = manualEditsLog.length;
+
+        const banner = document.getElementById('conflictAlertBanner');
+        if (conflicts > 0) {
+            banner.classList.remove('d-none');
+            document.getElementById('conflictBannerText').textContent =
+                `Attention: ${conflicts} field(s) have conflicting values across documents. Please review and resolve.`;
+        } else {
+            banner.classList.add('d-none');
+        }
+    }
+
+    function getSectionCategory(path) {
+        if (path.startsWith('borrower.')) return 'borrower';
+        if (path.startsWith('loan.')) return 'loan';
+        if (path.startsWith('guarantors.0.') || path.startsWith('guarantor_1.')) return 'guarantor1';
+        if (path.startsWith('guarantors.1.') || path.startsWith('guarantor_2.')) return 'guarantor2';
+        if (path.startsWith('property.')) return 'property';
+        if (path.startsWith('salary.')) return 'salary';
+        if (path.startsWith('assets.') || path.startsWith('liabilities.')) return 'assets';
+        return 'other';
+    }
+
+    function renderAllReviewSections() {
+        const containers = {
+            borrower: document.getElementById('fields_borrower'),
+            loan: document.getElementById('fields_loan'),
+            guarantor1: document.getElementById('fields_guarantor1'),
+            guarantor2: document.getElementById('fields_guarantor2'),
+            property: document.getElementById('fields_property'),
+            salary: document.getElementById('fields_salary'),
+            assets: document.getElementById('fields_assets'),
+            other: document.getElementById('fields_other'),
+        };
+
+        Object.values(containers).forEach(c => { if (c) c.innerHTML = ''; });
+
+        const sectionItems = {
+            borrower: [], loan: [], guarantor1: [], guarantor2: [],
+            property: [], salary: [], assets: [], other: []
+        };
+
+        // Group audit entries by section
+        auditTrail.forEach(item => {
+            const cat = getSectionCategory(item.field_path);
+            if (sectionItems[cat]) {
+                sectionItems[cat].push(item);
+            } else {
+                sectionItems['other'].push(item);
+            }
+        });
+
+        // Render each category
+        Object.entries(sectionItems).forEach(([cat, items]) => {
+            const cont = containers[cat];
+            if (!cont) return;
+
+            if (items.length === 0) {
+                cont.innerHTML = '<div class="text-center text-muted py-4 small">No fields found for this section.</div>';
+                return;
+            }
+
+            // Put conflicting fields first, then populated, then missing
+            items.sort((a, b) => {
+                if (a.has_conflict && !b.has_conflict) return -1;
+                if (!a.has_conflict && b.has_conflict) return 1;
+                if (a.value !== null && b.value === null) return -1;
+                if (a.value === null && b.value !== null) return 1;
+                return 0;
+            });
+
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'row g-3';
+
+            items.forEach((item, fIdx) => {
+                const col = document.createElement('div');
+                col.className = 'col-12 col-md-6';
+                col.innerHTML = generateFieldHtml(item, fIdx);
+                rowDiv.appendChild(col);
+            });
+
+            cont.appendChild(rowDiv);
+        });
+    }
+
+    function generateFieldHtml(item, idx) {
+        const path = item.field_path;
+        const val = item.value !== null && item.value !== undefined ? item.value : '';
+        const hasConflict = item.has_conflict;
+        const status = fieldStatusMap[path] || item.review_status;
+
+        let statusBadge = '';
+        let cardClass = 'review-field-card';
+
+        if (status === 'APPROVED') {
+            statusBadge = '<span class="badge badge-status-approved"><i class="fa-solid fa-circle-check me-1"></i> Approved</span>';
+            cardClass += ' is-approved';
+        } else if (hasConflict || status === 'NEEDS_MANUAL_REVIEW') {
+            statusBadge = '<span class="badge badge-status-conflict"><i class="fa-solid fa-triangle-exclamation me-1"></i> Conflict</span>';
+            cardClass += ' has-conflict';
+        } else if (status === 'VERIFIED_ACROSS_DOCUMENTS') {
+            statusBadge = '<span class="badge badge-status-verified"><i class="fa-solid fa-check-double me-1"></i> Verified</span>';
+            cardClass += ' is-verified';
+        } else if (status === 'SINGLE_SOURCE') {
+            statusBadge = '<span class="badge badge-status-review"><i class="fa-solid fa-file me-1"></i> Single Source</span>';
+        } else {
+            statusBadge = '<span class="badge badge-status-missing">Missing</span>';
+            cardClass += ' is-missing';
         }
 
-        documents.forEach((doc, idx) => {
-            try {
-                const docName = doc.document_name || `Document ${idx + 1}`;
-                const docType = doc.document_type || 'Document';
-                const docSummary = doc.summary || '';
-                const fields = doc.fields || {};
-                const entries = Object.entries(fields);
-                const ocrText = doc.ocr_text || '';
-                const pageCount = doc.page_count || 1;
-                const confidencePct = Math.round((doc.confidence || 0.85) * 100);
-                const sectionId = `doc_section_${idx}`;
+        // Source documents string
+        const sourcesStr = item.source_documents && item.source_documents.length > 0
+            ? item.source_documents.join(', ')
+            : 'Unextracted';
 
-                // --- 1. Master Summary Table Row ---
-                const tr = document.createElement('tr');
-                let highlightsHtml = '';
-                const priorityKeys = [
-                    'Driving License Number', 'Policy Number', 'Receipt / Invoice No', 'Cheque Number',
-                    'Aadhaar Number', 'PAN Number', 'Full Name', "Holder's Name", 'Insured Name',
-                    'Customer Name', 'Amount', 'Settlement Amount', 'Received Amount', 'Current Status',
-                    'Vehicle Registration No', 'Registration Date', 'Date of Birth', 'Bank Name'
-                ];
-                let addedHighlights = 0;
-                for (const pk of priorityKeys) {
-                    if (fields[pk] && addedHighlights < 3) {
-                        highlightsHtml += `<span class="highlight-chip" title="${escapeHtml(pk)}: ${escapeHtml(fields[pk])}">${escapeHtml(pk)}: ${escapeHtml(fields[pk])}</span>`;
-                        addedHighlights++;
-                    }
-                }
-                if (addedHighlights < 2) {
-                    for (const [k, v] of entries) {
-                        if (!priorityKeys.includes(k) && addedHighlights < 3) {
-                            highlightsHtml += `<span class="highlight-chip" title="${escapeHtml(k)}: ${escapeHtml(v)}">${escapeHtml(k)}: ${escapeHtml(v)}</span>`;
-                            addedHighlights++;
-                        }
-                    }
-                }
-                if (!highlightsHtml) {
-                    if (docSummary) {
-                        highlightsHtml = `<span class="text-muted small">${escapeHtml(docSummary)}</span>`;
-                    } else {
-                        highlightsHtml = `<span class="text-muted small">${entries.length} field(s) extracted</span>`;
-                    }
-                }
-
-                tr.innerHTML = `
-                    <td class="fw-bold text-muted">${idx + 1}</td>
-                    <td>
-                        <div class="fw-semibold text-truncate" style="max-width: 200px;" title="${escapeHtml(docName)}">
-                            <i class="fa-regular fa-file me-1 text-primary"></i> ${escapeHtml(docName)}
-                        </div>
-                    </td>
-                    <td><span class="doc-type-badge">${escapeHtml(docType)}</span></td>
-                    <td>${highlightsHtml}</td>
-                    <td class="text-end">
-                        <a href="#${sectionId}" class="btn btn-sm btn-outline-primary py-1 px-2 rounded-pill" style="font-size: 0.78rem;">
-                            <i class="fa-solid fa-eye me-1"></i> View (${entries.length})
-                        </a>
-                    </td>
-                `;
-                summaryTableBody.appendChild(tr);
-
-                // --- 2. Per-Document Detailed Card & Fields Table ---
-                const section = document.createElement('div');
-                section.className = 'doc-section';
-                section.id = sectionId;
-
-                // Header with document name and type
-                let headerHtml = `
-                    <div class="doc-section-header">
-                        <div class="doc-name">
-                            <i class="fa-solid fa-file-lines me-2 text-primary"></i>${escapeHtml(docName)}
-                        </div>
-                        <div class="d-flex align-items-center gap-1">
-                            <span class="doc-type-badge">${escapeHtml(docType)}</span>
-                            <span class="badge bg-primary rounded-pill ms-1">${entries.length} fields</span>
-                        </div>
+        // Conflict options resolution panel
+        let conflictHtml = '';
+        if (hasConflict && item.conflicting_values && item.conflicting_values.length > 0) {
+            conflictHtml = `
+                <div class="conflict-box">
+                    <div class="d-flex align-items-center justify-content-between mb-1">
+                        <strong class="text-danger small"><i class="fa-solid fa-scale-unbalanced me-1"></i> Competing Values:</strong>
+                        <small class="text-muted">Click to select candidate</small>
                     </div>
+                    <div class="d-flex flex-wrap gap-1">
+            `;
+            item.conflicting_values.forEach(cand => {
+                const candVal = cand.value;
+                const candSrc = (cand.sources || []).join(', ');
+                conflictHtml += `
+                    <button type="button" class="btn btn-outline-danger btn-resolve-opt text-truncate"
+                            title="Source: ${escapeHtml(candSrc)}"
+                            onclick="resolveConflict('${escapeHtml(path)}', '${escapeHtml(candVal)}', '${escapeHtml(candSrc)}')">
+                        ${escapeHtml(candVal)} <small class="text-muted ms-1">(${escapeHtml(candSrc)})</small>
+                    </button>
                 `;
+            });
+            conflictHtml += `</div></div>`;
+        }
 
-                // Fields summary table
-                let tableHtml = '<div class="doc-fields-table"><table class="table table-sm table-striped mb-0"><tbody>';
-                if (entries.length > 0) {
-                    entries.forEach(([label, val]) => {
-                        tableHtml += `
-                            <tr>
-                                <td class="text-muted fw-semibold ps-3" style="width: 38%;">${escapeHtml(label)}</td>
-                                <td class="fw-bold pe-3 text-dark">${escapeHtml(val)}</td>
-                            </tr>
-                        `;
-                    });
-                } else {
-                    tableHtml += '<tr><td colspan="2" class="text-center text-muted py-3">No structured fields extracted</td></tr>';
-                }
-                tableHtml += '</tbody></table></div>';
+        const inputId = `field_input_${path.replace(/[\.\[\]]/g, '_')}`;
 
-                // Extracted OCR text verification section (collapsible)
-                const collapseId = `ocrTextCollapse_${idx}`;
-                let ocrSectionHtml = `
-                    <div class="p-2 bg-light border-top d-flex justify-content-between align-items-center">
-                        <button class="btn btn-sm btn-outline-secondary py-1 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}">
-                            <i class="fa-solid fa-align-left me-1"></i> View Extracted OCR Text
-                        </button>
-                        <small class="text-muted">${pageCount} page(s) &bull; OCR Confidence: ${confidencePct}%</small>
+        return `
+            <div class="${cardClass}" id="card_${escapeHtml(path)}">
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                    <label class="fw-semibold small text-dark mb-0 text-truncate" title="${escapeHtml(item.label)}">
+                        ${escapeHtml(item.label)}
+                    </label>
+                    <div class="d-flex align-items-center gap-1">
+                        ${statusBadge}
                     </div>
-                    <div class="collapse" id="${collapseId}">
-                        <div class="ocr-raw-box">${escapeHtml(ocrText || '[No raw text was detected in this document]')}</div>
-                    </div>
-                `;
+                </div>
 
-                section.innerHTML = headerHtml + tableHtml + ocrSectionHtml;
-                docResultsContainer.appendChild(section);
-            } catch (renderErr) {
-                console.error("Error rendering document section:", renderErr, doc);
+                <div class="input-group input-group-sm mb-1">
+                    <input type="text" id="${inputId}" class="form-control fw-bold"
+                           value="${escapeHtml(val)}" placeholder="[Leave blank if unavailable]"
+                           onchange="handleManualFieldEdit('${escapeHtml(path)}', this.value)">
+                    <button class="btn btn-outline-secondary" type="button" title="Mark Approved"
+                            onclick="approveField('${escapeHtml(path)}')">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between text-muted" style="font-size: 0.72rem;">
+                    <span class="text-truncate" style="max-width: 80%;" title="Sources: ${escapeHtml(sourcesStr)}">
+                        <i class="fa-regular fa-file-lines me-1"></i> ${escapeHtml(sourcesStr)}
+                    </span>
+                    <span class="text-end">${item.entity_role ? escapeHtml(item.entity_role) : ''}</span>
+                </div>
+
+                ${conflictHtml}
+            </div>
+        `;
+    }
+
+    // --- Interactive Editing & Conflict Resolution ---
+    function handleManualFieldEdit(fieldPath, newValue) {
+        updateInNormalizedData(fieldPath, newValue);
+        fieldStatusMap[fieldPath] = 'APPROVED';
+
+        manualEditsLog.push({
+            field_path: fieldPath,
+            new_value: newValue,
+            timestamp: new Date().toISOString()
+        });
+
+        document.getElementById('statManualEdits').textContent = manualEditsLog.length;
+
+        // Update card styling
+        const card = document.getElementById(`card_${fieldPath}`);
+        if (card) {
+            card.className = 'review-field-card is-approved';
+            const badgeCont = card.querySelector('.badge');
+            if (badgeCont) {
+                badgeCont.className = 'badge badge-status-approved';
+                badgeCont.innerHTML = '<i class="fa-solid fa-pen me-1"></i> Edited';
             }
+        }
+    }
+
+    function resolveConflict(fieldPath, chosenValue, sourceDoc) {
+        const inputId = `field_input_${fieldPath.replace(/[\.\[\]]/g, '_')}`;
+        const inputElem = document.getElementById(inputId);
+        if (inputElem) {
+            inputElem.value = chosenValue;
+        }
+
+        updateInNormalizedData(fieldPath, chosenValue);
+        fieldStatusMap[fieldPath] = 'APPROVED';
+
+        manualEditsLog.push({
+            field_path: fieldPath,
+            resolved_from_conflict: true,
+            chosen_value: chosenValue,
+            source: sourceDoc,
+            timestamp: new Date().toISOString()
+        });
+
+        document.getElementById('statManualEdits').textContent = manualEditsLog.length;
+
+        // Clear conflict on audit trail item
+        const item = auditTrail.find(a => a.field_path === fieldPath);
+        if (item) item.has_conflict = false;
+
+        const card = document.getElementById(`card_${fieldPath}`);
+        if (card) {
+            card.className = 'review-field-card is-approved';
+            const badgeCont = card.querySelector('.badge');
+            if (badgeCont) {
+                badgeCont.className = 'badge badge-status-approved';
+                badgeCont.innerHTML = '<i class="fa-solid fa-circle-check me-1"></i> Resolved';
+            }
+            const cBox = card.querySelector('.conflict-box');
+            if (cBox) cBox.remove();
+        }
+
+        // Recalculate remaining conflicts
+        let remainingConflicts = Object.keys(fieldStatusMap).filter(k => fieldStatusMap[k] === 'NEEDS_MANUAL_REVIEW').length;
+        document.getElementById('statConflictCount').textContent = remainingConflicts;
+        if (remainingConflicts === 0) {
+            document.getElementById('conflictAlertBanner').classList.add('d-none');
+        }
+    }
+
+    function approveField(fieldPath) {
+        const inputId = `field_input_${fieldPath.replace(/[\.\[\]]/g, '_')}`;
+        const inputElem = document.getElementById(inputId);
+        const currentVal = inputElem ? inputElem.value : null;
+
+        updateInNormalizedData(fieldPath, currentVal);
+        fieldStatusMap[fieldPath] = 'APPROVED';
+
+        const card = document.getElementById(`card_${fieldPath}`);
+        if (card) {
+            card.className = 'review-field-card is-approved';
+            const badgeCont = card.querySelector('.badge');
+            if (badgeCont) {
+                badgeCont.className = 'badge badge-status-approved';
+                badgeCont.innerHTML = '<i class="fa-solid fa-circle-check me-1"></i> Approved';
+            }
+        }
+    }
+
+    function approveAllVerified() {
+        auditTrail.forEach(item => {
+            if (item.review_status === 'VERIFIED_ACROSS_DOCUMENTS' || item.review_status === 'SINGLE_SOURCE') {
+                fieldStatusMap[item.field_path] = 'APPROVED';
+                const card = document.getElementById(`card_${item.field_path}`);
+                if (card) {
+                    card.className = 'review-field-card is-approved';
+                    const badgeCont = card.querySelector('.badge');
+                    if (badgeCont) {
+                        badgeCont.className = 'badge badge-status-approved';
+                        badgeCont.innerHTML = '<i class="fa-solid fa-circle-check me-1"></i> Approved';
+                    }
+                }
+            }
+        });
+    }
+
+    function jumpToFirstConflict() {
+        const firstConflictCard = document.querySelector('.review-field-card.has-conflict');
+        if (firstConflictCard) {
+            const pane = firstConflictCard.closest('.tab-pane');
+            if (pane && pane.id) {
+                const tabBtn = document.querySelector(`button[data-bs-target="#${pane.id}"]`);
+                if (tabBtn) {
+                    bootstrap.Tab.getOrCreateInstance(tabBtn).show();
+                }
+            }
+            firstConflictCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstConflictCard.classList.add('shadow-lg');
+            setTimeout(() => { firstConflictCard.classList.remove('shadow-lg'); }, 2000);
+        }
+    }
+
+    function updateInNormalizedData(path, val) {
+        if (!fullConsolidatedData) fullConsolidatedData = {};
+        const normalizedPath = path.replace(/\[(\d+)\]/g, '.$1');
+        const parts = normalizedPath.split('.');
+        let curr = fullConsolidatedData;
+        for (let i = 0; i < parts.length - 1; i++) {
+            const p = parts[i];
+            if (curr[p] === undefined || curr[p] === null) {
+                curr[p] = {};
+            }
+            curr = curr[p];
+        }
+        const last = parts[parts.length - 1];
+        if (typeof curr[last] === 'object' && curr[last] !== null && 'value' in curr[last]) {
+            curr[last].value = val;
+        } else {
+            curr[last] = val;
+        }
+    }
+
+    // --- Generate Excel Workbook ---
+    async function submitGenerateExcel() {
+        dismissError();
+
+        // Check if unresolved conflicts remain in critical borrower or guarantor identity
+        const criticalConflictKeys = ['borrower.full_name', 'borrower.pan_no', 'borrower.dob', 'guarantors[0].name', 'guarantors[0].dob'];
+        const unresolvedCritical = auditTrail.filter(a => criticalConflictKeys.includes(a.field_path) && a.has_conflict && fieldStatusMap[a.field_path] !== 'APPROVED');
+
+        if (unresolvedCritical.length > 0) {
+            const names = unresolvedCritical.map(u => u.label).join(', ');
+            if (!confirm(`Warning: Critical identity fields still have unresolved conflicts (${names}).\n\nPer banking guidelines, uncertain identities should not be silently approved.\n\nDo you wish to proceed anyway?`)) {
+                jumpToFirstConflict();
+                return;
+            }
+        }
+
+        const btnGen = document.getElementById('btnGenerateExcel');
+        btnGen.setAttribute('disabled', 'disabled');
+        btnGen.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Generating Excel Workbook...';
+
+        try {
+            const resp = await fetch('/generate-excel', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    approved_data: fullConsolidatedData,
+                    manual_edits: manualEditsLog
+                })
+            });
+
+            const result = await resp.json();
+            btnGen.removeAttribute('disabled');
+            btnGen.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i> Approve & Generate Excel (.xlsm)';
+
+            if (resp.ok && result.success) {
+                const report = result.report || {};
+                document.getElementById('generatedFilename').textContent = result.filename;
+                document.getElementById('populatedFieldsCount').textContent = `${report.total_fields_mapped || 0} cells populated`;
+                document.getElementById('editsAppliedCount').textContent = `${manualEditsLog.length} change(s)`;
+                document.getElementById('btnDownloadExcel').href = result.download_url;
+
+                const successCard = document.getElementById('excelSuccessCard');
+                successCard.classList.remove('d-none');
+                successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                showError(result.error || 'Failed to generate Excel file.');
+            }
+        } catch (err) {
+            btnGen.removeAttribute('disabled');
+            btnGen.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i> Approve & Generate Excel (.xlsm)';
+            showError('Network error while generating Excel: ' + err.message);
+        }
+    }
+
+    // --- Render Raw Documents Container (for cross-referencing) ---
+    function renderRawDocuments(documents) {
+        const cont = document.getElementById('rawDocsContainer');
+        cont.innerHTML = '';
+        document.getElementById('rawDocCountBadge').textContent = `${documents.length} File${documents.length === 1 ? '' : 's'}`;
+
+        documents.forEach((doc, idx) => {
+            const div = document.createElement('div');
+            div.className = 'doc-section mb-2';
+            div.innerHTML = `
+                <div class="doc-section-header py-2 px-3">
+                    <span class="fw-semibold small"><i class="fa-regular fa-file me-1 text-primary"></i> ${escapeHtml(doc.document_name)}</span>
+                    <span class="badge bg-secondary rounded-pill">${escapeHtml(doc.document_type || 'Document')}</span>
+                </div>
+                <div class="p-2 bg-light border-top d-flex justify-content-between align-items-center">
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#ocrText_${idx}">
+                        <i class="fa-solid fa-align-left me-1"></i> View Extracted Text
+                    </button>
+                    <small class="text-muted">${doc.page_count || 1} page(s)</small>
+                </div>
+                <div class="collapse" id="ocrText_${idx}">
+                    <div class="ocr-raw-box">${escapeHtml(doc.ocr_text || '[No raw text detected]')}</div>
+                </div>
+            `;
+            cont.appendChild(div);
         });
     }
 </script>

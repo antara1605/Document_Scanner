@@ -1,0 +1,88 @@
+{
+  "success": true,
+  "processed_files_count": 4,
+  "processed_files": [
+    "borrower_aadhaar.pdf",
+    "borrower_salary_slip.pdf",
+    "guarantor1_pan_card.jpg",
+    "property_sale_deed.pdf"
+  ],
+  "engine_used": "Groq AI (llama-3.3-70b-versatile)",
+  "documents": [
+    {
+      "document_name": "borrower_aadhaar.pdf",
+      "document_type": "Aadhaar Card",
+      "confidence": 0.96,
+      "ocr_text": "Government of India\nSubhasish Mukherjee\nDOB: 15/08/1988\nGender: MALE\nAddress: Vill - Kalipur, PO - Kalipur, Dist - Burdwan, PIN - 713101\nUID: 5412 8745 9632",
+      "fields": {
+        "Full Name": "Subhasish Mukherjee",
+        "Date of Birth": "15/08/1988",
+        "Gender": "MALE",
+        "Aadhaar Number": "5412 8745 9632",
+        "Mobile No": "9832145670",
+        "Resident Vill": "Kalipur",
+        "Resident Post": "Kalipur",
+        "Resident Dist": "Burdwan",
+        "Resident Pin": "713101"
+      }
+    },
+    {
+      "document_name": "borrower_salary_slip.pdf",
+      "document_type": "Salary Slip",
+      "confidence": 0.94,
+      "ocr_text": "PASCHIM BANGA GRAMIN VIKASH\nEmployee: S. Mukherjee\nPAN: ABCPM1234F\nMonth: July 2024\nBasic: 45000\nDA: 12500\nHRA: 4500\nGross Pay: 62000\nPF: 5400\nIncome Tax: 3200\nSalary A/C No: 50100458921\nBranch: Burdwan Main",
+      "fields": {
+        "Full Name": "S. Mukherjee",
+        "PAN Number": "ABCPM1234F",
+        "Salary Month": "July 2024",
+        "Gross Salary": "62000",
+        "Basic Pay": "45000",
+        "D.A": "12500",
+        "HRA": "4500",
+        "P.F": "5400",
+        "Income Tax": "3200",
+        "Salary AC No": "50100458921",
+        "Branch": "Burdwan Main",
+        "Loan Requested": "2500000",
+        "Tenure Months": "240",
+        "Designation": "Assistant Teacher",
+        "Organization Name": "Govt High School"
+      }
+    },
+    {
+      "document_name": "guarantor1_pan_card.jpg",
+      "document_type": "PAN Card",
+      "confidence": 0.95,
+      "ocr_text": "INCOME TAX DEPARTMENT\nGOVT OF INDIA\nName: Animesh Banerjee\nFather's Name: Ramkrishna Banerjee\nDOB: 10/02/1982\nPermanent Account Number: BXYZB5678K",
+      "fields": {
+        "Full Name": "Animesh Banerjee",
+        "Father's Name": "Ramkrishna Banerjee",
+        "Date of Birth": "10/02/1982",
+        "PAN Number": "BXYZB5678K",
+        "Monthly Income": "55000",
+        "Mobile No": "9434012345"
+      }
+    },
+    {
+      "document_name": "property_sale_deed.pdf",
+      "document_type": "Sale Deed",
+      "confidence": 0.92,
+      "ocr_text": "DEED OF SALE\nDeed No: 4521/2021\nSub Registry Office: Burdwan\nMouza: Mirzapur, JL No: 45\nPlot / Dag No: 512, Khatian No: 1204\nArea: 4 Decimal\nPurchase Price: 1800000\nBounded on North: 12ft Wide Road\nBounded on South: Plot No 513\nBounded on East: Land of Ghosh\nBounded on West: Land of Paul",
+      "fields": {
+        "Deed Number": "4521/2021",
+        "Sub Registry Office": "Burdwan",
+        "Mouza": "Mirzapur",
+        "JL No": "45",
+        "Plot / Dag No": "512",
+        "Khatian No": "1204",
+        "Area": "4 Decimal",
+        "Purchase Price": "1800000",
+        "North": "12ft Wide Road",
+        "South": "Plot No 513",
+        "East": "Land of Ghosh",
+        "West": "Land of Paul",
+        "Construction Cost": "2200000"
+      }
+    }
+  ]
+}

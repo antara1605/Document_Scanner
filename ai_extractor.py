@@ -555,14 +555,33 @@ class AIExtractor:
                 pan_match = re.search(r'\b[A-Z]{5}[0-9]{4}[A-Z]{1}\b', text)
                 if pan_match: fields["PAN Number"] = pan_match.group(0)
 
+                dob_m = re.search(r'(?:DOB|Date of Birth|Birth Date)?[:\s/]*\b([0-3]?\d[\/-][0-1]?\d[\/-]\d{4})\b', text, re.I)
+                if dob_m: fields["Date of Birth"] = dob_m.group(1).strip()
+
                 m = re.search(r'(?:Name|Applicant)[:\s]*([A-Z\s]{3,35})\b', text)
                 if m: fields["Full Name"] = m.group(1).strip()
 
                 f_m = re.search(r'Father(?:\'s)?\s*Name[:\s]*([A-Z\s]{3,35})\b', text, re.I)
                 if f_m: fields["Father's Name"] = f_m.group(1).strip()
 
-                dob_m = re.search(r'(?:DOB|Date of Birth)[:\s/]*([0-3]?\d[\/-][0-1]?\d[\/-]\d{4})', text, re.I)
-                if dob_m: fields["Date of Birth"] = dob_m.group(1).strip()
+                # If Name or Father Name were not captured by labels, detect name lines
+                if "Full Name" not in fields or "Father's Name" not in fields:
+                    ignore_phrases = {
+                        "INCOME", "TAX", "DEPARTMENT", "GOVT", "INDIA", "PERMANENT",
+                        "ACCOUNT", "NUMBER", "SIGNATURE", "CARD"
+                    }
+                    candidate_names = []
+                    for line in text.splitlines():
+                        line_clean = line.strip()
+                        words = line_clean.split()
+                        if len(words) >= 2 and all(w.isalpha() for w in words):
+                            if not any(w.upper() in ignore_phrases for w in words):
+                                candidate_names.append(line_clean)
+                    if candidate_names:
+                        if "Full Name" not in fields:
+                            fields["Full Name"] = candidate_names[0]
+                        if len(candidate_names) > 1 and "Father's Name" not in fields:
+                            fields["Father's Name"] = candidate_names[1]
 
             # 8. SALE DEED / PROPERTY
             elif doc_type == "Sale Deed":
