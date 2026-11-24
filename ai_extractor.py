@@ -82,6 +82,45 @@ class AIExtractor:
                 ]
             }
 
+        # Multi-page packet decomposition:
+        # Detect multi-document packets in multi-page uploads
+        target_docs = []
+        for doc in documents:
+            pages = doc.get("pages", [])
+            doc_name = doc.get("name", "Document")
+            if len(pages) > 1:
+                for p in pages:
+                    p_num = p.get("page_number", 1)
+                    p_text = p.get("text", "").strip()
+                    if not p_text:
+                        continue
+                    t_up = p_text.upper()
+                    # Skip non-data index / guide pages
+                    if "EXPECTED CROSS-DOCUMENT LINKS" in t_up or "TEST GUIDE" in t_up:
+                        continue
+                    if "WBGB HOUSING LOAN — FICTIONAL TEST DOCUMENT PACK" in t_up and "DOCUMENTS INCLUDED" in t_up:
+                        continue
+
+                    p_type = self.classify_document(p_text, f"{doc_name} Page {p_num}")
+                    target_docs.append({
+                        "id": f"{doc.get('id', 1)}_{p_num}",
+                        "name": f"{doc_name} (Page {p_num})",
+                        "parent_file": doc_name,
+                        "page_number": p_num,
+                        "category": p_type,
+                        "ocr_text": p_text,
+                        "pages": [p],
+                        "confidence": p.get("confidence", 0.95)
+                    })
+            else:
+                p_num = doc.get("pages", [{}])[0].get("page_number", 1) if doc.get("pages") else 1
+                doc["page_number"] = p_num
+                doc["parent_file"] = doc.get("name", "Document")
+                target_docs.append(doc)
+
+        if not target_docs:
+            target_docs = documents
+
         if self.client:
             models_to_try = [
                 self.model,
@@ -95,7 +134,7 @@ class AIExtractor:
                     continue
                 seen.add(m)
                 try:
-                    res = self._extract_with_groq(documents, model=m)
+                    res = self._extract_with_groq(target_docs, model=m)
                     res["engine_used"] = f"Groq AI ({m})"
                     # Ensure each document has a summary string
                     for doc in res.get("documents", []):
@@ -108,110 +147,100 @@ class AIExtractor:
                     print(f"Groq API call error with model {m}: {e}. Trying fallback...")
 
             print("All Groq models failed. Falling back to high-accuracy offline rule & heuristic engine.")
-            res = self._extract_with_rules(documents)
+            res = self._extract_with_rules(target_docs)
             res["engine_used"] = "Local Rule & Heuristic Engine (Offline Fallback)"
             return res
         else:
             print("No Groq API client configured. Using high-accuracy Local Rule & Heuristic Engine (Offline).")
-            res = self._extract_with_rules(documents)
+            res = self._extract_with_rules(target_docs)
             res["engine_used"] = "Local Rule & Heuristic Engine (Offline)"
             return res
 
     def _extract_with_groq(self, documents, model=None):
         target_model = model or self.model
-        doc_context_blocks = []
-        for doc in documents:
-            doc_id = doc.get("id", "")
-            doc_name = doc.get("name", "Document")
-            pages = doc.get("pages", [])
-            ocr_text = doc.get("ocr_text", "")
+        all_extracted_docs = []
 
-            doc_block = [f"=== DOCUMENT: {doc_name} (ID: {doc_id}) ==="]
-            if pages and any(p.get("text", "").strip() for p in pages):
-                for p in pages:
-                    p_num = p.get("page_number", 1)
-                    p_text = p.get("text", "").strip()
-                    if p_text:
-                        doc_block.append(f"--- PAGE {p_num} ---\n{p_text}")
-            elif ocr_text.strip():
-                doc_block.append(ocr_text.strip())
-            else:
-                doc_block.append("[No text detected on this document]")
+        batch_size = 2
+        for b_idx in range(0, len(documents), batch_size):
+            chunk = documents[b_idx:b_idx + batch_size]
+            doc_context_blocks = []
+            for doc in chunk:
+                doc_id = doc.get("id", "")
+                doc_name = doc.get("name", "Document")
+                p_num = doc.get("page_number", 1)
+                ocr_text = doc.get("ocr_text", "")
 
-            doc_context_blocks.append("\n".join(doc_block))
+                doc_block = [f"=== DOCUMENT: {doc_name} (Page {p_num}, ID: {doc_id}) ==="]
+                doc_block.append(ocr_text.strip() if ocr_text.strip() else "[No text detected on this document]")
+                doc_context_blocks.append("\n".join(doc_block))
 
-        full_prompt = "\n\n".join(doc_context_blocks)
+            full_prompt = "\n\n".join(doc_context_blocks)
 
-        response = self.client.chat.completions.create(
-            model=target_model,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": f"Extract all information from these documents:\n\n{full_prompt}"}
-            ],
-            response_format={"type": "json_object"},
-            temperature=0.0,
-            seed=42
-        )
+            response = self.client.chat.completions.create(
+                model=target_model,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": f"Extract all information from these documents:\n\n{full_prompt}"}
+                ],
+                response_format={"type": "json_object"},
+                temperature=0.0,
+                seed=42
+            )
 
-        content = response.choices[0].message.content or "{}"
-        content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
-        if content.startswith('```'):
-            content = re.sub(r'^```(?:json)?\s*', '', content)
-            content = re.sub(r'\s*```$', '', content)
-        content = content.strip()
+            content = response.choices[0].message.content or "{}"
+            content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+            if content.startswith('```'):
+                content = re.sub(r'^```(?:json)?\s*', '', content)
+                content = re.sub(r'\s*```$', '', content)
+            content = content.strip()
 
-        try:
-            extracted_data = json.loads(content)
-        except Exception:
-            m = re.search(r'\{.*\}', content, re.DOTALL)
-            if m:
-                extracted_data = json.loads(m.group(0))
-            else:
-                raise ValueError("Could not parse JSON from model response")
+            try:
+                extracted_data = json.loads(content)
+            except Exception:
+                m = re.search(r'\{.*\}', content, re.DOTALL)
+                extracted_data = json.loads(m.group(0)) if m else {}
 
-        if isinstance(extracted_data, list):
-            extracted_data = {"documents": extracted_data}
-        elif isinstance(extracted_data, dict):
-            if "documents" not in extracted_data:
-                if "fields" in extracted_data:
-                    doc_name = documents[0].get("name", "Document") if documents else "Document"
-                    extracted_data = {
-                        "documents": [
-                            {
-                                "document_name": doc_name,
-                                "document_type": extracted_data.get("document_type", "Document"),
-                                "fields": extracted_data.get("fields", {})
-                            }
-                        ]
-                    }
-                else:
-                    fields = {}
-                    for k, v in extracted_data.items():
-                        if isinstance(v, dict):
-                            for sub_k, sub_v in v.items():
-                                val = sub_v.get("value") if isinstance(sub_v, dict) else sub_v
-                                if val is not None:
-                                    fields[sub_k.replace("_", " ").title()] = str(val)
-                        elif v is not None:
-                            fields[k.replace("_", " ").title()] = str(v)
-                    doc_name = documents[0].get("name", "Document") if documents else "Document"
-                    extracted_data = {
-                        "documents": [
-                            {
-                                "document_name": doc_name,
-                                "document_type": "Document",
-                                "fields": fields
-                            }
-                        ]
-                    }
+            chunk_docs = []
+            if isinstance(extracted_data, list):
+                chunk_docs = extracted_data
+            elif isinstance(extracted_data, dict):
+                chunk_docs = extracted_data.get("documents", [])
+                if not chunk_docs and "fields" in extracted_data:
+                    chunk_docs = [extracted_data]
 
-        return extracted_data
+            for idx_c, cd in enumerate(chunk_docs):
+                matching_in = chunk[idx_c] if idx_c < len(chunk) else chunk[-1]
+                cd["document_name"] = matching_in.get("name", cd.get("document_name", "Document"))
+                cd["parent_file"] = matching_in.get("parent_file", matching_in.get("name"))
+                cd["page_number"] = matching_in.get("page_number", 1)
+                cd["ocr_text"] = matching_in.get("ocr_text", "")
+                all_extracted_docs.append(cd)
+
+        return {"documents": all_extracted_docs}
 
     def classify_document(self, text, doc_name=""):
         """Classifies document by examining text content and file name."""
         t_up = (text + " " + doc_name).upper()
 
-        if any(k in t_up for k in ["MOTOR SURVEY REPORT", "SPOT SURVEY", "SURVEYOR & LOSS ASSESSOR", "FINAL SURVEY REPORT", "SLA-", "IIISLA"]):
+        if any(k in t_up for k in ["SANCTION ADVICE", "LOAN SANCTION", "SANCTION OF HOUSING LOAN", "SANCTION LETTER", "TERMS OF SANCTION"]):
+            return "Loan Sanction Advice"
+        elif any(k in t_up for k in ["GUARANTOR INCOME", "NET-WORTH DECLARATION", "NET WORTH DECLARATION", "GUARANTOR NET-WORTH", "STATEMENT OF ASSETS AND LIABILITIES OF GUARANTOR"]):
+            return "Guarantor Income and Net-Worth"
+        elif any(k in t_up for k in ["GUARANTOR IDENTITY", "GUARANTOR PROFILE", "GUARANTOR KYC", "GUARANTOR AND ADDRESS PROFILE", "GUARANTOR DETAILS"]):
+            return "Guarantor Profile"
+        elif any(k in t_up for k in ["HOUSING LOAN REQUEST", "REQUEST FOR HOUSING LOAN", "LOAN REQUEST LETTER", "LOAN APPLICATION", "APPLICATION FOR HOUSING LOAN", "APPLICATION FOR HOME LOAN"]):
+            return "Loan Application"
+        elif any(k in t_up for k in ["PROPERTY VALUATION", "VALUATION AND SITE", "VALUATION REPORT", "SITE PARTICULARS", "ESTIMATED DISTRESS VALUE"]):
+            return "Property Valuation Report"
+        elif any(k in t_up for k in ["LEGAL SEARCH", "NON-ENCUMBRANCE", "SEARCH REPORT", "ENCUMBRANCE RESULT", "NON ENCUMBRANCE"]):
+            return "Legal Search Report"
+        elif any(k in t_up for k in ["PROPERTY TAX", "MUNICIPAL DUES", "TAX / MUNICIPAL DUES", "HOLDING TAX", "MUNICIPAL TAX RECEIPT"]):
+            return "Property Tax Receipt"
+        elif any(k in t_up for k in ["EMPLOYMENT AND SALARY CERTIFICATE", "EMPLOYMENT CERTIFICATE", "SERVICE CERTIFICATE", "SALARY CERTIFICATE"]):
+            return "Employment and Salary Certificate"
+        elif any(k in t_up for k in ["BORROWER IDENTITY PROFILE", "BORROWER KYC PROFILE", "BORROWER PROFILE"]):
+            return "Borrower Identity Profile"
+        elif any(k in t_up for k in ["MOTOR SURVEY REPORT", "SPOT SURVEY", "SURVEYOR & LOSS ASSESSOR", "FINAL SURVEY REPORT", "SLA-", "IIISLA"]):
             return "Motor Survey Report"
         elif any(k in t_up for k in ["DISCHARGE VOUCHER", "SATISFACTION VOUCHER", "SETTLEMENT VOUCHER"]):
             return "Discharge Voucher"
@@ -229,7 +258,7 @@ class AIExtractor:
             return "Aadhaar Card"
         elif any(k in t_up for k in ["INCOME TAX DEPARTMENT", "PERMANENT ACCOUNT NUMBER"]) or (re.search(r'\b[A-Z]{5}[0-9]{4}[A-Z]{1}\b', text) and "PAN" in t_up):
             return "PAN Card"
-        elif any(k in t_up for k in ["DEED OF SALE", "SALE DEED", "SUB-REGISTRY OFFICE", "REGISTRATION DIRECTORATE", "CHAIN DEED"]):
+        elif any(k in t_up for k in ["DEED OF SALE", "SALE DEED", "SUB-REGISTRY OFFICE", "SUB-REGISTRAR OFFICE", "REGISTRATION DIRECTORATE", "CHAIN DEED", "PROPERTY TITLE DEED", "TITLE DEED", "DEED ABSTRACT"]):
             return "Sale Deed"
         elif any(k in t_up for k in ["PARTNERSHIP DEED", "DEED OF PARTNERSHIP"]):
             return "Partnership Deed"
@@ -585,32 +614,55 @@ class AIExtractor:
 
             # 8. SALE DEED / PROPERTY
             elif doc_type == "Sale Deed":
-                m = re.search(r'Deed\s*No\.?\s*[:\s]*([A-Za-z0-9\/\-]+)', text, re.I)
+                m = re.search(r'(?:Deed\s*(?:No\.?|number)?|Title\s*deed\s*no\.?)[:\s\n]*([A-Za-z0-9\/\-]+)', text, re.I)
                 if m: fields["Deed Number"] = m.group(1).strip()
 
-                m = re.search(r'Date\s*of\s*Registration\s*[:\s]*([0-3]?\d[\/-][0-1]?\d[\/-]\d{4})', text, re.I)
+                m = re.search(r'(?:Date\s*of\s*Registration|Registration\s*date)[:\s\n]*([0-3]?\d[\/-][0-1]?\d[\/-]\d{4}|[0-9]{1,2}\s+[A-Za-z]+\s+[0-9]{4})', text, re.I)
                 if m: fields["Date of Registration"] = m.group(1).strip()
 
-                m = re.search(r'Sub-Registry\s*Office\s*[:\s]*([^\n\r]+)', text, re.I)
+                m = re.search(r'Sub-Registr(?:y|ar)\s*(?:office|office\s*reference)?[:\s\n]*([^\n\r]+)', text, re.I)
                 if m: fields["Sub-Registry Office"] = m.group(1).strip()
 
-                m = re.search(r'(?:Purchaser|Owner|Buyer)\s*[:\s]*([^\n\r]+)', text, re.I)
+                m = re.search(r'(?:Purchaser|Owner|Buyer|Illustrative\s*owner)[:\s\n]*([^\n\r]+)', text, re.I)
                 if m: fields["Purchaser / Buyer"] = m.group(1).strip()
 
-                m = re.search(r'(?:Plot|Dag)\s*(?:No\.?)?\s*[:\s]*([A-Za-z0-9\/\-, ]+)', text, re.I)
+                m = re.search(r'(?:Plot|Dag)\s*(?:No\.?|number)?[:\s\n]*([A-Za-z0-9\/\-, ]+)', text, re.I)
                 if m: fields["Plot / Dag No"] = m.group(1).strip()
 
-                m = re.search(r'Khatian\s*(?:No\.?)?\s*[:\s]*([A-Za-z0-9\/\-, ]+)', text, re.I)
+                m = re.search(r'Khatian\s*(?:No\.?|number)?[:\s\n]*([A-Za-z0-9\/\-, ]+)', text, re.I)
                 if m: fields["Khatian No"] = m.group(1).strip()
 
-                m = re.search(r'Mouza\s*[:\s]*([A-Za-z0-9\s]+?)(?:,|\.|\n|J\.L)', text, re.I)
+                m = re.search(r'J\.?L\.?\s*(?:No\.?|number)?[:\s\n]*([0-9A-Za-z]+)', text, re.I)
+                if m: fields["JL No"] = m.group(1).strip()
+
+                m = re.search(r'Mouza\s*[:\s\n]*([A-Za-z0-9\s]+?)(?:,|\.|\n|J\.L|$)', text, re.I)
                 if m: fields["Mouza"] = m.group(1).strip()
 
-                m = re.search(r'(?:Total\s*)?Land\s*Area\s*[:\s]*([^\n\r]+)', text, re.I)
+                m = re.search(r'(?:Total\s*)?Land\s*Area\s*[:\s\n]*([^\n\r]+)', text, re.I)
+                if not m:
+                    m = re.search(r'(?:^|\n)\s*Area[:\s\n]*([^\n\r]+)', text, re.I)
                 if m: fields["Land Area"] = m.group(1).strip()
 
-                m = re.search(r'(?:Consideration|Purchase)\s*Price\s*[:\s]*(?:Rs\.?|₹)?\s*([0-9,]+)', text, re.I)
+                m = re.search(r'(?:Consideration|Purchase)\s*Price\s*[:\s\n]*(?:Rs\.?|₹)?\s*([0-9,]+)', text, re.I)
                 if m: fields["Consideration Price"] = f"₹{m.group(1).strip()}"
+
+                m = re.search(r'Book\s*(?:No\.?|number)?[:\s\n]*([A-Za-z0-9]+)', text, re.I)
+                if m: fields["Book No"] = m.group(1).strip()
+
+                m = re.search(r'Volume\s*(?:No\.?|number)?[:\s\n]*([A-Za-z0-9\-]+)', text, re.I)
+                if m: fields["Volume No"] = m.group(1).strip()
+
+                m = re.search(r'Page\s*(?:No\.?|number)?[:\s\n]*([0-9\–\-]+)', text, re.I)
+                if m: fields["Page No"] = m.group(1).strip()
+
+                m = re.search(r'North[:\s\n]+([^\n\r\.]+)', text, re.I)
+                if m: fields["North"] = m.group(1).strip()
+                m = re.search(r'South[:\s\n]+([^\n\r\.]+)', text, re.I)
+                if m: fields["South"] = m.group(1).strip()
+                m = re.search(r'East[:\s\n]+([^\n\r\.]+)', text, re.I)
+                if m: fields["East"] = m.group(1).strip()
+                m = re.search(r'West[:\s\n]+([^\n\r\.]+)', text, re.I)
+                if m: fields["West"] = m.group(1).strip()
 
             # 9. SALARY SLIP
             elif doc_type == "Salary Slip":
@@ -639,6 +691,308 @@ class AIExtractor:
 
                 m = re.search(r'Date\s*of\s*Registration[:\s]*([0-3]?\d[\/-][0-1]?\d[\/-]\d{4})', text, re.I)
                 if m: fields["Registration Date"] = m.group(1).strip()
+
+            # 11. BORROWER IDENTITY PROFILE
+            elif doc_type == "Borrower Identity Profile":
+                m = re.search(r'(?:Full\s*name|Name)[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Full Name"] = m.group(1).strip()
+                m = re.search(r'Title[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Title"] = m.group(1).strip()
+                m = re.search(r'Father(?:\'s)?\s*Name[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Father's Name"] = m.group(1).strip()
+                m = re.search(r'(?:Date\s*of\s*birth|DOB)[:\s]*([0-3]?\d[\s\/-][A-Za-z0-9]+[\s\/-]\d{4}|\d{4}-\d{2}-\d{2})', text, re.I)
+                if m: fields["Date of Birth"] = m.group(1).strip()
+                m = re.search(r'Gender[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Gender"] = m.group(1).strip()
+                m = re.search(r'Marital\s*status[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Marital Status"] = m.group(1).strip()
+                m = re.search(r'Occupation[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Occupation"] = m.group(1).strip()
+                m = re.search(r'Mobile\s*number[:\s]*([0-9\s]{10,14})', text, re.I)
+                if m: fields["Mobile Number"] = m.group(1).strip()
+                m = re.search(r'Email[:\s]*([^\n\r\s]+@[^\n\r\s]+)', text, re.I)
+                if m: fields["Email"] = m.group(1).strip()
+                m = re.search(r'PAN\s*(?:reference|number|no)?[:\s]*([A-Za-z0-9]+)', text, re.I)
+                if m: fields["PAN Number"] = m.group(1).strip()
+                m = re.search(r'Aadhaar\s*(?:reference|number|no)?[:\s]*([X0-9\-]+)', text, re.I)
+                if m: fields["Aadhaar Number"] = m.group(1).strip()
+                m = re.search(r'Voter\s*ID\s*(?:reference)?[:\s]*([A-Za-z0-9\/]+)', text, re.I)
+                if m: fields["Voter ID"] = m.group(1).strip()
+                m = re.search(r'(?:RESIDENTIAL\s*ADDRESS|Residential\s*address)[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Residential Address"] = m.group(1).strip()
+
+            # 12. EMPLOYMENT AND SALARY CERTIFICATE
+            elif doc_type == "Employment and Salary Certificate":
+                m = re.search(r'(?:^|\n)\s*Employer[:\s]*([^\n\r]+)', text, re.I)
+                if m and not any(ign in m.group(1).upper() for ign in ["ISSUED", "CATEGORY", "DOCUMENT"]):
+                    fields["Employer Name"] = m.group(1).strip()
+                m = re.search(r'(?:Office\s*address|Employer\s*address)[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Employer Address"] = m.group(1).strip()
+                m = re.search(r'(?:Employee\s*name|Name)[:\s\n]+([A-Za-z\s]{3,35})\b', text, re.I)
+                if m: fields["Employee Name"] = m.group(1).strip()
+                m = re.search(r'Employee\s*code[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Employee Code"] = m.group(1).strip()
+                m = re.search(r'Designation[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Designation"] = m.group(1).strip()
+                m = re.search(r'Department[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Department"] = m.group(1).strip()
+                m = re.search(r'Employment\s*type[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Employment Type"] = m.group(1).strip()
+                m = re.search(r'Date\s*of\s*joining[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Date of Joining"] = m.group(1).strip()
+                m = re.search(r'Retirement\s*date(?:\s*\(illustrative\))?[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Retirement Date"] = m.group(1).strip()
+                m = re.search(r'Work\s*location[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Work Location"] = m.group(1).strip()
+                m = re.search(r'Basic\s*pay[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Basic Pay"] = m.group(1).strip()
+                m = re.search(r'Dearness\s*allowance[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Dearness Allowance"] = m.group(1).strip()
+                m = re.search(r'House\s*rent\s*allowance[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["House Rent Allowance"] = m.group(1).strip()
+                m = re.search(r'Other\s*allowance[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Other Allowance"] = m.group(1).strip()
+                m = re.search(r'Gross\s*monthly\s*salary[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Gross Monthly Salary"] = m.group(1).strip()
+                m = re.search(r'Provident\s*fund\s*deduction[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Provident Fund Deduction"] = m.group(1).strip()
+                m = re.search(r'Professional\s*tax[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Professional Tax"] = m.group(1).strip()
+                m = re.search(r'Other\s*deductions[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Other Deductions"] = m.group(1).strip()
+                m = re.search(r'Total\s*deductions[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Total Deductions"] = m.group(1).strip()
+                m = re.search(r'Net\s*(?:take-home\s*)?salary[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Net Salary"] = m.group(1).strip()
+                m = re.search(r'Certificate\s*date[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Certificate Date"] = m.group(1).strip()
+
+            # 13. BANK STATEMENT / SALARY ACCOUNT STATEMENT
+            elif doc_type == "Bank Statement":
+                m = re.search(r'(?:^|\n)\s*Bank\s*name[:\s]*([^\n\r]+)', text, re.I)
+                if not m:
+                    m = re.search(r'(?:^|\n)\s*Bank[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Bank Name"] = m.group(1).strip()
+                m = re.search(r'Branch[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Branch"] = m.group(1).strip()
+                m = re.search(r'Account\s*holder[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Account Holder"] = m.group(1).strip()
+                m = re.search(r'Account\s*type[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Account Type"] = m.group(1).strip()
+                m = re.search(r'Account\s*number[:\s]*([0-9A-Za-z\-]+)', text, re.I)
+                if m: fields["Account Number"] = m.group(1).strip()
+                m = re.search(r'IFSC(?:\s*code)?[:\s]*([A-Za-z0-9]+)', text, re.I)
+                if m: fields["IFSC"] = m.group(1).strip()
+                m = re.search(r'Statement\s*period[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Statement Period"] = m.group(1).strip()
+                m = re.search(r'Closing\s*balance(?:\s*shown)?[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Closing Balance"] = m.group(1).strip()
+
+            # 14. LOAN APPLICATION / REQUEST LETTER
+            elif doc_type == "Loan Application":
+                m = re.search(r'(?:Applicant\s*/\s*borrower|Applicant\s*name|Full\s*name)[:\s\n]+([A-Za-z ]{3,35})', text, re.I)
+                if not m:
+                    m = re.search(r'\bI,\s*([A-Za-z ]{3,35})\b,?\s*son of', text, re.I)
+                if m and not any(ign in m.group(1).upper() for ign in ["LETTER", "DOCUMENT", "CATEGORY", "APPLICATION"]):
+                    fields["Applicant Name"] = m.group(1).strip()
+
+                m = re.search(r'(?:son\s*of|Father(?:\'s)?\s*Name)[:\s\n]+([A-Za-z ]{3,35})', text, re.I)
+                if m: fields["Father's Name"] = m.group(1).strip()
+
+                m = re.search(r'(?:^|\n)\s*([A-Za-z ]+Branch)', text, re.I)
+                if m and not any(ign in m.group(1).upper() for ign in ["THE", "MANAGER", "BANK", "DOCUMENT"]):
+                    fields["Branch"] = m.group(1).strip()
+
+                m = re.search(r'(?:Loan\s*purpose|Purpose)[:\s\n]*([^\n\r]+)', text, re.I)
+                if m: fields["Purpose"] = m.group(1).strip()
+
+                m = re.search(r'under\s*the\s*([A-Za-z\s]+Scheme)', text, re.I)
+                if not m:
+                    m = re.search(r'Scheme[:\s\n]*([^\n\r]+)', text, re.I)
+                if m: fields["Scheme"] = m.group(1).strip()
+
+                m = re.search(r'(?:Amount\s*requested|Requested\s*(?:loan\s*)?amount)[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Requested Loan Amount"] = m.group(1).strip()
+
+                m = re.search(r'(?:Proposed\s*repayment\s*period|Repayment\s*tenure|Term\s*months)[:\s\n]*([^\n\r]+)', text, re.I)
+                if m: fields["Term Months"] = m.group(1).strip()
+
+                m = re.search(r'Salary\s*account\s*(?:number|reference)?[:\s\n]*([A-Za-z0-9]+)', text, re.I)
+                if m: fields["Salary Account Reference"] = m.group(1).strip()
+
+                m = re.search(r'(?:Proposed\s*guarantor|Guarantor)[:\s\n]*([A-Za-z ]{3,35})', text, re.I)
+                if m: fields["Guarantor Full Name"] = m.group(1).strip()
+
+                m = re.search(r'(?:Proposed\s*property|Property\s*location)[:\s\n]*([^\n\r]+)', text, re.I)
+                if m: fields["Proposed Property"] = m.group(1).strip()
+
+                m = re.search(r'Application\s*date[:\s\n]*([^\n\r]+)', text, re.I)
+                if m: fields["Application Date"] = m.group(1).strip()
+
+            # 15. GUARANTOR IDENTITY PROFILE
+            elif doc_type == "Guarantor Profile":
+                m = re.search(r'Full\s*name[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Full Name"] = m.group(1).strip()
+                m = re.search(r'Title[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Title"] = m.group(1).strip()
+                m = re.search(r'Father(?:\'s)?\s*Name[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Father Name"] = m.group(1).strip()
+                m = re.search(r'Date\s*of\s*birth[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor DOB"] = m.group(1).strip()
+                m = re.search(r'Gender[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Gender"] = m.group(1).strip()
+                m = re.search(r'Marital\s*status[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Marital Status"] = m.group(1).strip()
+                m = re.search(r'Relationship(?:\s*to\s*applicant)?[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Relationship"] = m.group(1).strip()
+                m = re.search(r'Occupation[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Occupation"] = m.group(1).strip()
+                m = re.search(r'Mobile\s*number[:\s]*([0-9\s]{10,14})', text, re.I)
+                if m: fields["Guarantor Mobile Number"] = m.group(1).strip()
+                m = re.search(r'PAN\s*(?:reference|no)?[:\s]*([A-Za-z0-9]+)', text, re.I)
+                if m: fields["Guarantor PAN Number"] = m.group(1).strip()
+                m = re.search(r'Aadhaar\s*(?:reference|no)?[:\s]*([X0-9\-]+)', text, re.I)
+                if m: fields["Guarantor Aadhaar"] = m.group(1).strip()
+                m = re.search(r'(?:RESIDENTIAL\s*ADDRESS|Residential\s*address)[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Residential Address"] = m.group(1).strip()
+
+            # 16. GUARANTOR INCOME AND NET-WORTH
+            elif doc_type == "Guarantor Income and Net-Worth":
+                m = re.search(r'(?:Guarantor\s*name|Name)[:\s]*([A-Za-z ]{3,35})', text, re.I)
+                if m and not any(ign in m.group(1).upper() for ign in ["DECLARATION", "STATEMENT", "FINANCIAL"]):
+                    fields["Guarantor Full Name"] = m.group(1).strip()
+                m = re.search(r'Father(?:\'s)?\s*Name[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Father Name"] = m.group(1).strip()
+                m = re.search(r'Employer[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Employer"] = m.group(1).strip()
+                m = re.search(r'Designation[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Designation"] = m.group(1).strip()
+                m = re.search(r'Monthly\s*gross\s*(?:salary|income)[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Guarantor Gross Salary"] = m.group(1).strip()
+                m = re.search(r'Monthly\s*net\s*(?:salary|income)[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Guarantor Net Salary"] = m.group(1).strip()
+                m = re.search(r'Immovable\s*property(?:.*?market\s*value)?[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Guarantor Immovable Property"] = m.group(1).strip()
+                m = re.search(r'Movable\s*assets[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Guarantor Movable Assets"] = m.group(1).strip()
+                m = re.search(r'Total\s*assets[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Guarantor Total Assets"] = m.group(1).strip()
+                m = re.search(r'Liabilities(?:.*?existing\s*loans)?[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Guarantor Total Liabilities"] = m.group(1).strip()
+                m = re.search(r'Net\s*worth[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Guarantor Net Worth"] = m.group(1).strip()
+                m = re.search(r'Dependants[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Dependants"] = m.group(1).strip()
+
+            # 17. PROPERTY TAX RECEIPT
+            elif doc_type == "Property Tax Receipt":
+                m = re.search(r'Receipt\s*reference[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Receipt Reference"] = m.group(1).strip()
+                m = re.search(r'Issuing\s*authority[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Issuing Authority"] = m.group(1).strip()
+                m = re.search(r'Assessee\s*\/\s*Owner[:\s]*([^\n\r,]+)', text, re.I)
+                if m: fields["Owner"] = m.group(1).strip()
+                m = re.search(r'Holding\s*\/\s*Assessment\s*number[:\s]*([^\n\r,]+)', text, re.I)
+                if m: fields["Holding / Assessment Number"] = m.group(1).strip()
+                m = re.search(r'Tax\s*period[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Tax Period"] = m.group(1).strip()
+                m = re.search(r'Amount\s*paid[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Amount Paid"] = m.group(1).strip()
+                m = re.search(r'Payment\s*date[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Payment Date"] = m.group(1).strip()
+                m = re.search(r'(?:^|\n)\s*Plot\s*(?:No\.?|number)?[:\s\n]*([A-Za-z0-9\/\-]+)', text, re.I)
+                if m: fields["Plot No"] = m.group(1).strip()
+
+            # 18. PROPERTY VALUATION REPORT
+            elif doc_type == "Property Valuation Report":
+                m = re.search(r'Report\s*reference[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Report Reference"] = m.group(1).strip()
+                m = re.search(r'Inspection\s*date[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Inspection Date"] = m.group(1).strip()
+                m = re.search(r'Applicant\s*\/\s*Proposed\s*owner[:\s]*([^\n\r,]+)', text, re.I)
+                if m: fields["Applicant Name"] = m.group(1).strip()
+                m = re.search(r'Property\s*location[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Property Location"] = m.group(1).strip()
+                m = re.search(r'Mouza(?:\s*\/\s*J\.?L\.?)?[:\s\n]*([A-Za-z0-9\s]+?)(?:\/|\n|$)', text, re.I)
+                if m: fields["Mouza"] = m.group(1).strip()
+                m = re.search(r'J\.?L\.?(?:\s*No\.?|\s*Number)?[:\s\n]*([0-9A-Za-z]+)', text, re.I)
+                if m: fields["JL No"] = m.group(1).strip()
+                m = re.search(r'(?:^|\n)\s*Plot\s*(?:No\.?|number)?[:\s\n]*([A-Za-z0-9\/\-]+)', text, re.I)
+                if m: fields["Plot No"] = m.group(1).strip()
+                m = re.search(r'Khatian\s*(?:No\.?|number)?[:\s\n]*([^\n\r,]+)', text, re.I)
+                if m: fields["Khatian No"] = m.group(1).strip()
+                m = re.search(r'Land\s*area[:\s\n]*([^\n\r,]+)', text, re.I)
+                if m: fields["Land Area"] = m.group(1).strip()
+                m = re.search(r'Built-up\s*area\s*\/\s*Proposed[:\s\n]*([^\n\r,]+)', text, re.I)
+                if m: fields["Proposed Buildup Area"] = m.group(1).strip()
+                m = re.search(r'Estimated\s*land\s*value[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Estimated Land Value"] = m.group(1).strip()
+                m = re.search(r'Estimated\s*construction\s*cost(?:\s*\/\s*Proposed)?[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Estimated Construction Cost"] = m.group(1).strip()
+                m = re.search(r'(?:Estimated\s*total\s*market\s*value|Total\s*estimated\s*property\s*value)[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Total Estimated Property Value"] = m.group(1).strip()
+                m = re.search(r'Estimated\s*realisable\s*value[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Estimated Realisable Value"] = m.group(1).strip()
+                m = re.search(r'Estimated\s*distress\s*value[:\s\n]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Estimated Distress Value"] = m.group(1).strip()
+                m = re.search(r'North[:\s]*([^\.\n]+)', text, re.I)
+                if m: fields["North"] = m.group(1).strip()
+                m = re.search(r'South[:\s]*([^\.\n]+)', text, re.I)
+                if m: fields["South"] = m.group(1).strip()
+                m = re.search(r'East[:\s]*([^\.\n]+)', text, re.I)
+                if m: fields["East"] = m.group(1).strip()
+                m = re.search(r'West[:\s]*([^\.\n]+)', text, re.I)
+                if m: fields["West"] = m.group(1).strip()
+
+            # 19. LEGAL SEARCH REPORT
+            elif doc_type == "Legal Search Report":
+                m = re.search(r'Report\s*reference[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Report Reference"] = m.group(1).strip()
+                m = re.search(r'Proposed\s*borrower\s*\/\s*owner[:\s]*([^\n\r,]+)', text, re.I)
+                if m: fields["Owner"] = m.group(1).strip()
+                m = re.search(r'Search\s*period[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Search Period"] = m.group(1).strip()
+                m = re.search(r'Sub-Registry\s*office[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Sub-Registry Office"] = m.group(1).strip()
+                m = re.search(r'Deed\s*reference\s*searched[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Deed Reference Searched"] = m.group(1).strip()
+                m = re.search(r'Book[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Book No"] = m.group(1).strip()
+                m = re.search(r'Volume[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Volume No"] = m.group(1).strip()
+                m = re.search(r'Page[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Page No"] = m.group(1).strip()
+                m = re.search(r'Encumbrance\s*result[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Encumbrance Result"] = m.group(1).strip()
+
+            # 20. LOAN SANCTION ADVICE
+            elif doc_type == "Loan Sanction Advice":
+                m = re.search(r'Borrower[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Full Name"] = m.group(1).strip()
+                m = re.search(r'Loan\s*account\s*number[:\s]*([A-Za-z0-9\-]+)', text, re.I)
+                if m: fields["Loan Account Number"] = m.group(1).strip()
+                m = re.search(r'Branch[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Branch"] = m.group(1).strip()
+                m = re.search(r'Scheme[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Scheme"] = m.group(1).strip()
+                m = re.search(r'Purpose[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Purpose"] = m.group(1).strip()
+                m = re.search(r'Requested\s*amount[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Requested Loan Amount"] = m.group(1).strip()
+                m = re.search(r'(?:Illustrative\s*)?sanctioned\s*amount[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["Sanctioned Amount"] = m.group(1).strip()
+                m = re.search(r'Interest\s*rate[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Rate Of Interest"] = m.group(1).strip()
+                m = re.search(r'Repayment\s*period[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Term Months"] = m.group(1).strip()
+                m = re.search(r'(?:Illustrative\s*)?EMI[:\s]*(?:INR\s*)?([0-9,.]+)', text, re.I)
+                if m: fields["EMI"] = m.group(1).strip()
+                m = re.search(r'(?:Sample\s*)?sanction\s*date[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Sanction Date"] = m.group(1).strip()
+                m = re.search(r'Proposed\s*security[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Proposed Security"] = m.group(1).strip()
+                m = re.search(r'Guarantor[:\s]*([^\n\r]+)', text, re.I)
+                if m: fields["Guarantor Full Name"] = m.group(1).strip()
 
             # ---------------------------------------------------------
             # COMMON PATTERNS PASS (Dates, Emails, Mobile, GSTIN, PIN)
@@ -719,9 +1073,12 @@ class AIExtractor:
             summary = self.generate_summary(doc_type, fields)
             result_docs.append({
                 "document_name": doc_name,
+                "parent_file": doc.get("parent_file", doc_name),
+                "page_number": doc.get("page_number", 1),
                 "document_type": doc_type,
                 "fields": fields,
-                "summary": summary
+                "summary": summary,
+                "ocr_text": text
             })
 
         return {

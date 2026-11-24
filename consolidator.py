@@ -168,14 +168,14 @@ class ContextualRoleResolver:
             fields = doc.get("fields", {})
             ocr_text = doc.get("ocr_text", "").lower()
 
-            # 1. Master Loan Application or KYC Form declarations
-            if any(k in doc_name or k in doc_type for k in ["application", "sanction", "loan", "kyc"]):
+            # 1. Master Loan Application, Sanction Advice, Request Letter or KYC Form declarations
+            if any(k in doc_name or k in doc_type for k in ["application", "sanction", "loan", "request", "kyc"]):
                 # Check for explicit borrower labels
                 for label, val in fields.items():
                     l_lower = label.lower()
                     if val and isinstance(val, str) and len(val.strip()) > 2:
-                        if any(b in l_lower for b in ["borrower", "applicant name", "name of applicant", "full name"]):
-                            if not any(g in l_lower for g in ["guarantor", "co-"]):
+                        if any(b in l_lower for b in ["borrower", "applicant name", "name of applicant", "applicant", "full name"]):
+                            if not any(g in l_lower for g in ["guarantor", "co-", "father", "employer", "valuer"]):
                                 self.borrower_names.add(normalize_compare_key(val))
                         elif "guarantor 1" in l_lower or "first guarantor" in l_lower:
                             self.guarantor_1_names.add(normalize_compare_key(val))
@@ -187,12 +187,23 @@ class ContextualRoleResolver:
                             else:
                                 self.guarantor_2_names.add(normalize_compare_key(val))
 
+            # 1b. Direct Guarantor documents (e.g. Guarantor Identity, Guarantor Income/Net Worth)
+            if any(k in doc_name or k in doc_type for k in ["guarantor"]):
+                for label, val in fields.items():
+                    l_lower = label.lower()
+                    if val and isinstance(val, str) and len(val.strip()) > 2:
+                        if any(g in l_lower for g in ["name", "full name", "guarantor name"]) and not any(f in l_lower for f in ["father", "employer", "colleague"]):
+                            if "2" in doc_name or "2" in doc_type or "second" in doc_name:
+                                self.guarantor_2_names.add(normalize_compare_key(val))
+                            else:
+                                self.guarantor_1_names.add(normalize_compare_key(val))
+
             # 2. Guarantee Deed or Letter of Guarantee declarations
             if any(k in doc_name or k in doc_type for k in ["guarantee", "surety"]):
                 for label, val in fields.items():
                     l_lower = label.lower()
                     if val and isinstance(val, str) and len(val.strip()) > 2:
-                        if any(g in l_lower for g in ["guarantor name", "name of guarantor", "full name", "name"]):
+                        if any(g in l_lower for g in ["guarantor name", "name of guarantor", "full name", "name"]) and not any(f in l_lower for f in ["father", "employer"]):
                             if "2" in doc_name or "second" in doc_name:
                                 self.guarantor_2_names.add(normalize_compare_key(val))
                             else:
@@ -219,23 +230,21 @@ class ContextualRoleResolver:
         ocr_text = doc.get("ocr_text", "").lower()
 
         # Step A: Contextual Filename and Classification Clues
-        if any(k in doc_name for k in ["guarantor_2", "guarantor 2", "guarantor2", "g2"]):
+        if any(k in doc_name or k in doc_type for k in ["guarantor_2", "guarantor 2", "guarantor2", "g2", "second guarantor"]):
             return PersonRole.GUARANTOR_2
-        if any(k in doc_name for k in ["guarantor_1", "guarantor 1", "guarantor1", "g1", "guarantor"]):
+        if any(k in doc_name or k in doc_type for k in ["guarantor_1", "guarantor 1", "guarantor1", "g1", "guarantor", "surety", "letter of guarantee", "guarantee"]):
             return PersonRole.GUARANTOR_1
-        if any(k in doc_name or k in doc_type for k in ["letter of guarantee", "guarantee deed", "surety"]):
-            return PersonRole.GUARANTOR_2 if "2" in doc_name else PersonRole.GUARANTOR_1
 
-        if any(k in doc_name or k in doc_type for k in ["deed", "sale deed", "khatian", "parcha", "search report", "valuation"]):
+        if any(k in doc_name or k in doc_type for k in ["deed", "sale deed", "khatian", "parcha", "search report", "valuation", "tax receipt", "dues receipt", "municipal dues"]):
             return PersonRole.PROPERTY_OWNER
 
-        if any(k in doc_name or k in doc_type for k in ["salary", "payslip", "pay slip", "form 16"]):
+        if any(k in doc_name or k in doc_type for k in ["salary", "payslip", "pay slip", "form 16", "employment", "bank statement", "account statement"]):
             return PersonRole.BORROWER
 
-        if any(k in doc_name for k in ["co_borrower", "co-borrower", "co_applicant", "co-applicant"]):
+        if any(k in doc_name or k in doc_type for k in ["co_borrower", "co-borrower", "co_applicant", "co-applicant"]):
             return PersonRole.CO_BORROWER
 
-        if any(k in doc_name for k in ["borrower", "applicant"]):
+        if any(k in doc_name or k in doc_type for k in ["borrower", "applicant", "application", "request letter", "sanction"]):
             return PersonRole.BORROWER
 
         # Step B: Check person name extracted from identity documents (PAN, Aadhaar, Voter, DL)
@@ -351,6 +360,7 @@ class MultiDocumentConsolidator:
                         "value": raw_val,
                         "raw_value": raw_val,
                         "source_document": doc_name,
+                        "page_number": doc.get("page_number"),
                         "confidence": confidence,
                         "evidence": evidence_snippet,
                         "entity_role": entity_role
@@ -360,6 +370,7 @@ class MultiDocumentConsolidator:
                         "label": raw_label,
                         "value": raw_val,
                         "source_document": doc_name,
+                        "page_number": doc.get("page_number"),
                         "entity_role": entity_role,
                         "evidence": evidence_snippet
                     })
@@ -453,7 +464,13 @@ class MultiDocumentConsolidator:
         flat_all = normalized_data.to_flat_values()
         missing_count = 0
         for fpath, fval in flat_all.items():
-            if fval is None and fpath not in field_observations:
+            norm_fpath = fpath.replace("[", ".").replace("]", "")
+            has_obs = (
+                fpath in field_observations or
+                norm_fpath in field_observations or
+                (fpath.startswith("guarantors.0.") and f"guarantor_1.{fpath[13:]}" in field_observations)
+            )
+            if fval is None and not has_obs:
                 missing_count += 1
                 label = fpath.split(".")[-1].replace("_", " ").title()
                 role = "guarantor" if "guarantor" in fpath else ("property" if "property" in fpath else "borrower")
@@ -488,16 +505,16 @@ class MultiDocumentConsolidator:
 
     def _route_path_by_role(self, canonical_path: str, entity_role: str) -> str:
         """Reroutes a canonical path to the correct person section based on entity role."""
+        if canonical_path.startswith("guarantor."):
+            target_idx = "1" if entity_role == PersonRole.GUARANTOR_2 else "0"
+            return f"guarantors.{target_idx}.{canonical_path[len('guarantor.'):]}"
+
         if entity_role == PersonRole.GUARANTOR_1:
             if canonical_path.startswith("borrower."):
                 return f"guarantors.0.{canonical_path[len('borrower.'):]}"
-            if canonical_path.startswith("guarantor."):
-                return f"guarantors.0.{canonical_path[len('guarantor.'):]}"
         elif entity_role == PersonRole.GUARANTOR_2:
             if canonical_path.startswith("borrower."):
                 return f"guarantors.1.{canonical_path[len('borrower.'):]}"
-            if canonical_path.startswith("guarantor."):
-                return f"guarantors.1.{canonical_path[len('guarantor.'):]}"
         elif entity_role == PersonRole.PROPERTY_OWNER:
             if canonical_path.startswith("borrower.resident_address"):
                 return canonical_path.replace("borrower.resident_address", "property")

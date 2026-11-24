@@ -204,7 +204,9 @@ LABEL_ALIASES = {
 
     # Salary Details
     "salary.salary_month": ["details of salary for the month of", "salary month", "payslip month", "month"],
-    "salary.gross_salary": ["gross salary", "gross pay", "gross earnings", "total earnings"],
+    "salary.gross_salary": ["gross salary", "gross pay", "gross earnings", "total earnings", "gross monthly salary", "monthly gross salary"],
+    "salary.net_salary": ["net salary", "net take-home salary", "net pay", "monthly net salary", "net monthly salary", "monthly net income", "take home pay"],
+    "salary.total_deductions": ["total deductions", "total deduction"],
     "salary.basic_pay": ["basic pay", "basic", "basic salary"],
     "salary.da": ["d.a", "da", "dearness allowance"],
     "salary.hra": ["hra", "house rent allowance"],
@@ -216,33 +218,41 @@ LABEL_ALIASES = {
     "salary.p_tax_last_paid": ["p tax last paid", "professional tax", "p tax"],
     "salary.form16_last_submitted": ["form 16 last submited", "form 16", "form 16 submitted"],
 
-    # Loan Request Details
-    "loan.branch": ["branch", "branch name", "home branch", "applying branch"],
+    # Loan Request & Sanction Details
+    "loan.branch": ["branch", "branch name", "home branch", "applying branch", "target branch"],
     "loan.application_date": ["date of application", "application date", "loan application date", "date"],
     "loan.mortgage_branch": ["mortgage branch"],
-    "loan.salary_ac_no": ["salary ac no", "salary account no", "salary account number"],
-    "loan.loan_account_no": ["loan account no", "loan account number", "loan ac no"],
-    "loan.loan_amount_requested": ["loan requested", "loan amount requested", "required loan", "loan amount"],
-    "loan.term_months": ["term of the loan in month", "term of loan", "tenure months", "tenure in months", "tenure"],
+    "loan.salary_ac_no": ["salary ac no", "salary account no", "salary account number", "salary account reference"],
+    "loan.salary_ac_bank_name": ["salary bank name", "bank name", "account with"],
+    "loan.salary_ac_branch": ["salary account branch", "bank branch", "account branch"],
+    "loan.salary_ac_ifsc": ["ifsc", "ifsc code"],
+    "loan.salary_ac_balance": ["closing balance", "closing balance shown", "account balance"],
+    "loan.loan_account_no": ["loan account no", "loan account number", "loan ac no", "loan a/c no"],
+    "loan.loan_amount_requested": ["loan requested", "loan amount requested", "requested loan amount", "required loan", "loan amount", "requested amount", "amount requested", "requested loan"],
+    "loan.loan_amount_sanctioned": ["sanctioned amount", "loan sanctioned", "sanctioned loan amount", "illustrative sanctioned amount", "sanction limit", "amount sanctioned", "sanctioned loan"],
+    "loan.sanction_date": ["sanction date", "date of sanction", "sample sanction date"],
+    "loan.scheme": ["scheme", "loan scheme", "name of scheme"],
+    "loan.term_months": ["term of the loan in month", "term of loan", "tenure months", "tenure in months", "tenure", "proposed repayment tenure", "repayment period"],
     "loan.rate_of_interest": ["rate of interest", "interest rate", "roi"],
-    "loan.emi": ["emi", "monthly emi", "installment"],
+    "loan.emi": ["emi", "monthly emi", "installment", "illustrative emi"],
     "loan.other_emi": ["if any other emi", "other emi", "existing emi"],
     "loan.moratorium_period": ["moratorium period", "moratorium"],
     "loan.emi_starting_from": ["emi starting from", "emi start date"],
     "loan.purpose": ["purpose of the loan", "loan purpose", "purpose"],
+    "loan.proposed_security": ["proposed security", "security"],
 
     # Property / Land Details
     "property.inspection_date": ["date of inspection", "inspection date"],
     "property.mortgage_branch": ["land mortgage branch", "property mortgage branch"],
-    "property.sub_registry_office": ["sub registry office", "sro", "registry office", "sub-registry office"],
+    "property.sub_registry_office": ["sub registry office", "sro", "registry office", "sub-registry office", "sub-registrar office", "sub registrar office", "sub registrar"],
     "property.plan_approved_by": ["plan approved by", "sanction authority", "approval authority"],
     "property.flat_no": ["flat no", "flat number", "unit no"],
     "property.house_no": ["house no", "house number", "holding no"],
     "property.premises_no": ["premises no", "premises number"],
     "property.building_name": ["name of the building", "building name", "apartment name"],
-    "property.plot_dag_no": ["plot/ dag no", "plot no", "dag no", "plot / dag no", "rs dag", "lr dag"],
-    "property.khatian_no": ["kaitian no", "khatian no", "rs khatian", "lr khatian"],
-    "property.jl_no": ["jl no", "j.l. no", "j.l. no."],
+    "property.plot_dag_no": ["plot/ dag no", "plot no", "dag no", "plot / dag no", "rs dag", "lr dag", "plot number", "plot", "dag number"],
+    "property.khatian_no": ["kaitian no", "khatian no", "rs khatian", "lr khatian", "khatian number", "khatian"],
+    "property.jl_no": ["jl no", "j.l. no", "j.l. no.", "j.l. number", "jl number"],
     "property.mouza": ["mouza", "mauza"],
     "property.block": ["block", "c.d. block", "cd block"],
     "property.ps": ["p.s", "ps", "police station"],
@@ -251,12 +261,12 @@ LABEL_ALIASES = {
     "property.dist": ["property dist", "land dist"],
     "property.area": ["area", "land area", "property area", "cvering land"],
     "property.classification": ["classification", "land classification", "nature of land"],
-    "property.proposed_buildup_area": ["proposed builup area", "proposed buildup area", "buildup area"],
-    "property.purchase_price": ["purchase price of land", "consideration price", "purchase price", "cost of land rs."],
-    "property.purchase_date": ["date of purchase", "purchase date"],
+    "property.proposed_buildup_area": ["proposed builup area", "proposed buildup area", "buildup area", "built-up area"],
+    "property.purchase_price": ["purchase price of land", "consideration price", "purchase price", "cost of land rs.", "purchase consideration"],
+    "property.purchase_date": ["date of purchase", "purchase date", "deed date"],
     "property.municipality_gp": ["municipality/gp", "gram panchayat", "municipality", "panchayat"],
     "property.street_name": ["name of the street", "street name", "road name"],
-    "property.deed_no": ["deed no", "deed number", "title deed no", "tittle doccument no"],
+    "property.deed_no": ["deed no", "deed number", "title deed no", "tittle doccument no", "deed reference searched", "deed reference"],
     "property.book_no": ["book no", "book number"],
     "property.vol_no": ["vol no", "volume no", "volume number"],
     "property.page_no": ["page no", "page numbers", "pages"],
@@ -272,9 +282,22 @@ LABEL_ALIASES = {
     "property.boundaries.east": ["east", "boundary east", "bounded on east"],
     "property.boundaries.west": ["west", "boundary west", "bounded on west"],
 
-    # Property Valuation / Searching
+    # Property Valuation / Searching / Tax
     "property.valuation_independent": ["market value of the property as per independent enquiry:"],
     "property.valuation_empanelled": ["market value of the property as per empanelled value :", "valuation of the property"],
+    "property.valuation_total": ["total estimated property value", "estimated total value", "estimated value", "total valuation", "estimated total market value", "total market value"],
+    "property.valuation_realisable": ["estimated realisable value", "realisable value"],
+    "property.valuation_distress": ["estimated distress value", "distress value", "forced sale value"],
+    "property.valuation_land": ["estimated land value"],
+    "property.valuation_construction": ["estimated construction cost", "estimated construction cost / proposed"],
+    "property.report_reference": ["valuation report reference", "report reference", "valuation report ref"],
+    "property.legal_search_reference": ["legal report reference", "legal search reference", "search report reference"],
+    "property.search_period": ["search period", "period of search"],
+    "property.encumbrance_status": ["encumbrance result", "encumbrance status", "non-encumbrance status"],
+    "property.tax_receipt_ref": ["tax receipt reference", "tax receipt no", "receipt reference"],
+    "property.tax_holding_no": ["holding / assessment number", "holding number", "assessment number", "holding", "property holding number"],
+    "property.tax_paid_amount": ["amount paid", "tax paid", "tax amount paid"],
+    "property.tax_period": ["tax period", "assessment period"],
     "property.valuation_date": ["date of valuation", "valuation date"],
     "property.valuer_name": ["valuation done by", "valuer name", "surveyor name"],
     "property.search_report_date": ["date of searching report", "searching report date"],
@@ -284,6 +307,27 @@ LABEL_ALIASES = {
     "property.security_interest_creation_date": ["security interest creation date"],
     "property.document_type": ["doccument type", "document type"],
     "property.document_registration_date": ["doccument/registration date", "registration date"],
+
+    # Guarantor Specific Fields (Canonical aliases)
+    "guarantor.full_name": ["guarantor name", "name of guarantor", "guarantor full name"],
+    "guarantor.father_husband_name": ["guarantor father name", "guarantor father's name"],
+    "guarantor.dob": ["guarantor dob", "guarantor date of birth"],
+    "guarantor.gender": ["guarantor gender"],
+    "guarantor.marital_status": ["guarantor marital status"],
+    "guarantor.relationship": ["relationship to applicant", "guarantor relationship"],
+    "guarantor.occupation": ["guarantor occupation"],
+    "guarantor.designation": ["guarantor designation"],
+    "guarantor.employer_name": ["guarantor employer", "guarantor employer name"],
+    "guarantor.gross_salary": ["guarantor gross salary", "monthly gross salary", "monthly gross income"],
+    "guarantor.net_salary": ["guarantor net salary", "monthly net salary", "monthly net income"],
+    "guarantor.mobile_no": ["guarantor mobile number", "guarantor mobile"],
+    "guarantor.pan_no": ["guarantor pan", "guarantor pan reference", "guarantor pan number"],
+    "guarantor.aadhar_no": ["guarantor aadhaar", "guarantor aadhaar reference"],
+    "guarantor.immovable_property_value": ["guarantor immovable property", "immovable property", "immovable property value"],
+    "guarantor.movable_assets": ["guarantor movable assets", "movable assets"],
+    "guarantor.total_assets": ["guarantor total assets", "total assets"],
+    "guarantor.total_liabilities": ["guarantor liabilities", "existing loans", "total liabilities", "liabilities / existing loans"],
+    "guarantor.net_worth": ["guarantor net worth", "net worth", "net-worth"],
 
     # Project Cost
     "property.project_cost.construction_cost": ["construction", "construction cost", "construction cost rs."],
@@ -377,8 +421,15 @@ class NormalizedLoanData:
             "application_year": NormalizedField("loan.application_year"),
             "mortgage_branch": NormalizedField("loan.mortgage_branch"),
             "salary_ac_no": NormalizedField("loan.salary_ac_no"),
+            "salary_ac_bank_name": NormalizedField("loan.salary_ac_bank_name"),
+            "salary_ac_branch": NormalizedField("loan.salary_ac_branch"),
+            "salary_ac_ifsc": NormalizedField("loan.salary_ac_ifsc"),
+            "salary_ac_balance": NormalizedField("loan.salary_ac_balance"),
             "loan_account_no": NormalizedField("loan.loan_account_no"),
             "loan_amount_requested": NormalizedField("loan.loan_amount_requested"),
+            "loan_amount_sanctioned": NormalizedField("loan.loan_amount_sanctioned"),
+            "sanction_date": NormalizedField("loan.sanction_date"),
+            "scheme": NormalizedField("loan.scheme"),
             "term_months": NormalizedField("loan.term_months"),
             "rate_of_interest": NormalizedField("loan.rate_of_interest"),
             "emi": NormalizedField("loan.emi"),
@@ -386,6 +437,7 @@ class NormalizedLoanData:
             "moratorium_period": NormalizedField("loan.moratorium_period"),
             "emi_starting_from": NormalizedField("loan.emi_starting_from"),
             "purpose": NormalizedField("loan.purpose"),
+            "proposed_security": NormalizedField("loan.proposed_security"),
         }
 
         # 5. Property / Land Master
@@ -431,6 +483,19 @@ class NormalizedLoanData:
             },
             "valuation_independent": NormalizedField("property.valuation_independent"),
             "valuation_empanelled": NormalizedField("property.valuation_empanelled"),
+            "valuation_total": NormalizedField("property.valuation_total"),
+            "valuation_realisable": NormalizedField("property.valuation_realisable"),
+            "valuation_distress": NormalizedField("property.valuation_distress"),
+            "valuation_land": NormalizedField("property.valuation_land"),
+            "valuation_construction": NormalizedField("property.valuation_construction"),
+            "report_reference": NormalizedField("property.report_reference"),
+            "legal_search_reference": NormalizedField("property.legal_search_reference"),
+            "search_period": NormalizedField("property.search_period"),
+            "encumbrance_status": NormalizedField("property.encumbrance_status"),
+            "tax_receipt_ref": NormalizedField("property.tax_receipt_ref"),
+            "tax_holding_no": NormalizedField("property.tax_holding_no"),
+            "tax_paid_amount": NormalizedField("property.tax_paid_amount"),
+            "tax_period": NormalizedField("property.tax_period"),
             "valuation_date": NormalizedField("property.valuation_date"),
             "valuer_name": NormalizedField("property.valuer_name"),
             "search_report_date": NormalizedField("property.search_report_date"),
@@ -454,6 +519,8 @@ class NormalizedLoanData:
         self.salary: Dict[str, Any] = {
             "salary_month": NormalizedField("salary.salary_month"),
             "gross_salary": NormalizedField("salary.gross_salary"),
+            "net_salary": NormalizedField("salary.net_salary"),
+            "total_deductions": NormalizedField("salary.total_deductions"),
             "basic_pay": NormalizedField("salary.basic_pay"),
             "da": NormalizedField("salary.da"),
             "hra": NormalizedField("salary.hra"),
@@ -515,18 +582,36 @@ class NormalizedLoanData:
 
     def _create_empty_guarantor(self, index: int) -> Dict[str, Any]:
         """Creates an isolated Guarantor container."""
-        prefix = f"guarantor_{index}"
+        prefix = f"guarantors.{index - 1}"
+        name_field = NormalizedField(f"{prefix}.name")
         return {
             "index": index,
-            "name": NormalizedField(f"{prefix}.name"),
+            "name": name_field,
+            "full_name": name_field,
+            "title": NormalizedField(f"{prefix}.title"),
             "father_husband_name": NormalizedField(f"{prefix}.father_husband_name"),
             "dob": NormalizedField(f"{prefix}.dob"),
+            "gender": NormalizedField(f"{prefix}.gender"),
+            "marital_status": NormalizedField(f"{prefix}.marital_status"),
+            "relationship": NormalizedField(f"{prefix}.relationship"),
             "occupation": NormalizedField(f"{prefix}.occupation"),
+            "designation": NormalizedField(f"{prefix}.designation"),
+            "employer_name": NormalizedField(f"{prefix}.employer_name"),
             "monthly_income": NormalizedField(f"{prefix}.monthly_income"),
+            "gross_salary": NormalizedField(f"{prefix}.gross_salary"),
+            "net_salary": NormalizedField(f"{prefix}.net_salary"),
             "p_tax_paid_upto": NormalizedField(f"{prefix}.p_tax_paid_upto"),
             "mobile_no": NormalizedField(f"{prefix}.mobile_no"),
+            "pan_no": NormalizedField(f"{prefix}.pan_no"),
+            "aadhar_no": NormalizedField(f"{prefix}.aadhar_no"),
+            "voter_card_no": NormalizedField(f"{prefix}.voter_card_no"),
             "qualification": NormalizedField(f"{prefix}.qualification"),
             "account_no": NormalizedField(f"{prefix}.account_no"),
+            "immovable_property_value": NormalizedField(f"{prefix}.immovable_property_value"),
+            "movable_assets": NormalizedField(f"{prefix}.movable_assets"),
+            "total_assets": NormalizedField(f"{prefix}.total_assets"),
+            "total_liabilities": NormalizedField(f"{prefix}.total_liabilities"),
+            "net_worth": NormalizedField(f"{prefix}.net_worth"),
             "resident_address": {
                 "vill": NormalizedField(f"{prefix}.resident_address.vill"),
                 "post": NormalizedField(f"{prefix}.resident_address.post"),
@@ -567,7 +652,15 @@ class NormalizedLoanData:
         raw_value: Optional[Any] = None
     ) -> bool:
         """Dynamically navigates and updates a field by dot-separated path."""
-        parts = path.split(".")
+        std_path = path.replace("[", ".").replace("]", "")
+        parts = std_path.split(".")
+        if parts and parts[0] == "guarantor_1":
+            parts = ["guarantors", "0"] + parts[1:]
+        elif parts and parts[0] == "guarantor_2":
+            parts = ["guarantors", "1"] + parts[1:]
+        elif parts and parts[0] == "guarantor":
+            parts = ["guarantors", "0"] + parts[1:]
+
         target: Any = self
         for part in parts[:-1]:
             if hasattr(target, part):

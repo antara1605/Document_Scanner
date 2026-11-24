@@ -112,19 +112,16 @@ def upload_and_process():
 
         # Step 3: Package final results with clean string fields and actual OCR text
         final_doc_results = []
-        for idx, p_name in enumerate(processed_files):
-            ocr_info = ocr_results_map.get(p_name, {})
-            # Match document from AI result
-            matching_ai_doc = None
-            for d in extracted_docs:
-                if d.get("document_name") == p_name:
-                    matching_ai_doc = d
-                    break
-            if not matching_ai_doc and idx < len(extracted_docs):
-                matching_ai_doc = extracted_docs[idx]
+        target_doc_list = extracted_docs if extracted_docs else [{"document_name": p, "fields": {}} for p in processed_files]
 
-            raw_fields = matching_ai_doc.get("fields", {}) if matching_ai_doc else {}
-            doc_type = matching_ai_doc.get("document_type", "Document") if matching_ai_doc else "Document"
+        for idx, doc in enumerate(target_doc_list):
+            p_name = doc.get("document_name") or (processed_files[min(idx, len(processed_files)-1)] if processed_files else "Document")
+            parent_file = doc.get("parent_file", processed_files[0] if processed_files else p_name)
+            p_num = doc.get("page_number", 1)
+            ocr_info = ocr_results_map.get(parent_file, {})
+
+            raw_fields = doc.get("fields", {})
+            doc_type = doc.get("document_type", "Document")
 
             clean_fields = {}
             SKIP_VALUES = {'', 'none', 'null', 'nil', 'n/a', 'na', '-', '--', '---', 'not applicable', 'not specified', 'unknown'}
@@ -149,20 +146,19 @@ def upload_and_process():
                             if val_str and val_str.lower() not in SKIP_VALUES:
                                 clean_fields[str(k).strip()] = val_str
 
-            doc_summary = ""
-            if matching_ai_doc and matching_ai_doc.get("summary"):
-                doc_summary = matching_ai_doc.get("summary")
-            else:
-                doc_summary = ai_extractor.generate_summary(doc_type, clean_fields)
+            doc_summary = doc.get("summary") or ai_extractor.generate_summary(doc_type, clean_fields)
+            doc_ocr_text = doc.get("ocr_text") or ocr_info.get("full_text", "")
 
             final_doc_results.append({
                 "document_name": p_name,
+                "parent_file": parent_file,
+                "page_number": p_num,
                 "document_type": doc_type,
                 "summary": doc_summary,
                 "fields": clean_fields,
-                "ocr_text": ocr_info.get("full_text", ""),
-                "page_count": ocr_info.get("page_count", 1),
-                "confidence": ocr_info.get("average_confidence", 0.85)
+                "ocr_text": doc_ocr_text,
+                "page_count": 1,
+                "confidence": ocr_info.get("average_confidence", 0.90)
             })
 
         total_fields = sum(len(d["fields"]) for d in final_doc_results)

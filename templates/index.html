@@ -709,13 +709,15 @@
     }
 
     function getSectionCategory(path) {
-        if (path.startsWith('borrower.')) return 'borrower';
-        if (path.startsWith('loan.')) return 'loan';
-        if (path.startsWith('guarantors.0.') || path.startsWith('guarantor_1.')) return 'guarantor1';
-        if (path.startsWith('guarantors.1.') || path.startsWith('guarantor_2.')) return 'guarantor2';
-        if (path.startsWith('property.')) return 'property';
-        if (path.startsWith('salary.')) return 'salary';
-        if (path.startsWith('assets.') || path.startsWith('liabilities.')) return 'assets';
+        if (!path) return 'other';
+        const p = path.replace(/\[/g, '.').replace(/\]/g, '');
+        if (p.startsWith('borrower.')) return 'borrower';
+        if (p.startsWith('loan.')) return 'loan';
+        if (p.startsWith('guarantors.0.') || p.startsWith('guarantor_1.') || p.startsWith('guarantor.')) return 'guarantor1';
+        if (p.startsWith('guarantors.1.') || p.startsWith('guarantor_2.')) return 'guarantor2';
+        if (p.startsWith('property.')) return 'property';
+        if (p.startsWith('salary.')) return 'salary';
+        if (p.startsWith('assets.') || p.startsWith('liabilities.')) return 'assets';
         return 'other';
     }
 
@@ -806,10 +808,17 @@
             cardClass += ' is-missing';
         }
 
-        // Source documents string
-        const sourcesStr = item.source_documents && item.source_documents.length > 0
+        // Source documents string with page provenance
+        let sourcesStr = item.source_documents && item.source_documents.length > 0
             ? item.source_documents.join(', ')
             : 'Unextracted';
+        if (item.all_sources && item.all_sources.length > 0) {
+            const pages = item.all_sources.map(s => s.page_number).filter(p => p !== undefined && p !== null);
+            if (pages.length > 0) {
+                const uniquePages = [...new Set(pages)];
+                sourcesStr += ` [Pg ${uniquePages.join(', ')}]`;
+            }
+        }
 
         // Conflict options resolution panel
         let conflictHtml = '';
